@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#303136">
+  <title>人物档案 | 池袋关系网</title>
+  <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+<body class="archive-body route-entering">
+  <main class="archive-app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">D</div>
+        <div class="brand-copy">
+          <div class="brand-kicker">Ikebukuro Social Map · Archive</div>
+          <h1>池袋关系网</h1>
+        </div>
+      </div>
+      <nav class="top-nav" aria-label="页面导航">
+        <a class="nav-item" href="./index.html">Network <small>人物相関図</small></a>
+        <a class="nav-item active" href="./archive.html">Archive <small>人物档案</small></a>
+      </nav>
+      <div class="top-meta" aria-label="档案统计">
+        <div class="stat-pill"><strong id="archive-character-count">0</strong> 位角色</div>
+        <div class="stat-pill"><strong id="archive-faction-count">0</strong> 个阵营</div>
+        <div class="stat-pill">Archive index</div>
+      </div>
+    </header>
+
+    <section class="archive-content">
+      <header class="archive-heading">
+        <div>
+          <span>Ikebukuro personnel archive</span>
+          <h2>人物与阵营档案</h2>
+          <p>点击角色或阵营卡片，查看详细资料与关联成员。</p>
+        </div>
+        <label class="archive-search">
+          <span class="search-icon" aria-hidden="true"></span>
+          <input id="archive-search" class="search-input" type="search" placeholder="搜索角色、别名或阵营…" autocomplete="off">
+        </label>
+      </header>
+
+      <section class="archive-section">
+        <div class="archive-section-title">
+          <h3>主要阵营 <small>Factions</small></h3>
+          <span id="faction-result-count"></span>
+        </div>
+        <div id="archive-factions" class="faction-card-grid"></div>
+      </section>
+
+      <section class="archive-section">
+        <div class="archive-section-title">
+          <h3>角色列表 <small>Characters</small></h3>
+          <span id="character-result-count"></span>
+        </div>
+        <div id="archive-characters" class="character-card-grid"></div>
+      </section>
+    </section>
+
+    <footer class="footer archive-footer">
+      <div class="footer-copy">
+        <span>© 2026 池袋关系网 · 非官方爱好者作品，原作版权归成田良悟及相关权利方所有</span>
+        <span>如有描述疏漏，敬请来信 <a href="mailto:tilucario@outlook.com">tilucario@outlook.com</a> 指正，感谢你的帮助。</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://anuluca.com" target="_blank" rel="noreferrer">由 Anuluca 设计与制作 ↗</a>
+        <a href="https://github.com/Anuluca" target="_blank" rel="noreferrer">GitHub ↗</a>
+      </div>
+    </footer>
+  </main>
+
+  <div id="archive-modal" class="archive-modal" aria-hidden="true">
+    <button id="archive-modal-backdrop" class="archive-modal-backdrop" type="button" aria-label="关闭详情"></button>
+    <section class="archive-modal-card" role="dialog" aria-modal="true" aria-labelledby="archive-modal-title">
+      <button id="archive-modal-close" class="archive-modal-close" type="button" aria-label="关闭详情">×</button>
+      <div id="archive-modal-content"></div>
+    </section>
+  </div>
+
+  <div class="route-transition" aria-hidden="true"></div>
+
+  <script src="./assets/js/data.js"></script>
+  <script src="./assets/js/archive.js"></script>
+  <script src="./assets/js/navigation.js"></script>
+</body>
+</html>
