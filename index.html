@@ -1,132 +1,17 @@
 <!doctype html>
 <html lang="zh-CN">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#303136">
-  <title>池袋关系网 | 无头骑士异闻录</title>
-  <link rel="stylesheet" href="./assets/css/styles.css">
-</head>
-<body class="route-entering">
-  <main class="app">
-    <header class="topbar">
-      <div class="brand">
-        <div class="brand-mark" aria-hidden="true">D</div>
-        <div class="brand-copy">
-          <div class="brand-kicker">Ikebukuro Social Map · File 01</div>
-          <h1>池袋关系网</h1>
-        </div>
-      </div>
-      <nav class="top-nav" aria-label="页面导航">
-        <a class="nav-item active" href="./index.html">Network <small>人物相関図</small></a>
-        <a class="nav-item" href="./archive.html">Archive <small>人物档案</small></a>
-      </nav>
-      <div class="top-meta" aria-label="图谱统计">
-        <div class="stat-pill"><strong id="visible-node-count">0</strong> 位角色</div>
-        <div class="stat-pill"><strong id="visible-edge-count">0</strong> 条关系</div>
-        <div class="stat-pill">动画 / 小说主要人物</div>
-      </div>
-    </header>
-
-    <aside class="panel sidebar">
-      <div class="sidebar-actions">
-        <span>Filter console</span>
-        <button id="reset-all" class="reset-button reset-button-primary" type="button">全部重置</button>
-      </div>
-      <section class="section">
-        <h2 class="section-title">搜索角色 <button id="reset-search" class="reset-button" type="button">重置</button></h2>
-        <div class="search-wrap">
-          <span class="search-icon" aria-hidden="true"></span>
-          <input id="search" class="search-input" type="search" autocomplete="off" placeholder="名字、别名或组织…" aria-label="搜索角色">
-          <span class="search-shortcut">K</span>
-          <div id="search-results" class="search-results" role="listbox"></div>
-        </div>
-      </section>
-
-      <section class="section">
-        <h2 class="section-title">人物阵营 <button id="reset-factions" class="reset-button" type="button">重置</button></h2>
-        <div id="faction-filters" class="filter-list"></div>
-      </section>
-
-      <section class="section">
-        <h2 class="section-title">关系类型 <button id="reset-relations" class="reset-button" type="button">重置</button></h2>
-        <div id="relation-filters" class="relation-grid"></div>
-      </section>
-
-    </aside>
-
-    <section class="graph-shell" aria-label="无头骑士异闻录角色关系图">
-      <div class="canvas-label">Ikebukuro · Tokyo · Network 01</div>
-      <div id="graph"></div>
-      <div class="graph-hint">拖拽节点整理关系 · 滚轮缩放 · 点击空白处取消聚焦</div>
-      <div class="canvas-tools" aria-label="画布工具">
-        <button id="zoom-out" class="tool-button" type="button" title="缩小" aria-label="缩小">−</button>
-        <button id="fit-view" class="tool-button" type="button" title="回到帝人" aria-label="回到帝人">⌖</button>
-        <button id="zoom-in" class="tool-button" type="button" title="放大" aria-label="放大">＋</button>
-      </div>
-      <div id="loading" class="loading">
-        <div class="loading-inner">
-          <div class="loading-ring"></div>
-          正在前往池袋
-        </div>
-      </div>
-    </section>
-
-    <aside id="detail-panel" class="panel detail-panel">
-      <button id="mobile-detail-close" class="mobile-detail-close" type="button" aria-label="关闭详情">×</button>
-      <div id="detail-empty" class="detail-empty">
-        <div>
-          <div class="empty-symbol" aria-hidden="true"></div>
-          <h2>选择一位角色</h2>
-          <p>点击图谱中的节点，查看人物档案以及他们在池袋交织出的关系。</p>
-        </div>
-      </div>
-      <div id="detail-content" class="detail-content">
-        <div id="detail-hero" class="detail-hero">
-          <div class="detail-avatar-frame">
-            <img id="detail-avatar" src="./assets/images/avatar-placeholder.svg" alt="">
-            <div id="detail-avatar-bars" class="detail-avatar-bars"></div>
-          </div>
-          <div id="detail-index" class="detail-index"></div>
-          <h2 id="detail-name" class="detail-name"></h2>
-          <p id="detail-jp" class="detail-jp"></p>
-          <div id="detail-tags" class="detail-tags"></div>
-        </div>
-        <div class="detail-body">
-          <section class="detail-block">
-            <h3 class="detail-label">人物档案 / Profile</h3>
-            <p id="detail-description" class="detail-description"></p>
-          </section>
-          <section class="detail-block">
-            <h3 class="detail-label">主要出场 / Appearances</h3>
-            <div id="appearances" class="appearances"></div>
-            <p class="appearance-note">按主要剧情阶段归纳，并非逐话出演表。</p>
-          </section>
-          <section class="detail-block">
-            <h3 class="detail-label">直接关系 / Connections</h3>
-            <div id="connections" class="connections"></div>
-          </section>
-        </div>
-      </div>
-    </aside>
-
-    <footer class="footer">
-      <div class="footer-copy">
-        <span>© 2026 池袋关系网 · 非官方爱好者作品，原作版权归成田良悟及相关权利方所有</span>
-        <span>如有描述疏漏，敬请来信 <a href="mailto:tilucario@outlook.com">tilucario@outlook.com</a> 指正，感谢你的帮助。</span>
-      </div>
-      <div class="footer-links">
-        <a href="https://anuluca.com" target="_blank" rel="noreferrer">由 Anuluca 设计与制作 ↗</a>
-        <a href="https://github.com/Anuluca" target="_blank" rel="noreferrer">GitHub ↗</a>
-      </div>
-    </footer>
-  </main>
-
-  <div id="tooltip" class="tooltip"></div>
-  <div class="route-transition" aria-hidden="true"></div>
-
-  <script src="./assets/js/data.js"></script>
-  <script src="./assets/js/app.js"></script>
-  <script src="./assets/js/navigation.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#303136" />
+    <meta
+      name="description"
+      content="DRRR情报屋：《无头骑士异闻录》非官方档案站。"
+    />
+    <title>DRRR情报屋 | 《无头骑士异闻录》非官方档案站</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

@@ -1,6 +1,6 @@
-window.IKEBUKURO_DATA = (() => {
+const IKEBUKURO_DATA = (() => {
   const factions = {
-    core: { name: "池袋核心", color: "#ffc82c" },
+    core: { name: "池袋核心", color: "#7a70ff" },
     dollars: { name: "DOLLARS", color: "#000000" },
     yellow: { name: "黄巾贼", color: "#f2bd27" },
     blue: { name: "蓝色平方", color: "#4f8cff" },
@@ -747,3 +747,5 @@ window.IKEBUKURO_DATA = (() => {
 
   return { factions, relationTypes, characters, relations };
 })();
+
+export default IKEBUKURO_DATA;

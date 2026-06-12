@@ -1,33 +1,48 @@
-# 池袋关系网
+# 情报屋
 
-基于 AntV G6 的《无头骑士异闻录》人物关系浏览工具。
+《无头骑士异闻录》的非官方中日双语小型百科网站。
 
-## 项目结构
+## 技术栈
+
+- React 19 + TypeScript
+- Vite
+- Ant Design
+- React Router
+- i18next / react-i18next
+- AntV G6
+
+## 页面路由
 
 ```text
-.
-├── archive.html
-├── index.html
-├── assets
-│   ├── css
-│   │   └── styles.css
-│   ├── images
-│   │   ├── avatar-placeholder.svg
-│   │   └── avatars
-│   │       └── README.md
-│   └── js
-│       ├── data.js
-│       ├── app.js
-│       └── archive.js
-├── docs
-│   └── data-sources.md
-└── README.md
+/                    主页
+/network             池袋关系网
+/terms/characters    名词 / 角色
+/terms/factions      名词 / 阵营
+/works               作品
+/about               关于
 ```
 
-- `data.js`: 角色、阵营与关系数据。
-- `app.js`: G6 图谱、筛选、搜索和人物详情交互。
-- `archive.js`: 人物与阵营目录、搜索和详情弹窗。
-- `styles.css`: 页面视觉与响应式布局。
+## 本地开发
 
-头像接入方式见 `assets/images/avatars/README.md`。
-出场范围的数据口径与来源见 `docs/data-sources.md`。
+```bash
+npm install
+npm run dev
+```
+
+构建和代码检查：
+
+```bash
+npm run build
+npm run lint
+```
+
+## 数据与素材
+
+- `assets/js/data.js`：人物、阵营、出场阶段与关系数据。
+- `src/content.ts`：日文人物简介和中日双语作品资料。
+- `src/i18n.ts`：中日文界面翻译。
+- `assets/images/avatars/`：人物头像目录。
+- `docs/data-sources.md`：资料范围与来源说明。
+
+本站为非商业爱好者项目，原作及相关权利归成田良悟、KADOKAWA
+及相关权利方所有。
