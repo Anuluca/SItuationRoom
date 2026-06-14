@@ -4,6 +4,10 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import "./i18n";
 import "./styles.css";
+import "./styles/archive.css";
+import "./styles/about.css";
+import "./styles/cards.css";
+import "./styles/network-hero.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

@@ -1,0 +1,335 @@
+/* Resources archive and character details */
+.character-file-hero {
+  min-height: 250px;
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: 22px;
+}
+
+.character-file-hero .character-avatar.large {
+  width: 128px;
+  height: 128px;
+  border-radius: 30px;
+}
+
+.character-meta-line,
+.character-cv {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px 9px;
+  margin: 0 0 12px !important;
+  margin-bottom:5px !important;
+  color: #d8d7d0 !important;
+  font-style: normal !important;
+}
+
+.character-meta-line strong,
+.character-cv strong {
+  color: var(--yellow);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.character-meta-line span,
+.character-cv span {
+  font-size: 13px;
+}
+
+.resources-panel {
+  padding: clamp(30px, 4vw, 58px) clamp(24px, 5vw, 82px);
+}
+
+.resource-section-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 17px;
+}
+
+.resource-section-title > .anticon {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid rgba(244, 245, 0, 0.5);
+  background: rgba(244, 245, 0, 0.08);
+  color: var(--yellow);
+  font-size: 19px;
+}
+
+.resource-section-title span {
+  color: #85847f;
+  font-family: var(--serif);
+  font-size: 10px;
+  font-style: italic;
+  letter-spacing: 0.12em;
+}
+
+.resource-section-title h2 {
+  margin: 2px 0 0;
+  font-family: var(--serif);
+  font-size: 24px;
+  font-style: italic;
+  letter-spacing: -0.04em;
+}
+
+.resource-image-links {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.resource-image-card {
+  position: relative;
+  display: grid;
+  min-height: 330px;
+  grid-template-rows: minmax(0, 1fr) auto;
+  overflow: hidden;
+  border: 1px solid var(--black);
+  background:
+    url("/brand-helmet-card-watermark.svg") right -22px bottom -26px / 126px
+      no-repeat,
+    rgba(22, 23, 26, 0.55);
+}
+
+.resource-image-card::after {
+  position: absolute;
+  inset: 0;
+  border-top: 4px solid var(--yellow);
+  content: "";
+  pointer-events: none;
+}
+
+.resource-image-card img {
+  width: 100%;
+  height: 245px;
+  background: #202125;
+  object-fit: contain;
+  transition: transform 180ms ease;
+}
+
+.resource-image-card:hover img {
+  transform: scale(1.025);
+}
+
+.resource-image-card > .resource-image-copy {
+  display: grid;
+  gap: 4px;
+  padding: 14px 16px 16px;
+}
+
+.resource-image-placeholder {
+  display: grid;
+  height: 245px;
+  place-items: center;
+  background: #202125;
+}
+
+.resource-image-placeholder img {
+  width: 112px;
+  height: 112px;
+  object-fit: contain;
+  opacity: 1;
+}
+
+.resource-image-card small {
+  color: #777772;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+}
+
+.resource-image-card strong {
+  color: var(--yellow);
+  font-family: var(--serif);
+  font-size: 20px;
+  font-style: italic;
+}
+
+.resource-image-card em {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5px;
+  color: #aaa9a4;
+  font-size: 12px;
+  font-style: normal;
+}
+
+.resource-link-section {
+  margin-top: 38px;
+}
+
+.resource-link-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.resource-link-grid > a {
+  display: flex;
+  min-height: 116px;
+  align-items: start;
+  justify-content: space-between;
+  gap: 22px;
+  padding: 20px;
+  border: 1px solid var(--black);
+  background:
+    url("/brand-helmet-card-watermark.svg") right -18px bottom -32px / 126px
+      no-repeat,
+    rgba(22, 23, 26, 0.42);
+  transition: border-color 150ms ease, background 150ms ease;
+}
+
+.resource-link-grid > a:hover {
+  border-color: rgba(244, 245, 0, 0.5);
+  background: rgba(244, 245, 0, 0.035);
+}
+
+.resource-link-grid strong {
+  color: var(--yellow);
+  font-size: 16px;
+}
+
+.resource-link-grid p {
+  max-width: 560px;
+  margin: 7px 0 0;
+  color: #aaa9a4;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.resource-link-grid .anticon {
+  color: var(--yellow);
+}
+
+.resource-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  color: var(--yellow);
+  font-size: 13px;
+}
+
+.resource-gallery {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.resource-gallery figure {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--black);
+  background: rgba(22, 23, 26, 0.52);
+}
+
+.resource-gallery .ant-image {
+  display: block;
+  width: 100%;
+  height: 350px;
+  background: #202125;
+}
+
+.resource-gallery .ant-image-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.resource-gallery figcaption {
+  display: grid;
+  gap: 5px;
+  padding: 13px 14px;
+}
+
+.resource-gallery figcaption strong {
+  overflow: hidden;
+  color: var(--yellow);
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.resource-gallery figcaption a {
+  color: #85847f;
+  font-size: 10px;
+}
+
+.resource-gallery-avatars .ant-image {
+  height: 390px;
+}
+
+.resource-gallery-empty {
+  display: grid;
+  min-height: 360px;
+  place-items: center;
+  align-content: center;
+  gap: 9px;
+  border: 1px solid var(--black);
+  background: rgba(22, 23, 26, 0.45);
+  color: #aaa9a4;
+  text-align: center;
+}
+
+.resource-gallery-empty img {
+  width: 110px;
+  height: 110px;
+}
+
+.resource-gallery-empty strong {
+  color: var(--yellow);
+  font-family: var(--serif);
+  font-size: 22px;
+  font-style: italic;
+}
+
+.resource-gallery-empty p {
+  margin: 0;
+  font-size: 12px;
+}
+
+@media (max-width: 1280px) {
+  .resource-image-links,
+  .resource-gallery {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1080px) {
+  .resource-image-links,
+  .resource-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .resource-image-links,
+  .resource-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 590px) {
+  .character-file-hero {
+    grid-template-columns: 104px minmax(0, 1fr);
+  }
+
+  .character-file-hero .character-avatar.large {
+    width: 100px;
+    height: 100px;
+  }
+
+  .resource-image-links,
+  .resource-link-grid,
+  .resource-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .resource-image-card img,
+  .resource-gallery .ant-image,
+  .resource-gallery-avatars .ant-image {
+    height: 360px;
+  }
+}

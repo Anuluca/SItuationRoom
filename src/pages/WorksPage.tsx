@@ -3,31 +3,28 @@ import {
   ArrowUpOutlined,
   CloseOutlined,
 } from "@ant-design/icons";
-import { Button, Carousel, Drawer, Image, Tabs, Tag } from "antd";
+import { Button, Drawer, Image, Tabs, Tag } from "antd";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import PageHero from "../components/PageHero";
-import { works, type WorkEntry } from "../content";
-import type { Language } from "../types";
+import { works } from "../data";
+import type { Language, WorkCategory, WorkEntry } from "../types";
 
-const categories = ["tv", "ova", "music", "novels", "manga"] as const;
-const galleryImages = [
-  "https://www.durarara.com/img/top/KV.jpg",
-  "https://www.durarara.com/img/ova03/about/img.jpg",
-  "https://cdn.kdkw.jp/cover_1000/312133/312133900000.webp",
+const categories: WorkCategory[] = [
+  "tv",
+  "ova",
+  "music",
+  "novels",
+  "manga",
+  "games",
 ];
-
-const imagesFor = (work: WorkEntry) =>
-  Array.from(new Set([work.image, ...(work.images ?? []), ...galleryImages]))
-    .filter((image): image is string => Boolean(image))
-    .slice(0, 4);
 
 export default function WorksPage() {
   const { t, i18n } = useTranslation();
   const language = (i18n.resolvedLanguage === "ja" ? "ja" : "zh") as Language;
   const [selectedWork, setSelectedWork] = useState<WorkEntry | null>(null);
 
-  const renderWorks = (category: (typeof categories)[number]) => (
+  const renderWorks = (category: WorkCategory) => (
     <div className="works-list">
       {works
         .filter((work) => work.category === category)
@@ -43,9 +40,7 @@ export default function WorksPage() {
             }
             onClick={() => setSelectedWork(work)}
           >
-            <span
-              className={`work-image ratio-${work.imageRatio?.replace(":", "-") ?? "16-9"}`}
-            >
+            <span className="work-image">
               {work.image ? (
                 <img src={work.image} alt="" loading="lazy" />
               ) : (
@@ -113,28 +108,28 @@ export default function WorksPage() {
               icon={<CloseOutlined />}
               onClick={() => setSelectedWork(null)}
             />
-            <Image.PreviewGroup>
-              <Carousel className="work-file-carousel" arrows dots>
-                {imagesFor(selectedWork).map((image, index) => (
-                  <figure className="work-file-image" key={image}>
-                    <Image
-                      src={image}
-                      alt={`${selectedWork.title[language]} ${index + 1}`}
-                      preview={{ mask: t("common.learnMore") }}
-                    />
-                  </figure>
-                ))}
-              </Carousel>
-            </Image.PreviewGroup>
-            <header>
-              <Tag className="dark-work-tag">
-                {t(`works.${selectedWork.category}`)}
-              </Tag>
-              <time>{selectedWork.year}</time>
-              <h2>{selectedWork.title[language]}</h2>
-              <strong>{selectedWork.meta[language]}</strong>
-              <p>{selectedWork.description[language]}</p>
-            </header>
+            <div className="work-file-intro">
+              <figure className="work-file-cover">
+                {selectedWork.image ? (
+                  <Image
+                    src={selectedWork.image}
+                    alt={selectedWork.title[language]}
+                    preview={{ mask: t("common.learnMore") }}
+                  />
+                ) : (
+                  <img src="/brand-helmet-watermark.svg" alt="" />
+                )}
+              </figure>
+              <header>
+                <Tag className="dark-work-tag">
+                  {t(`works.${selectedWork.category}`)}
+                </Tag>
+                <time>{selectedWork.year}</time>
+                <h2>{selectedWork.title[language]}</h2>
+                <strong>{selectedWork.meta[language]}</strong>
+                <p>{selectedWork.description[language]}</p>
+              </header>
+            </div>
             {selectedWork.details && (
               <section>
                 <h3>{t("works.staff")} / Details</h3>

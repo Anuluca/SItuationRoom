@@ -7,13 +7,16 @@ import {
   ReloadOutlined,
 } from "@ant-design/icons";
 import G6 from "@antv/g6";
-import { Button, Select, Tag } from "antd";
+import { Button, Carousel, Select, Tag } from "antd";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import CharacterAvatar from "../components/CharacterAvatar";
+import CharacterDrawer from "../components/CharacterDrawer";
+import CharacterProfileSections from "../components/CharacterProfileSections";
 import PageHero from "../components/PageHero";
 import { localizeProfile } from "../content";
 import {
+  avatarFor,
   characterById,
   characters,
   displayName,
@@ -22,6 +25,7 @@ import {
   relations,
 } from "../data";
 import type { Character, Language } from "../types";
+import { Link } from "react-router-dom";
 
 const CENTER_CHARACTER_ID = "mikado";
 let networkNodeRegistered = false;
@@ -32,6 +36,35 @@ interface GraphCanvasProps {
   selectedId: string | null;
   compareIds: [string | null, string | null];
   onSelect: (id: string | null) => void;
+}
+
+type EdgeEmphasis = "default" | "dim" | "selected";
+
+function setEdgeLabelEmphasis(edge: any, emphasis: EdgeEmphasis) {
+  const children = edge.getContainer().get("children");
+  const labelShapes = children.filter(
+    (shape: any) =>
+      shape.get("type") === "text" || shape.get("name") === "edge-label",
+  );
+
+  labelShapes.forEach((shape: any) => {
+    if (emphasis === "dim") {
+      shape.attr({
+        fill: "#77787d",
+        stroke: "#303136",
+        lineWidth: 3,
+        opacity: 0.28,
+      });
+      return;
+    }
+
+    shape.attr({
+      fill: "#08090b",
+      stroke: "#ffffff",
+      lineWidth: 4,
+      opacity: 1,
+    });
+  });
 }
 
 function registerNetworkNode() {
@@ -45,35 +78,42 @@ function registerNetworkNode() {
         const size = Number(cfg?.size ?? 42);
         const radius = size / 2;
         const color = cfg?.color ?? "#f4f500";
+        const avatarRadius = Math.round(size * 0.25);
+        const avatarShape = group.addShape("image", {
+          attrs: {
+            x: -radius,
+            y: -radius,
+            width: size,
+            height: size,
+            img: cfg?.avatar,
+          },
+          name: "avatar",
+        });
+        avatarShape.setClip({
+          type: "rect",
+          attrs: {
+            x: -radius,
+            y: -radius,
+            width: size,
+            height: size,
+            radius: avatarRadius,
+          },
+        });
+
         const keyShape = group.addShape("rect", {
           attrs: {
             x: -radius,
             y: -radius,
             width: size,
             height: size,
-            radius: Math.round(size * 0.25),
-            fill: "#24252a",
+            radius: avatarRadius,
+            fill: "rgba(0, 0, 0, 0)",
             stroke: color,
             lineWidth: cfg?.id === CENTER_CHARACTER_ID ? 3 : 2,
             shadowColor: color,
             shadowBlur: cfg?.id === CENTER_CHARACTER_ID ? 16 : 7,
           },
           name: "key-shape",
-        });
-
-        group.addShape("text", {
-          attrs: {
-            x: 0,
-            y: 1,
-            text: cfg?.initial ?? "I",
-            fill: color,
-            fontFamily: "Georgia, serif",
-            fontSize: cfg?.id === CENTER_CHARACTER_ID ? 18 : 14,
-            fontWeight: 800,
-            textAlign: "center",
-            textBaseline: "middle",
-          },
-          name: "initial",
         });
 
         group.addShape("text", {
@@ -167,7 +207,7 @@ function GraphCanvas({
     const nodes = characters.map((character) => ({
       id: character.id,
       label: displayName(character, language),
-      initial: displayName(character, language).slice(0, 1),
+      avatar: avatarFor(character),
       size: character.id === CENTER_CHARACTER_ID ? 66 : 48,
       color:
         character.id === CENTER_CHARACTER_ID
@@ -295,7 +335,10 @@ function GraphCanvas({
     const graph = graphRef.current;
     if (!graph || graph.get("destroyed")) return;
     graph.getNodes().forEach((node: any) => graph.clearItemStates(node));
-    graph.getEdges().forEach((edge: any) => graph.clearItemStates(edge));
+    graph.getEdges().forEach((edge: any) => {
+      graph.clearItemStates(edge);
+      setEdgeLabelEmphasis(edge, "default");
+    });
 
     const [firstId, secondId] = compareIds;
     if (firstId && secondId && firstId !== secondId) {
@@ -307,7 +350,10 @@ function GraphCanvas({
           .forEach((node: any) => graph.setItemState(node, "dim", true));
         graph
           .getEdges()
-          .forEach((edge: any) => graph.setItemState(edge, "dim", true));
+          .forEach((edge: any) => {
+            graph.setItemState(edge, "dim", true);
+            setEdgeLabelEmphasis(edge, "dim");
+          });
         [first, second].forEach((node) => {
           graph.setItemState(node, "dim", false);
           graph.setItemState(node, "selected", true);
@@ -321,6 +367,7 @@ function GraphCanvas({
           ) {
             graph.setItemState(edge, "dim", false);
             graph.setItemState(edge, "selected", true);
+            setEdgeLabelEmphasis(edge, "selected");
           }
         });
         graph.focusItem(first, true);
@@ -333,13 +380,17 @@ function GraphCanvas({
     const selected = graph.findById(selectedId);
     if (!selected) return;
     graph.getNodes().forEach((node: any) => graph.setItemState(node, "dim", true));
-    graph.getEdges().forEach((edge: any) => graph.setItemState(edge, "dim", true));
+    graph.getEdges().forEach((edge: any) => {
+      graph.setItemState(edge, "dim", true);
+      setEdgeLabelEmphasis(edge, "dim");
+    });
     graph.setItemState(selected, "dim", false);
     graph.setItemState(selected, "selected", true);
 
     selected.getEdges().forEach((edge: any) => {
       graph.setItemState(edge, "dim", false);
       graph.setItemState(edge, "selected", true);
+      setEdgeLabelEmphasis(edge, "selected");
       [edge.getSource(), edge.getTarget()].forEach((node: any) => {
         graph.setItemState(node, "dim", false);
         if (node.getModel().id !== selectedId) {
@@ -364,7 +415,7 @@ function GraphCanvas({
 
   return (
     <div className="network-canvas-shell">
-      <div className="canvas-label">Ikebukuro · Tokyo · Network 01</div>
+      <div className="canvas-label">{t("network.graphTitle")}</div>
       <div className="network-canvas" ref={containerRef} />
       <span className="canvas-hint">{t("network.graphHint")}</span>
       <div className="canvas-controls">
@@ -386,8 +437,10 @@ function GraphCanvas({
       </div>
       {loading && (
         <div className="graph-loading">
-          <span />
-          {t("network.loading")}
+          <div className="graph-loading-mark">
+            <span aria-hidden="true" />
+            <strong>{t("network.loading")}</strong>
+          </div>
         </div>
       )}
     </div>
@@ -427,10 +480,6 @@ function NetworkDetail({
     role: character.role,
     desc: character.desc,
   });
-  const connected = relations.filter(
-    ({ source, target }) => source === character.id || target === character.id,
-  );
-
   return (
     <aside
       className="network-detail selected"
@@ -448,12 +497,17 @@ function NetworkDetail({
       />
       <header>
         <CharacterAvatar character={character} size="large" />
-        <span className="file-index">
-          FILE {String(characters.indexOf(character) + 1).padStart(2, "0")}
-        </span>
         <h2>{displayName(character, language)}</h2>
         <p>
           {language === "ja" ? character.name : character.jp} · {profile.alias}
+        </p>
+        <p className="character-meta-line character-role">
+          <strong>{t("terms.identity")}</strong>
+          <span>{profile.role}</span>
+        </p>
+        <p className="character-cv">
+          <strong>{t("profile.cv")}</strong>
+          <span>{character.cv ?? t("profile.cvUnknown")}</span>
         </p>
         <div className="file-tags">
           {character.factions.map((factionId) => (
@@ -463,43 +517,197 @@ function NetworkDetail({
           ))}
         </div>
       </header>
-      <section>
-        <h3>{t("network.profile")} / Profile</h3>
-        <p>{profile.desc}</p>
-      </section>
-      <section>
-        <h3>{t("network.connections")} / Connections</h3>
-        <div className="network-connection-list">
-          {connected.map((relation, index) => {
-            const otherId =
-              relation.source === character.id
-                ? relation.target
-                : relation.source;
-            const other = characterById.get(otherId);
-            if (!other) return null;
-            return (
-              <button
-                type="button"
-                key={`${relation.source}-${relation.target}-${index}`}
-                style={
-                  {
-                    "--relation-color": relationTypes[relation.type].color,
-                  } as React.CSSProperties
-                }
-                onClick={() => onSelect(otherId)}
-              >
-                <span>{displayName(other, language)}</span>
-                <small>
-                  {language === "ja"
-                    ? t(`relationTypes.${relation.type}`)
-                    : relation.label}
-                </small>
-              </button>
-            );
-          })}
-        </div>
-      </section>
+      <CharacterProfileSections
+        character={character}
+        language={language}
+        onSelectCharacter={onSelect}
+      />
     </aside>
+  );
+}
+
+const heroUpdates = [
+  {
+    key: "characters",
+    image: avatarFor(characterById.get("manami") ?? characters[0]),
+    to: "/terms/characters",
+  },
+  {
+    key: "resources",
+    image: "https://www.durarara.com/img/music/ost/jk.jpg",
+    to: "/resources",
+  },
+  {
+    key: "network",
+    image: "https://www.durarara.com/img/top/KV.jpg",
+    to: "/",
+  },
+] as const;
+
+function NetworkHeroAside({ language }: { language: Language }) {
+  const { t } = useTranslation();
+  const [quizRevealed, setQuizRevealed] = useState(false);
+  const [detailId, setDetailId] = useState<string | null>(null);
+
+  const quizCandidates = useMemo(
+    () =>
+      characters.flatMap((character) => {
+        const relation = relations.find(
+          (item) => item.source === character.id || item.target === character.id,
+        );
+        if (!relation) return [];
+
+        const relatedId =
+          relation.source === character.id ? relation.target : relation.source;
+        const relatedCharacter = characterById.get(relatedId);
+        if (!relatedCharacter) return [];
+
+        return [{ character, relation, relatedCharacter }];
+      }),
+    [],
+  );
+  const [quizRound, setQuizRound] = useState(() =>
+    quizCandidates.length
+      ? Math.floor(Math.random() * quizCandidates.length)
+      : 0,
+  );
+
+  const quiz = quizCandidates[quizRound % quizCandidates.length];
+  if (!quiz) return null;
+
+  const relationLabel =
+    language === "ja"
+      ? t(`relationTypes.${quiz.relation.type}`)
+      : quiz.relation.label;
+
+  const nextQuiz = () => {
+    setQuizRevealed(false);
+    setDetailId(null);
+    setQuizRound((current) => {
+      if (quizCandidates.length <= 1) return 0;
+      const offset =
+        1 + Math.floor(Math.random() * (quizCandidates.length - 1));
+      return (current + offset) % quizCandidates.length;
+    });
+  };
+
+  const revealOrOpenProfile = () => {
+    if (!quizRevealed) {
+      setQuizRevealed(true);
+      return;
+    }
+    setDetailId(quiz.character.id);
+  };
+
+  return (
+    <>
+      <div className="network-hero-console">
+        <section className="network-hero-panel hero-updates">
+          <div className="hero-panel-heading">
+            <span>UPDATE</span>
+            <strong>{t("network.latestTitle")}</strong>
+          </div>
+          <Carousel arrows autoplay autoplaySpeed={4800} dots>
+            {heroUpdates.map((update, index) => (
+              <Link
+                className="hero-update-item"
+                key={update.key}
+                to={update.to}
+              >
+                <span className="hero-update-image">
+                  <img src={update.image} alt="" />
+                  <small>0{index + 1}</small>
+                </span>
+                <div>
+                  <strong>{t(`network.latest.${update.key}.title`)}</strong>
+                  <p>{t(`network.latest.${update.key}.description`)}</p>
+                  <em>{t("network.latestOpen")}</em>
+                </div>
+              </Link>
+            ))}
+          </Carousel>
+        </section>
+
+        <section className="network-hero-panel hero-who">
+          <div className="hero-panel-heading">
+            <span>WHO</span>
+            <strong>{t("network.quizTitle")}</strong>
+            <Button
+              aria-label={t("network.quizNext")}
+              className="hero-quiz-reset"
+              icon={<ReloadOutlined />}
+              onClick={nextQuiz}
+              size="small"
+              title={t("network.quizNext")}
+              type="text"
+            >
+              {t("network.quizNext")}
+            </Button>
+          </div>
+          <button
+            aria-label={
+              quizRevealed
+                ? t("network.quizOpenProfile")
+                : t("network.quizReveal")
+            }
+            className={`hero-who-card ${quizRevealed ? "is-revealed" : ""}`}
+            onClick={revealOrOpenProfile}
+            style={
+              {
+                "--quiz-color":
+                  factions[quiz.character.faction]?.color ?? "#f4f500",
+              } as React.CSSProperties
+            }
+            type="button"
+          >
+            <span className="hero-who-avatar">
+              {quizRevealed ? (
+                <img
+                  src={avatarFor(quiz.character)}
+                  alt={displayName(quiz.character, language)}
+                />
+              ) : (
+                <b aria-hidden="true">?</b>
+              )}
+            </span>
+            <span className="hero-who-copy">
+              <small className="hero-who-prompt">
+                {t("network.quizPrompt")}
+              </small>
+              <strong className="hero-who-clues">
+                <span>
+                  <i
+                    style={{
+                      backgroundColor: "var(--quiz-color)",
+                    }}
+                  />
+                  {t(`factions.${quiz.character.faction}`)}
+                </span>
+                <span>
+                  {displayName(quiz.relatedCharacter, language)} ·{" "}
+                  {relationLabel}
+                </span>
+              </strong>
+              {quizRevealed ? (
+                <span className="hero-who-name">
+                  {displayName(quiz.character, language)}
+                </span>
+              ) : (
+                <small className="hero-who-action">
+                  {t("network.quizReveal")}
+                </small>
+              )}
+            </span>
+          </button>
+        </section>
+      </div>
+      <CharacterDrawer
+        characterId={detailId}
+        open={Boolean(detailId)}
+        onClose={() => setDetailId(null)}
+        onSelectCharacter={setDetailId}
+      />
+    </>
   );
 }
 
@@ -526,14 +734,6 @@ export default function NetworkPage() {
       ),
     [activeFactions],
   );
-
-  const visibleRelations = useMemo(() => {
-    const visibleIds = new Set(visibleCharacters.map(({ id }) => id));
-    return relations.filter(
-      ({ source, target }) =>
-        visibleIds.has(source) && visibleIds.has(target),
-    ).length;
-  }, [visibleCharacters]);
 
   const comparedRelations = useMemo(() => {
     const [firstId, secondId] = compareIds;
@@ -597,18 +797,7 @@ export default function NetworkPage() {
         title={t("network.title")}
         lead={t("network.lead")}
         index="01"
-        aside={
-          <div className="page-hero-stats">
-            <div>
-              <strong>{visibleCharacters.length}</strong>
-              <span>{t("common.characters")}</span>
-            </div>
-            <div>
-              <strong>{visibleRelations}</strong>
-              <span>{t("common.relations")}</span>
-            </div>
-          </div>
-        }
+        aside={<NetworkHeroAside language={language} />}
       />
 
       <section className="network-workspace">

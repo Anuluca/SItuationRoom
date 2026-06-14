@@ -19,7 +19,11 @@ export default function CharacterAvatar({
         } as React.CSSProperties
       }
     >
-      <img src={avatarFor()} alt="" />
+      <img
+        src={avatarFor(character)}
+        alt=""
+        loading={size === "small" ? "lazy" : "eager"}
+      />
     </span>
   );
 }

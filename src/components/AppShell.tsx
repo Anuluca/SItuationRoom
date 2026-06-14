@@ -1,10 +1,17 @@
 import {
+  ArrowUpOutlined,
   CloseOutlined,
   GlobalOutlined,
   MenuOutlined,
 } from "@ant-design/icons";
 import { Button, Drawer, Dropdown } from "antd";
-import { useEffect, useMemo, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { useTranslation } from "react-i18next";
 import {
   Link,
@@ -18,6 +25,7 @@ const navItems = [
   { to: "/", key: "home", end: true, en: "Home" },
   { to: "/terms/characters", key: "terms", en: "Terms" },
   { to: "/works", key: "works", en: "Works" },
+  { to: "/resources", key: "resources", en: "Resources" },
   { to: "/about", key: "about", en: "About" },
 ];
 
@@ -25,18 +33,52 @@ export default function AppShell() {
   const { t, i18n } = useTranslation();
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mainScroll, setMainScroll] = useState({
+    scrollable: false,
+    atBottom: true,
+    awayFromTop: false,
+  });
+  const mainRef = useRef<HTMLElement>(null);
   const language = (i18n.resolvedLanguage === "ja" ? "ja" : "zh") as Language;
 
   const titleKey = useMemo(() => {
     if (location.pathname.startsWith("/terms")) return "terms";
     if (location.pathname.startsWith("/works")) return "works";
+    if (location.pathname.startsWith("/resources")) return "resources";
     if (location.pathname.startsWith("/about")) return "about";
     return "home";
   }, [location.pathname]);
 
   useEffect(() => {
+    const descriptionKey =
+      titleKey === "home" ? "network.lead" : `${titleKey}.lead`;
+    const pageTitle =
+      titleKey === "home"
+        ? `${t("site.name")} | ${t("site.subtitle")}`
+        : `${t(`nav.${titleKey}`)} | ${t("site.name")}`;
+    const description = t(descriptionKey);
+
     document.documentElement.lang = language === "ja" ? "ja" : "zh-CN";
-    document.title = `${t(`nav.${titleKey}`)} | ${t("site.name")}`;
+    document.title = pageTitle;
+    document
+      .querySelector('meta[name="description"]')
+      ?.setAttribute("content", description);
+    document
+      .querySelector('meta[property="og:title"]')
+      ?.setAttribute("content", pageTitle);
+    document
+      .querySelector('meta[property="og:description"]')
+      ?.setAttribute("content", description);
+    document
+      .querySelector('meta[property="og:locale"]')
+      ?.setAttribute("content", language === "ja" ? "ja_JP" : "zh_CN");
+    document
+      .querySelector('meta[name="twitter:title"]')
+      ?.setAttribute("content", pageTitle);
+    document
+      .querySelector('meta[name="twitter:description"]')
+      ?.setAttribute("content", description);
+    mainRef.current?.scrollTo({ top: 0, behavior: "auto" });
     window.scrollTo({ top: 0, behavior: "auto" });
   }, [language, location.pathname, t, titleKey]);
 
@@ -44,6 +86,39 @@ export default function AppShell() {
     localStorage.setItem("joho-ya-language", next);
     void i18n.changeLanguage(next);
   };
+
+  const updateMainScroll = useCallback(() => {
+    const main = mainRef.current;
+    if (!main) return;
+    const scrollable = main.scrollHeight > main.clientHeight + 2;
+    const atBottom =
+      main.scrollTop + main.clientHeight >= main.scrollHeight - 3;
+    const awayFromTop = main.scrollTop > 80;
+    setMainScroll((current) =>
+      current.scrollable === scrollable &&
+      current.atBottom === atBottom &&
+      current.awayFromTop === awayFromTop
+        ? current
+        : { scrollable, atBottom, awayFromTop },
+    );
+  }, []);
+
+  useEffect(() => {
+    const main = mainRef.current;
+    if (!main) return;
+
+    const frame = requestAnimationFrame(updateMainScroll);
+    const observer = new ResizeObserver(updateMainScroll);
+    observer.observe(main);
+    if (main.firstElementChild) observer.observe(main.firstElementChild);
+    window.addEventListener("resize", updateMainScroll);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      window.removeEventListener("resize", updateMainScroll);
+    };
+  }, [location.pathname, updateMainScroll]);
 
   const languageMenu = {
     items: [
@@ -81,7 +156,7 @@ export default function AppShell() {
       <header className="site-header">
         <Link className="brand" to="/" aria-label={t("site.name")}>
           <span className="brand-mark" aria-hidden="true">
-            //
+            <img src="/brand-helmet.svg" alt="" />
           </span>
           <span className="brand-copy">
             <small>{t("site.subtitle")}</small>
@@ -110,9 +185,32 @@ export default function AppShell() {
         </div>
       </header>
 
-      <main className="site-main" key={location.pathname}>
-        <Outlet />
-      </main>
+      <div
+        className={`site-main-wrap${
+          mainScroll.scrollable ? " is-scrollable" : ""
+        }${mainScroll.atBottom ? " is-at-bottom" : ""}`}
+      >
+        <main
+          className="site-main"
+          key={location.pathname}
+          ref={mainRef}
+          onScroll={updateMainScroll}
+        >
+          <Outlet />
+        </main>
+        <Button
+          className={`site-back-top${
+            mainScroll.scrollable && mainScroll.awayFromTop ? " is-visible" : ""
+          }`}
+          icon={<ArrowUpOutlined />}
+          aria-label={language === "ja" ? "ページ上部へ戻る" : "回到顶部"}
+          onClick={() =>
+            mainRef.current?.scrollTo({ top: 0, behavior: "smooth" })
+          }
+        >
+          TOP
+        </Button>
+      </div>
 
       <footer className="site-footer">
         <div>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#303136"/>
+  <path fill="#25262a" d="M0 468 1200 158v472H0z"/>
+  <g transform="translate(86 92) scale(3.45)">
+    <path fill="#171719" d="M18 45 24 5l27 24c9-3 17-3 26 0l27-24 6 40c9 13 13 27 12 43-1 24-21 36-58 36S7 112 6 88c-1-16 3-30 12-43Z"/>
+    <path fill="#e2dc78" d="m24 47 5-29 18 18c11-5 23-6 34 0l18-18 5 29c7 11 10 23 9 37-2 20-18 29-49 29S17 104 15 84c-1-14 2-26 9-37Z"/>
+    <path fill="#0b0c0f" stroke="#777b80" stroke-width="3" d="M17 70c13-7 29-10 47-10s34 3 47 10l-5 24c-11 7-25 10-42 10s-31-3-42-10l-5-24Z"/>
+    <path fill="#4f657b" d="M80 40h16l-5 8h-8l-3 5 11 4-8 13H66l5-8h8l3-5-12-4 10-13Z"/>
+  </g>
+  <text x="570" y="255" fill="#f4f500" font-family="Arial Black, sans-serif" font-size="86" font-weight="900">DRRR 情报屋</text>
+  <text x="575" y="334" fill="#f4f3ed" font-family="Arial, sans-serif" font-size="32">《无头骑士异闻录》非官方档案站</text>
+  <text x="575" y="399" fill="#aaa9a4" font-family="Arial, sans-serif" font-size="24">关系网 · 角色 · 阵营 · 作品 · 资料</text>
+</svg>

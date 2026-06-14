@@ -1,5 +1,5 @@
 import { SearchOutlined } from "@ant-design/icons";
-import { Input, Tag } from "antd";
+import { Input } from "antd";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import CharacterAvatar from "../components/CharacterAvatar";
@@ -65,7 +65,7 @@ export default function CharactersPage() {
 
       {visibleCharacters.length ? (
         <div className="character-grid">
-          {visibleCharacters.map((character, index) => {
+          {visibleCharacters.map((character) => {
             const profile = localizeProfile(character.id, language, {
               alias: character.alias,
               role: character.role,
@@ -78,30 +78,35 @@ export default function CharactersPage() {
                 key={character.id}
                 onClick={() => setSelectedCharacter(character.id)}
               >
-                <span className="card-index">
-                  {String(index + 1).padStart(2, "0")}
+                <span className="character-card-avatar">
+                  <CharacterAvatar character={character} size="medium" />
                 </span>
-                <CharacterAvatar character={character} size="medium" />
-                <span className="character-card-copy">
-                  <strong>{displayName(character, language)}</strong>
-                  <small>
-                    {language === "ja" ? character.name : character.jp}
-                  </small>
-                  <em>{profile.alias}</em>
-                  <span className="card-tags">
-                    {character.factions.slice(0, 2).map((factionId) => (
-                      <Tag
-                        key={factionId}
-                        className="dark-faction-tag"
-                        style={
-                          {
-                            "--tag-color": factions[factionId].color,
-                          } as React.CSSProperties
-                        }
-                      >
-                        {t(`factions.${factionId}`)}
-                      </Tag>
-                    ))}
+                <span className="character-card-body">
+                  <span className="character-card-name">
+                    <strong>{displayName(character, language)}</strong>
+                    <span className="character-card-meta">
+                      <small>
+                        {language === "ja" ? character.name : character.jp}
+                      </small>
+                      <em>{profile.alias}</em>
+                    </span>
+                  </span>
+                  <span className="character-card-identity">
+                    <span className="character-card-role">{profile.role}</span>
+                    <span className="character-card-factions">
+                      {character.factions.slice(0, 2).map((factionId) => (
+                        <small
+                          key={factionId}
+                          style={
+                            {
+                              "--faction-color": factions[factionId].color,
+                            } as React.CSSProperties
+                          }
+                        >
+                          {t(`factions.${factionId}`)}
+                        </small>
+                      ))}
+                    </span>
                   </span>
                 </span>
               </button>

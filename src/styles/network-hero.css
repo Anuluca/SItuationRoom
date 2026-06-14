@@ -1,0 +1,672 @@
+/* Homepage hero console */
+.network-page .page-hero-copy {
+  max-width: calc(100% - min(760px, 52vw) - 24px);
+}
+
+.network-hero-console {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  display: grid;
+  width: min(760px, 52vw);
+  grid-template-columns: minmax(0, 1.45fr) minmax(285px, 0.75fr);
+  border-left: 1px solid #303136;
+}
+
+.network-hero-panel {
+  position: relative;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  border-right: 1px solid #303136;
+  background: rgba(14, 15, 17, 0.94);
+}
+
+.network-hero-panel:last-child {
+  border-right: 0;
+}
+
+.hero-panel-heading {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-panel-heading > span {
+  color: var(--yellow);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.hero-panel-heading > strong {
+  overflow: hidden;
+  color: #d5d4ce;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Latest updates */
+.hero-updates {
+  padding: 0;
+}
+
+.hero-updates > .hero-panel-heading {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  z-index: 5;
+  padding: 5px 8px;
+  background: rgba(8, 8, 10, 0.76);
+  backdrop-filter: blur(7px);
+}
+
+.hero-updates .ant-carousel,
+.hero-updates .slick-slider,
+.hero-updates .slick-list,
+.hero-updates .slick-track,
+.hero-updates .slick-slide,
+.hero-updates .slick-slide > div {
+  height: 100%;
+}
+
+.hero-update-item {
+  position: relative;
+  display: block !important;
+  height: 100%;
+  overflow: hidden;
+  color: inherit;
+}
+
+.hero-update-image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+  background: #202125;
+}
+
+.hero-update-image::after {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(5, 5, 6, 0.08), transparent 55%),
+    linear-gradient(to top, rgba(5, 5, 6, 0.96), rgba(5, 5, 6, 0.08) 72%);
+  content: "";
+}
+
+.hero-update-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.8) contrast(1.06);
+  transition: filter 220ms ease, transform 420ms ease;
+}
+
+.hero-update-image small {
+  position: absolute;
+  top: 13px;
+  right: 15px;
+  z-index: 1;
+  color: var(--yellow);
+  font-family: Impact, "Arial Black", sans-serif;
+  font-size: 22px;
+  line-height: 1;
+  text-shadow: 0 2px 6px #000;
+}
+
+.hero-update-item > div {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  min-width: 0;
+  padding: 42px 18px 17px;
+  background: linear-gradient(to top, rgba(5, 5, 6, 0.88), transparent);
+}
+
+.hero-update-item strong {
+  display: block;
+  overflow: hidden;
+  color: #f4f3ed;
+  font-family: var(--serif);
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.network-page .page-hero .hero-update-item p {
+  display: -webkit-box;
+  max-width: 440px;
+  margin: 5px 0 0;
+  overflow: hidden;
+  color: #c3c2bb;
+  font-size: 11px;
+  line-height: 1.45;
+  white-space: normal;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.hero-update-item em {
+  display: block;
+  margin-top: 6px;
+  color: var(--yellow);
+  font-size: 12px;
+  font-style: normal;
+  letter-spacing: 0.06em;
+}
+
+.hero-update-item:hover .hero-update-image img {
+  filter: saturate(1.08) contrast(1.08);
+  transform: scale(1.045);
+}
+
+.hero-update-item:hover strong {
+  color: var(--yellow);
+}
+
+.hero-updates .slick-dots {
+  right: 16px;
+  bottom: 10px;
+  left: auto;
+  z-index: 6;
+  width: auto;
+  margin: 0;
+}
+
+.hero-updates .slick-dots li,
+.hero-updates .slick-dots li button {
+  width: 25px;
+  height: 4px;
+}
+
+.hero-updates .slick-dots li button {
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.52);
+}
+
+.hero-updates .slick-dots li.slick-active,
+.hero-updates .slick-dots li.slick-active button {
+  width: 38px;
+  background: var(--yellow);
+}
+
+.hero-updates .slick-arrow {
+  top: 50%;
+  z-index: 7;
+  display: grid !important;
+  width: 32px;
+  height: 38px;
+  place-items: center;
+  padding: 0;
+  opacity: 0 !important;
+  border: 1px solid rgba(244, 245, 0, 0.68);
+  border-radius: 0;
+  background: rgba(8, 8, 10, 0.82);
+  box-shadow:
+    0 0 0 4px rgba(5, 5, 6, 0.28),
+    0 6px 18px rgba(0, 0, 0, 0.38);
+  color: transparent;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-50%) translateX(-4px) !important;
+  transition:
+    opacity 180ms ease,
+    visibility 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.hero-updates .slick-arrow::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: auto;
+  border: 0 !important;
+  color: var(--yellow);
+  font-family: Arial, sans-serif;
+  font-size: 23px;
+  font-weight: 300;
+  line-height: 1;
+  transform: translate(-50%, -54%) !important;
+}
+
+.hero-updates .slick-prev {
+  inset-inline-start: 12px !important;
+}
+
+.hero-updates .slick-prev::after {
+  content: "‹" !important;
+}
+
+.hero-updates .slick-next {
+  inset-inline-end: 12px !important;
+  transform: translateY(-50%) translateX(4px) !important;
+}
+
+.hero-updates .slick-next::after {
+  content: "›" !important;
+}
+
+.hero-updates:hover .slick-arrow {
+  opacity: 1 !important;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(-50%) translateX(0) !important;
+}
+
+.hero-updates .slick-arrow:hover {
+  border-color: var(--yellow);
+  background: var(--yellow);
+}
+
+.hero-updates .slick-arrow:hover::after {
+  color: #101012;
+}
+
+/* Who am I */
+.hero-who {
+  padding: 13px 14px;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(244, 245, 0, 0.045) 0 7px,
+      transparent 7px 15px
+    ),
+    linear-gradient(110deg, rgba(91, 86, 255, 0.11), transparent 57%),
+    #101113;
+  box-shadow: inset 0 3px 0 var(--yellow);
+}
+
+.hero-who::after {
+  position: absolute;
+  right: -28px;
+  bottom: -36px;
+  width: 132px;
+  height: 132px;
+  background: url("/brand-helmet-watermark.svg") center / contain no-repeat;
+  content: "";
+  pointer-events: none;
+  transform: rotate(7deg);
+}
+
+.hero-who > .hero-panel-heading {
+  height: 22px;
+}
+
+.hero-who .hero-panel-heading > span {
+  padding: 2px 5px;
+  background: var(--yellow);
+  color: #101012;
+  transform: skewX(-11deg);
+}
+
+.hero-quiz-reset.ant-btn {
+  width: auto;
+  min-width: 0;
+  height: 23px;
+  margin-left: auto;
+  padding-inline: 6px;
+  color: #aaa9a4;
+  font-size: 12px;
+}
+
+.hero-quiz-reset.ant-btn:hover {
+  color: var(--yellow) !important;
+  background: rgba(244, 245, 0, 0.08) !important;
+}
+
+.hero-who-card {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 100%;
+  height: calc(100% - 22px);
+  grid-template-columns: 82px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 6px 0 2px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.hero-who-avatar {
+  position: relative;
+  display: grid;
+  width: 78px;
+  height: 78px;
+  overflow: hidden;
+  place-items: center;
+  border: 2px solid var(--quiz-color, var(--yellow));
+  border-radius: 18px;
+  background:
+    linear-gradient(135deg, rgba(244, 245, 0, 0.13), transparent 60%),
+    #202125;
+  box-shadow:
+    5px 5px 0 color-mix(in srgb, var(--quiz-color, var(--yellow)) 18%, transparent),
+    0 0 18px color-mix(in srgb, var(--quiz-color, var(--yellow)) 16%, transparent);
+  transition: box-shadow 220ms ease, transform 220ms ease;
+}
+
+.hero-who-avatar b {
+  color: var(--quiz-color, var(--yellow));
+  font-family: "Arial Black", sans-serif;
+  font-size: 90px;
+  font-weight: 900;
+  line-height: 1;
+  text-shadow: 4px 3px 0 rgba(248, 248, 248, 0.06);
+}
+
+.hero-who-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-who-card.is-revealed .hero-who-avatar {
+  animation: hero-who-reveal-glow 720ms cubic-bezier(0.2, 0.78, 0.24, 1);
+}
+
+.hero-who-card.is-revealed .hero-who-avatar img {
+  animation: hero-who-reveal-image 620ms cubic-bezier(0.2, 0.78, 0.24, 1)
+    both;
+}
+
+@keyframes hero-who-reveal-image {
+  0% {
+    opacity: 0;
+    filter: brightness(1.8) blur(7px);
+    transform: scale(0.88);
+  }
+  55% {
+    opacity: 1;
+    filter: brightness(1.3) blur(1px);
+    transform: scale(1.045);
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(1) blur(0);
+    transform: scale(1);
+  }
+}
+
+@keyframes hero-who-reveal-glow {
+  0% {
+    box-shadow:
+      0 0 0 0
+        color-mix(in srgb, var(--quiz-color, var(--yellow)) 0%, transparent),
+      0 0 0
+        color-mix(in srgb, var(--quiz-color, var(--yellow)) 0%, transparent);
+  }
+  48% {
+    box-shadow:
+      0 0 0 5px
+        color-mix(in srgb, var(--quiz-color, var(--yellow)) 26%, transparent),
+      0 0 34px
+        color-mix(in srgb, var(--quiz-color, var(--yellow)) 72%, transparent);
+  }
+  100% {
+    box-shadow:
+      5px 5px 0
+        color-mix(in srgb, var(--quiz-color, var(--yellow)) 18%, transparent),
+      0 0 18px
+        color-mix(in srgb, var(--quiz-color, var(--yellow)) 16%, transparent);
+  }
+}
+
+.hero-who-card:hover .hero-who-avatar {
+  transform: translateY(-2px) scale(1.025);
+}
+
+.hero-who-copy {
+  display: grid;
+  min-width: 0;
+  gap: 5px;
+}
+
+.hero-who-prompt {
+  overflow: hidden;
+  color: #85847f;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition:all 0.2s;
+}
+
+.hero-who-clues {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+  padding: 5px 7px;
+  border-left: 3px solid #fff;
+  background: var(--yellow);
+  color: #101012;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 1.35;
+  transition:all 0.2s;
+  *{
+    font-family: var(--serif);
+    font-style: italic;
+  }
+}
+
+.hero-who-clues > span {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 5px;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.hero-who-clues i {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  border: 1px solid #101012;
+}
+
+.hero-who-clues b {
+  color: #101012;
+}
+.hero-who-card.is-revealed .hero-who-prompt{
+  opacity: 0;
+}
+
+.hero-who-card.is-revealed .hero-who-clues {
+  padding-inline: 0;
+  border-left-color: transparent;
+  background: transparent;
+  color: #f4f3ed;
+  font-weight: 600;
+  padding: 0 !important;
+  margin-top:-10px
+}
+
+.hero-who-card.is-revealed .hero-who-clues i {
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.hero-who-card.is-revealed .hero-who-clues b {
+  color: #f4f3ed;
+}
+
+.hero-who-name {
+  overflow: hidden;
+  color: var(--yellow);
+  font-family: var(--serif);
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.18;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hero-who-card.is-revealed .hero-who-name {
+  animation: hero-who-name-reveal 760ms 80ms cubic-bezier(0.2, 0.78, 0.24, 1)
+    both;
+}
+
+@keyframes hero-who-name-reveal {
+  0% {
+    opacity: 0;
+    filter: blur(5px);
+    letter-spacing: 0.12em;
+    text-shadow: 0 0 0 transparent;
+    transform: translateY(5px);
+  }
+  55% {
+    opacity: 1;
+    filter: blur(0);
+    text-shadow:
+      0 0 8px color-mix(in srgb, var(--quiz-color, var(--yellow)) 90%, white),
+      0 0 20px color-mix(in srgb, var(--quiz-color, var(--yellow)) 70%, transparent);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    letter-spacing: normal;
+    text-shadow: 0 0 8px
+      color-mix(in srgb, var(--quiz-color, var(--yellow)) 35%, transparent);
+    transform: translateY(0);
+  }
+}
+
+.hero-who-action {
+  color: #777772;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+}
+
+.hero-who-card:hover .hero-who-action {
+  color: #c1c0b9;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-who-card.is-revealed .hero-who-avatar,
+  .hero-who-card.is-revealed .hero-who-avatar img,
+  .hero-who-card.is-revealed .hero-who-name {
+    animation: none;
+  }
+}
+
+@media (max-width: 1180px) {
+  .network-page .page-hero-copy {
+    max-width: calc(100% - 422px);
+  }
+
+  .network-hero-console {
+    width: 400px;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+  }
+
+  .network-hero-panel {
+    border-right: 0;
+    border-bottom: 1px solid #303136;
+  }
+
+  .hero-updates > .hero-panel-heading {
+    top: 7px;
+    left: 9px;
+    padding: 3px 6px;
+  }
+
+  .hero-update-item > div {
+    padding: 24px 10px 8px;
+  }
+
+  .hero-update-item strong {
+    font-size: 12px;
+  }
+
+  .network-page .page-hero .hero-update-item p,
+  .hero-update-item em,
+  .hero-updates .slick-dots,
+  .hero-updates .slick-arrow {
+    display: none;
+  }
+
+  .hero-who {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr);
+    align-items: center;
+    gap: 6px;
+    padding: 6px 9px;
+  }
+
+  .hero-who > .hero-panel-heading {
+    height: auto;
+  }
+
+  .hero-who .hero-panel-heading > strong {
+    display: none;
+  }
+
+  .hero-quiz-reset.ant-btn {
+    margin-left: 0;
+  }
+
+  .hero-who-card {
+    height: 100%;
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 8px;
+    padding: 0;
+  }
+
+  .hero-who-avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+  }
+
+  .hero-who-avatar b {
+    font-size: 30px;
+  }
+
+  .hero-who-prompt {
+    display: none;
+  }
+
+  .hero-who-copy {
+    gap: 2px;
+  }
+
+  .hero-who-clues {
+    padding: 3px 5px;
+    font-size: 10px;
+  }
+
+  .hero-who-name {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 860px) {
+  .network-page .page-hero-copy {
+    max-width: none;
+  }
+
+  .network-hero-console {
+    display: none;
+  }
+}

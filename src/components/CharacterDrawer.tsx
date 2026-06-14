@@ -1,17 +1,16 @@
-import { ArrowRightOutlined, CloseOutlined } from "@ant-design/icons";
+import { CloseOutlined } from "@ant-design/icons";
 import { Button, Drawer, Tag } from "antd";
 import { useTranslation } from "react-i18next";
-import { appearanceJa, localizeProfile } from "../content";
+import { localizeProfile } from "../content";
 import {
   characterById,
   characters,
   displayName,
   factions,
-  relationTypes,
-  relations,
 } from "../data";
 import type { Language } from "../types";
 import CharacterAvatar from "./CharacterAvatar";
+import CharacterProfileSections from "./CharacterProfileSections";
 
 interface CharacterDrawerProps {
   characterId: string | null;
@@ -37,9 +36,6 @@ export default function CharacterDrawer({
     role: character.role,
     desc: character.desc,
   });
-  const connections = relations.filter(
-    ({ source, target }) => source === character.id || target === character.id,
-  );
   const index = characters.findIndex(({ id }) => id === character.id) + 1;
 
   return (
@@ -80,77 +76,29 @@ export default function CharacterDrawer({
               {language === "ja" ? character.name : character.jp} ·{" "}
               {profile.alias}
             </p>
+            <p className="character-meta-line character-role">
+              <strong>{t("terms.identity")}</strong>
+              <span>{profile.role}</span>
+            </p>
+            <p className="character-cv">
+              <strong>{t("profile.cv")}</strong>
+              <span>{character.cv ?? t("profile.cvUnknown")}</span>
+            </p>
             <div className="file-tags">
               {character.factions.map((factionId) => (
                 <Tag key={factionId} color={factions[factionId].color}>
                   {t(`factions.${factionId}`)}
                 </Tag>
               ))}
-              <Tag>{profile.role}</Tag>
             </div>
           </div>
         </header>
 
-        <section className="file-section">
-          <h3>{t("network.profile")} / Profile</h3>
-          <p>{profile.desc}</p>
-        </section>
-
-        <section className="file-section">
-          <h3>{t("network.appearances")} / Appearances</h3>
-          <div className="appearance-list">
-            {Object.entries(character.appearances).map(([kind, items]) => (
-              <div className="appearance-row" key={kind}>
-                <strong>{t(`profile.${kind}`)}</strong>
-                <div>
-                  {items?.map((item: string) => (
-                    <span key={item}>
-                      {language === "ja" ? appearanceJa[item] ?? item : item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-          <small className="file-note">{t("network.appearanceNote")}</small>
-        </section>
-
-        <section className="file-section">
-          <h3>{t("network.connections")} / Connections</h3>
-          <div className="connection-list">
-            {connections.map((relation, relationIndex) => {
-              const otherId =
-                relation.source === character.id
-                  ? relation.target
-                  : relation.source;
-              const other = characterById.get(otherId);
-              if (!other) return null;
-              return (
-                <button
-                  key={`${relation.source}-${relation.target}-${relationIndex}`}
-                  type="button"
-                  style={
-                    {
-                      "--relation-color": relationTypes[relation.type].color,
-                    } as React.CSSProperties
-                  }
-                  onClick={() => onSelectCharacter?.(otherId)}
-                >
-                  <CharacterAvatar character={other} size="small" />
-                  <span>
-                    <strong>{displayName(other, language)}</strong>
-                    <small>
-                      {language === "ja"
-                        ? t(`relationTypes.${relation.type}`)
-                        : relation.label}
-                    </small>
-                  </span>
-                  <ArrowRightOutlined />
-                </button>
-              );
-            })}
-          </div>
-        </section>
+        <CharacterProfileSections
+          character={character}
+          language={language}
+          onSelectCharacter={onSelectCharacter}
+        />
       </article>
     </Drawer>
   );

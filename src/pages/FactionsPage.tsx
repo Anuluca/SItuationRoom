@@ -11,23 +11,11 @@ import CharacterDrawer from "../components/CharacterDrawer";
 import SectionTitle from "../components/SectionTitle";
 import {
   displayName,
+  factionBackgrounds,
   factions,
   membersOf,
 } from "../data";
 import type { Language } from "../types";
-
-const factionBackgrounds: Record<string, string> = {
-  core: "https://www.durarara.com/img/top/KV.jpg",
-  dollars: "https://www.durarara.com/social.jpg",
-  yellow: "https://cdn.kdkw.jp/cover_1000/312133/312133900000.webp",
-  blue: "https://www.durarara.com/img/ova03/about/img.jpg",
-  awakening: "https://www.durarara.com/img/top/bnr_ova.jpg",
-  awakusu: "https://cdn.kdkw.jp/cover_1000/312097/312097600000.webp",
-  russia: "https://www.durarara.com/img/ova03/about/img.jpg",
-  yagiri: "https://cdn.kdkw.jp/cover_1000/312032/312032400000.webp",
-  media: "https://www.durarara.com/img/top/KV.jpg",
-  independent: "https://cdn.kdkw.jp/cover_1000/312032/312032500000.webp",
-};
 
 export default function FactionsPage() {
   const { t, i18n } = useTranslation();
@@ -73,7 +61,7 @@ export default function FactionsPage() {
       </div>
 
       <div className="faction-grid">
-        {visibleFactions.map(([factionId, faction], index) => {
+        {visibleFactions.map(([factionId, faction]) => {
           const members = membersOf(factionId);
           return (
             <button
@@ -88,9 +76,6 @@ export default function FactionsPage() {
               }
               onClick={() => setSelectedFaction(factionId)}
             >
-              <span className="faction-card-index">
-                {String(index + 1).padStart(2, "0")}
-              </span>
               <strong>{t(`factions.${factionId}`)}</strong>
               <p>
                 {members
@@ -122,6 +107,7 @@ export default function FactionsPage() {
             style={
               {
                 "--faction-color": factions[selectedFaction].color,
+                "--faction-image": `url("${factionBackgrounds[selectedFaction]}")`,
               } as React.CSSProperties
             }
           >
@@ -132,7 +118,6 @@ export default function FactionsPage() {
               onClick={() => setSelectedFaction(null)}
             />
             <header>
-              <span className="faction-emblem">{factionMembers.length}</span>
               <div>
                 <h2>{t(`factions.${selectedFaction}`)}</h2>
                 <p>

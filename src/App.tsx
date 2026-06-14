@@ -7,6 +7,8 @@ import NetworkPage from "./pages/NetworkPage";
 import CharactersPage from "./pages/CharactersPage";
 import TermsLayout from "./pages/TermsLayout";
 import WorksPage from "./pages/WorksPage";
+import ResourcesPage from "./pages/ResourcesPage";
+import ResourceGalleryPage from "./pages/ResourceGalleryPage";
 
 export default function App() {
   return (
@@ -58,6 +60,11 @@ export default function App() {
             <Route path="factions" element={<FactionsPage />} />
           </Route>
           <Route path="works" element={<WorksPage />} />
+          <Route path="resources" element={<ResourcesPage />} />
+          <Route
+            path="resources/images/:kind"
+            element={<ResourceGalleryPage />}
+          />
           <Route path="about" element={<AboutPage />} />
           <Route path="*" element={<Navigate replace to="/" />} />
         </Route>
