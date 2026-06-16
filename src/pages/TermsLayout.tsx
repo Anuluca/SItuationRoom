@@ -1,10 +1,23 @@
-import { NavLink, Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
 import PageHero from "../components/PageHero";
 import { characters, factions } from "../data";
+import CharactersPage from "./CharactersPage";
+import FactionsPage from "./FactionsPage";
 
 export default function TermsLayout() {
   const { t } = useTranslation();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeView =
+    searchParams.get("view") === "factions" ? "factions" : "characters";
+
+  const setActiveView = (view: "characters" | "factions") => {
+    const next = new URLSearchParams(searchParams);
+    next.set("view", view);
+    next.delete("character");
+    next.delete("faction");
+    setSearchParams(next, { replace: true });
+  };
 
   return (
     <div className="page">
@@ -25,19 +38,27 @@ export default function TermsLayout() {
           </div>
         }
       />
-      <nav className="sub-nav">
-        <NavLink to="characters">
-          <span>01</span>
-          {t("nav.characters")}
-          <small>{characters.length}</small>
-        </NavLink>
-        <NavLink to="factions">
-          <span>02</span>
-          {t("nav.factions")}
-          <small>{Object.keys(factions).length}</small>
-        </NavLink>
+      <nav className="home-view-tabs terms-view-tabs">
+        <button
+          className={activeView === "characters" ? "is-active" : ""}
+          onClick={() => setActiveView("characters")}
+          type="button"
+        >
+          <small>01</small>
+          <span>{t("nav.characters")}</span>
+          <em>{characters.length}</em>
+        </button>
+        <button
+          className={activeView === "factions" ? "is-active" : ""}
+          onClick={() => setActiveView("factions")}
+          type="button"
+        >
+          <small>02</small>
+          <span>{t("nav.factions")}</span>
+          <em>{Object.keys(factions).length}</em>
+        </button>
       </nav>
-      <Outlet />
+      {activeView === "characters" ? <CharactersPage /> : <FactionsPage />}
     </div>
   );
 }

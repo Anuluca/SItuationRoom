@@ -3,6 +3,7 @@ import {
   CloseOutlined,
   GlobalOutlined,
   MenuOutlined,
+  SearchOutlined,
 } from "@ant-design/icons";
 import { Button, Drawer, Dropdown } from "antd";
 import {
@@ -19,20 +20,39 @@ import {
   Outlet,
   useLocation,
 } from "react-router-dom";
+import {
+  characterById,
+  resourceImages,
+  relations,
+  works,
+} from "../data";
 import type { Language } from "../types";
+import GlobalSearch from "./GlobalSearch";
 
 const navItems = [
   { to: "/", key: "home", end: true, en: "Home" },
-  { to: "/terms/characters", key: "terms", en: "Terms" },
+  { to: "/terms", key: "terms", en: "Terms" },
   { to: "/works", key: "works", en: "Works" },
   { to: "/resources", key: "resources", en: "Resources" },
   { to: "/about", key: "about", en: "About" },
 ];
 
+const setMetaContent = (selector: string, content: string) => {
+  document.querySelector(selector)?.setAttribute("content", content);
+};
+
+interface PageMeta {
+  title: string;
+  description: string;
+  image?: string;
+  type: string;
+}
+
 export default function AppShell() {
   const { t, i18n } = useTranslation();
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [mainScroll, setMainScroll] = useState({
     scrollable: false,
     atBottom: true,
@@ -49,38 +69,163 @@ export default function AppShell() {
     return "home";
   }, [location.pathname]);
 
-  useEffect(() => {
+  const pageMeta = useMemo<PageMeta>(() => {
+    const params = new URLSearchParams(location.search);
+    const workId = location.pathname.startsWith("/works/")
+      ? location.pathname.slice("/works/".length)
+      : "";
+    const work = works.find(({ id }) => id === workId);
+    const character = characterById.get(params.get("character") ?? "");
+    const relation = relations.find(
+      ({ source, target }) =>
+        (source === params.get("from") && target === params.get("to")) ||
+        (source === params.get("to") && target === params.get("from")),
+    );
+    const resourceKind = location.pathname.startsWith("/resources/images/")
+      ? location.pathname.slice("/resources/images/".length)
+      : "";
+    const resourceExists =
+      resourceKind in resourceImages;
+    const knownRoute =
+      location.pathname === "/" ||
+      location.pathname === "/network" ||
+      location.pathname === "/works" ||
+      location.pathname === "/resources" ||
+      location.pathname === "/about" ||
+      location.pathname === "/terms" ||
+      Boolean(work) ||
+      resourceExists;
+
+    if (!knownRoute) {
+      return {
+        title: `${t("notFound.title")} | ${t("site.name")}`,
+        description: t("notFound.lead"),
+        type: "website",
+      };
+    }
+
+    if (work) {
+      return {
+        title: `${work.title[language]} | ${t("site.name")}`,
+        description: work.description[language],
+        image: work.image,
+        type: "article",
+      };
+    }
+
+    if (relation) {
+      const source = characterById.get(relation.source);
+      const target = characterById.get(relation.target);
+      const sourceName = source
+        ? language === "ja"
+          ? source.jp
+          : source.name
+        : relation.source;
+      const targetName = target
+        ? language === "ja"
+          ? target.jp
+          : target.name
+        : relation.target;
+      const relationLabel =
+        language === "ja"
+          ? t(`relationTypes.${relation.type}`)
+          : relation.label;
+      return {
+        title: `${sourceName} × ${targetName} | ${t("site.name")}`,
+        description:
+          relation.note ||
+          `${sourceName} · ${targetName} · ${relationLabel}`,
+        image: source?.avatar,
+        type: "article",
+      };
+    }
+
+    if (character) {
+      return {
+        title: `${
+          language === "ja" ? character.jp : character.name
+        } | ${t("site.name")}`,
+        description: `${character.alias} · ${character.role}。${character.desc}`,
+        image: character.avatar,
+        type: "profile",
+      };
+    }
+
+    if (resourceExists) {
+      return {
+        title: `${t(`resources.${resourceKind}`)} | ${t("site.name")}`,
+        description: t("resources.galleryLead"),
+        image: resourceImages[
+          resourceKind as keyof typeof resourceImages
+        ][0]?.src,
+        type: "website",
+      };
+    }
+
     const descriptionKey =
       titleKey === "home" ? "network.lead" : `${titleKey}.lead`;
-    const pageTitle =
-      titleKey === "home"
-        ? `${t("site.name")} | ${t("site.subtitle")}`
-        : `${t(`nav.${titleKey}`)} | ${t("site.name")}`;
-    const description = t(descriptionKey);
+    return {
+      title:
+        titleKey === "home"
+          ? `${t("site.name")} | ${t("site.subtitle")}`
+          : `${t(`nav.${titleKey}`)} | ${t("site.name")}`,
+      description: t(descriptionKey),
+      type: "website",
+    };
+  }, [language, location.pathname, location.search, t, titleKey]);
+
+  useEffect(() => {
+    const canonicalUrl = `${window.location.origin}${location.pathname}${location.search}`;
+    const image = pageMeta.image
+      ? new URL(pageMeta.image, window.location.origin).toString()
+      : `${window.location.origin}/og-image.png`;
 
     document.documentElement.lang = language === "ja" ? "ja" : "zh-CN";
-    document.title = pageTitle;
-    document
-      .querySelector('meta[name="description"]')
-      ?.setAttribute("content", description);
-    document
-      .querySelector('meta[property="og:title"]')
-      ?.setAttribute("content", pageTitle);
-    document
-      .querySelector('meta[property="og:description"]')
-      ?.setAttribute("content", description);
-    document
-      .querySelector('meta[property="og:locale"]')
-      ?.setAttribute("content", language === "ja" ? "ja_JP" : "zh_CN");
-    document
-      .querySelector('meta[name="twitter:title"]')
-      ?.setAttribute("content", pageTitle);
-    document
-      .querySelector('meta[name="twitter:description"]')
-      ?.setAttribute("content", description);
+    document.title = pageMeta.title;
+    setMetaContent('meta[name="description"]', pageMeta.description);
+    setMetaContent('meta[property="og:title"]', pageMeta.title);
+    setMetaContent('meta[property="og:description"]', pageMeta.description);
+    setMetaContent('meta[property="og:type"]', pageMeta.type);
+    setMetaContent('meta[property="og:url"]', canonicalUrl);
+    setMetaContent('meta[property="og:image"]', image);
+    setMetaContent(
+      'meta[property="og:locale"]',
+      language === "ja" ? "ja_JP" : "zh_CN",
+    );
+    setMetaContent('meta[name="twitter:title"]', pageMeta.title);
+    setMetaContent(
+      'meta[name="twitter:description"]',
+      pageMeta.description,
+    );
+    setMetaContent('meta[name="twitter:image"]', image);
+
+    let canonical = document.querySelector<HTMLLinkElement>(
+      'link[rel="canonical"]',
+    );
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.rel = "canonical";
+      document.head.append(canonical);
+    }
+    canonical.href = canonicalUrl;
+
+  }, [language, location.pathname, location.search, pageMeta]);
+
+  useEffect(() => {
     mainRef.current?.scrollTo({ top: 0, behavior: "auto" });
     window.scrollTo({ top: 0, behavior: "auto" });
-  }, [language, location.pathname, t, titleKey]);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const openSearch = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+    window.addEventListener("keydown", openSearch);
+    return () => window.removeEventListener("keydown", openSearch);
+  }, []);
 
   const changeLanguage = (next: Language) => {
     localStorage.setItem("joho-ya-language", next);
@@ -136,6 +281,7 @@ export default function AppShell() {
           key={item.key}
           to={item.to}
           end={item.end}
+          data-index={`0${index + 1}`}
           className={({ isActive }) =>
             `nav-link${isActive ? " active" : ""}`
           }
@@ -143,8 +289,8 @@ export default function AppShell() {
         >
           <span className="nav-index">0{index + 1}</span>
           <span>
-            <strong>{item.en}</strong>
-            <small>{t(`nav.${item.key}`)}</small>
+            <strong>{mobile ? t(`nav.${item.key}`) : item.en}</strong>
+            <small>{mobile ? item.en : t(`nav.${item.key}`)}</small>
           </span>
         </NavLink>
       ))}
@@ -167,6 +313,15 @@ export default function AppShell() {
         {navigation()}
 
         <div className="header-actions">
+          <Button
+            className="global-search-button"
+            icon={<SearchOutlined />}
+            aria-label={t("search.open")}
+            onClick={() => setSearchOpen(true)}
+          >
+            <span className="global-search-label">{t("common.search")}</span>
+            <kbd>⌘K</kbd>
+          </Button>
           <Dropdown menu={languageMenu} placement="bottomRight" trigger={["click"]}>
             <Button
               className="language-button"
@@ -181,7 +336,9 @@ export default function AppShell() {
             icon={<MenuOutlined />}
             aria-label={t("nav.menu")}
             onClick={() => setMenuOpen(true)}
-          />
+          >
+            <span>MENU</span>
+          </Button>
         </div>
       </header>
 
@@ -246,10 +403,14 @@ export default function AppShell() {
         onClose={() => setMenuOpen(false)}
         title={
           <div className="drawer-title">
-            <span>{t("nav.menu")}</span>
+            <div>
+              <span>NAVIGATION</span>
+              <small>IKEBUKURO / 01—05</small>
+            </div>
             <Button
               type="text"
               icon={<CloseOutlined />}
+              aria-label={t("common.close")}
               onClick={() => setMenuOpen(false)}
             />
           </div>
@@ -274,6 +435,7 @@ export default function AppShell() {
           </div>
         </div>
       </Drawer>
+      <GlobalSearch open={searchOpen} onClose={() => setSearchOpen(false)} />
     </div>
   );
 }

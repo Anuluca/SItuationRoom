@@ -1,10 +1,12 @@
 import { ArrowLeftOutlined, ArrowUpOutlined } from "@ant-design/icons";
 import { Image } from "antd";
 import { useTranslation } from "react-i18next";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import PageHero from "../components/PageHero";
+import ShareButton from "../components/ShareButton";
 import { resourceImages } from "../data";
 import type { Language, ResourceImageKind } from "../types";
+import NotFoundPage from "./NotFoundPage";
 
 const isImageKind = (value?: string): value is ResourceImageKind =>
   value === "avatars" ||
@@ -19,7 +21,7 @@ export default function ResourceGalleryPage() {
   const { t, i18n } = useTranslation();
   const language = (i18n.resolvedLanguage === "ja" ? "ja" : "zh") as Language;
 
-  if (!isImageKind(kind)) return <Navigate replace to="/resources" />;
+  if (!isImageKind(kind)) return <NotFoundPage />;
 
   const images = resourceImages[kind];
   return (
@@ -30,9 +32,15 @@ export default function ResourceGalleryPage() {
         index="04"
       />
       <section className="resources-panel">
-        <Link className="resource-back" to="/resources">
-          <ArrowLeftOutlined /> {t("resources.back")}
-        </Link>
+        <div className="resource-gallery-toolbar">
+          <Link className="resource-back" to="/resources">
+            <ArrowLeftOutlined /> {t("resources.back")}
+          </Link>
+          <ShareButton
+            title={t(`resources.${kind}`)}
+            text={t("resources.galleryLead")}
+          />
+        </div>
         {images.length ? (
           <Image.PreviewGroup>
             <div className={`resource-gallery resource-gallery-${kind}`}>

@@ -11,6 +11,7 @@ import {
 import type { Language } from "../types";
 import CharacterAvatar from "./CharacterAvatar";
 import CharacterProfileSections from "./CharacterProfileSections";
+import ShareButton from "./ShareButton";
 
 interface CharacterDrawerProps {
   characterId: string | null;
@@ -53,13 +54,22 @@ export default function CharacterDrawer({
             FILE {String(index).padStart(2, "0")} /{" "}
             {String(characters.length).padStart(2, "0")}
           </span>
-          <Button
-            className="file-close"
-            type="text"
-            icon={<CloseOutlined />}
-            aria-label={t("common.close")}
-            onClick={onClose}
-          />
+          <div className="file-toolbar-actions">
+            <ShareButton
+              compact
+              className="drawer-action-button character-toolbar-button"
+              title={displayName(character, language)}
+              text={`${profile.alias} · ${profile.role}`}
+              url={`/terms?view=characters&character=${character.id}`}
+            />
+            <Button
+              className="file-close drawer-action-button character-toolbar-button"
+              type="text"
+              icon={<CloseOutlined />}
+              aria-label={t("common.close")}
+              onClick={onClose}
+            />
+          </div>
         </div>
         <header
           className="character-file-hero"
@@ -86,7 +96,15 @@ export default function CharacterDrawer({
             </p>
             <div className="file-tags">
               {character.factions.map((factionId) => (
-                <Tag key={factionId} color={factions[factionId].color}>
+                <Tag
+                  key={factionId}
+                  className="identity-tag"
+                  style={
+                    {
+                      "--identity-color": factions[factionId].color,
+                    } as React.CSSProperties
+                  }
+                >
                   {t(`factions.${factionId}`)}
                 </Tag>
               ))}

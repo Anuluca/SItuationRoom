@@ -16,8 +16,8 @@
 ```text
 /                    主页
 /network             池袋关系网
-/terms/characters    名词 / 角色
-/terms/factions      名词 / 阵营
+/terms?view=characters    名词 / 角色
+/terms?view=factions      名词 / 阵营
 /works               作品
 /about               关于
 ```
@@ -38,7 +38,8 @@ npm run lint
 
 ## 数据与素材
 
-- `assets/js/data.js`：人物、阵营、出场阶段与关系数据。
+- `assets/js/data.js`：统一数据入口。
+- `assets/js/data/`：按人物、关系、阵营、作品和资源拆分的数据模块。
 - `src/content.ts`：日文人物简介和中日双语作品资料。
 - `src/i18n.ts`：中日文界面翻译。
 - `assets/images/avatars/`：人物头像目录。

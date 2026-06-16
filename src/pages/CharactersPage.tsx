@@ -2,6 +2,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import { Input } from "antd";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
 import CharacterAvatar from "../components/CharacterAvatar";
 import CharacterDrawer from "../components/CharacterDrawer";
 import SectionTitle from "../components/SectionTitle";
@@ -17,7 +18,15 @@ export default function CharactersPage() {
   const { t, i18n } = useTranslation();
   const language = (i18n.resolvedLanguage === "ja" ? "ja" : "zh") as Language;
   const [query, setQuery] = useState("");
-  const [selectedCharacter, setSelectedCharacter] = useState<string | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const selectedCharacter = searchParams.get("character");
+
+  const selectCharacter = (id: string | null) => {
+    const next = new URLSearchParams(searchParams);
+    if (id) next.set("character", id);
+    else next.delete("character");
+    setSearchParams(next, { replace: true });
+  };
 
   const visibleCharacters = useMemo(() => {
     const normalized = query.trim().toLocaleLowerCase();
@@ -76,7 +85,7 @@ export default function CharactersPage() {
                 className="character-card"
                 type="button"
                 key={character.id}
-                onClick={() => setSelectedCharacter(character.id)}
+                onClick={() => selectCharacter(character.id)}
               >
                 <span className="character-card-avatar">
                   <CharacterAvatar character={character} size="medium" />
@@ -120,8 +129,8 @@ export default function CharactersPage() {
       <CharacterDrawer
         characterId={selectedCharacter}
         open={Boolean(selectedCharacter)}
-        onClose={() => setSelectedCharacter(null)}
-        onSelectCharacter={setSelectedCharacter}
+        onClose={() => selectCharacter(null)}
+        onSelectCharacter={selectCharacter}
       />
     </section>
   );

@@ -6,9 +6,11 @@ import {
 import { Button, Drawer, Input } from "antd";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
 import CharacterAvatar from "../components/CharacterAvatar";
 import CharacterDrawer from "../components/CharacterDrawer";
 import SectionTitle from "../components/SectionTitle";
+import ShareButton from "../components/ShareButton";
 import {
   displayName,
   factionBackgrounds,
@@ -21,8 +23,20 @@ export default function FactionsPage() {
   const { t, i18n } = useTranslation();
   const language = (i18n.resolvedLanguage === "ja" ? "ja" : "zh") as Language;
   const [query, setQuery] = useState("");
-  const [selectedFaction, setSelectedFaction] = useState<string | null>(null);
-  const [selectedCharacter, setSelectedCharacter] = useState<string | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const requestedFaction = searchParams.get("faction");
+  const selectedFaction =
+    requestedFaction && requestedFaction in factions
+      ? requestedFaction
+      : null;
+  const selectedCharacter = searchParams.get("character");
+
+  const setParam = (key: "faction" | "character", value: string | null) => {
+    const next = new URLSearchParams(searchParams);
+    if (value) next.set(key, value);
+    else next.delete(key);
+    setSearchParams(next, { replace: true });
+  };
 
   const visibleFactions = useMemo(() => {
     const normalized = query.trim().toLocaleLowerCase();
@@ -74,7 +88,7 @@ export default function FactionsPage() {
                   "--faction-image": `url("${factionBackgrounds[factionId]}")`,
                 } as React.CSSProperties
               }
-              onClick={() => setSelectedFaction(factionId)}
+              onClick={() => setParam("faction", factionId)}
             >
               <strong>{t(`factions.${factionId}`)}</strong>
               <p>
@@ -98,7 +112,7 @@ export default function FactionsPage() {
         open={Boolean(selectedFaction)}
         width="min(92vw, 600px)"
         closeIcon={false}
-        onClose={() => setSelectedFaction(null)}
+        onClose={() => setParam("faction", null)}
         title={null}
       >
         {selectedFaction && (
@@ -111,12 +125,22 @@ export default function FactionsPage() {
               } as React.CSSProperties
             }
           >
-            <Button
-              className="file-close"
-              type="text"
-              icon={<CloseOutlined />}
-              onClick={() => setSelectedFaction(null)}
-            />
+            <div className="work-file-actions">
+              <ShareButton
+                compact
+                className="drawer-action-button"
+                title={t(`factions.${selectedFaction}`)}
+                text={t("terms.factionMembers", {
+                  count: factionMembers.length,
+                })}
+              />
+              <Button
+                className="file-close drawer-action-button"
+                type="text"
+                icon={<CloseOutlined />}
+                onClick={() => setParam("faction", null)}
+              />
+            </div>
             <header>
               <div>
                 <h2>{t(`factions.${selectedFaction}`)}</h2>
@@ -134,7 +158,7 @@ export default function FactionsPage() {
                   <button
                     key={character.id}
                     type="button"
-                    onClick={() => setSelectedCharacter(character.id)}
+                    onClick={() => setParam("character", character.id)}
                   >
                     <CharacterAvatar character={character} size="small" />
                     <span>
@@ -155,8 +179,8 @@ export default function FactionsPage() {
       <CharacterDrawer
         characterId={selectedCharacter}
         open={Boolean(selectedCharacter)}
-        onClose={() => setSelectedCharacter(null)}
-        onSelectCharacter={setSelectedCharacter}
+        onClose={() => setParam("character", null)}
+        onSelectCharacter={(id) => setParam("character", id)}
       />
     </section>
   );

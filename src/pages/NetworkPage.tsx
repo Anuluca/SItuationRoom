@@ -2,18 +2,20 @@
 import {
   AimOutlined,
   CloseOutlined,
+  FilterOutlined,
   MinusOutlined,
   PlusOutlined,
   ReloadOutlined,
 } from "@ant-design/icons";
-import G6 from "@antv/g6";
-import { Button, Carousel, Select, Tag } from "antd";
+import { Button, Carousel, Select, Tag, Timeline } from "antd";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Link, useSearchParams } from "react-router-dom";
 import CharacterAvatar from "../components/CharacterAvatar";
 import CharacterDrawer from "../components/CharacterDrawer";
 import CharacterProfileSections from "../components/CharacterProfileSections";
 import PageHero from "../components/PageHero";
+import ShareButton from "../components/ShareButton";
 import { localizeProfile } from "../content";
 import {
   avatarFor,
@@ -24,11 +26,117 @@ import {
   relationTypes,
   relations,
 } from "../data";
-import type { Character, Language } from "../types";
-import { Link } from "react-router-dom";
+import type { Character, Language, LocalizedText } from "../types";
 
 const CENTER_CHARACTER_ID = "mikado";
 let networkNodeRegistered = false;
+
+interface TimelineEvent {
+  index: string;
+  episodes: LocalizedText;
+  title: LocalizedText;
+  description: LocalizedText;
+  characters: string[];
+  accent: string;
+}
+
+const timelineSeasonAccent = {
+  tv1: "#6bdcff",
+  x2Shou: "#7aa7ff",
+  x2Ten: "#8ce6ca",
+  x2Ketsu: "#b89bff",
+} as const;
+
+const timelineEvents: TimelineEvent[] = [
+  {
+    index: "01",
+    episodes: { zh: "TV 第1期 · 01—06", ja: "TV第1期 · 01—06" },
+    title: { zh: "池袋与黑色骑手", ja: "池袋と黒いバイク" },
+    description: {
+      zh: "龙之峰帝人来到池袋，与纪田正臣重逢。塞尔提寻找头颅的都市传说，也在城市暗面逐渐展开。",
+      ja: "竜ヶ峰帝人が池袋へ上京し、紀田正臣と再会。セルティの首をめぐる都市伝説も動き始める。",
+    },
+    characters: ["mikado", "masaomi", "celty"],
+    accent: timelineSeasonAccent.tv1,
+  },
+  {
+    index: "02",
+    episodes: { zh: "TV 第1期 · 07—11", ja: "TV第1期 · 07—11" },
+    title: { zh: "DOLLARS 首次集结", ja: "ダラーズ初集会" },
+    description: {
+      zh: "矢雾制药事件将诚二、美香与塞尔提的头颅牵到一起。帝人召集 DOLLARS，第一次公开自己的另一重身份。",
+      ja: "矢霧製薬の事件が誠二、美香、セルティの首を結ぶ。帝人はダラーズを招集し、もう一つの顔を明かす。",
+    },
+    characters: ["mikado", "celty", "izaya"],
+    accent: timelineSeasonAccent.tv1,
+  },
+  {
+    index: "03",
+    episodes: { zh: "TV 第1期 · 12—17", ja: "TV第1期 · 12—17" },
+    title: { zh: "罪歌事件", ja: "罪歌事件" },
+    description: {
+      zh: "连续袭击事件席卷池袋，杏里与罪歌的秘密浮出水面。城市中的“爱”被扭曲成一张新的关系网。",
+      ja: "連続通り魔事件が池袋を覆い、杏里と罪歌の秘密が露わになる。歪んだ「愛」が新たな相関を作る。",
+    },
+    characters: ["anri", "shizuo", "izaya"],
+    accent: timelineSeasonAccent.tv1,
+  },
+  {
+    index: "04",
+    episodes: { zh: "TV 第1期 · 18—24", ja: "TV第1期 · 18—24" },
+    title: { zh: "黄巾贼再起", ja: "黄巾賊、再び" },
+    description: {
+      zh: "黄巾贼与 DOLLARS 的冲突升级，正臣的过去被迫揭开。三位好友终于直面彼此隐瞒的身份。",
+      ja: "黄巾賊とダラーズの対立が激化し、正臣の過去が明らかに。三人は互いに隠していた顔と向き合う。",
+    },
+    characters: ["masaomi", "mikado", "anri"],
+    accent: timelineSeasonAccent.tv1,
+  },
+  {
+    index: "05",
+    episodes: { zh: "×2 承 · 01—12", ja: "×2 承 · 01—12" },
+    title: { zh: "新势力进入池袋", ja: "新勢力、池袋へ" },
+    description: {
+      zh: "青叶、茜、瓦罗娜等人先后登场。围绕塞尔提的悬赏令，让黑道、杀手与街头势力同时躁动。",
+      ja: "青葉、茜、ヴァローナらが登場。セルティへの懸賞金をきっかけに、裏社会と街の勢力が動き出す。",
+    },
+    characters: ["aoba", "akane", "vorona"],
+    accent: timelineSeasonAccent.x2Shou,
+  },
+  {
+    index: "06",
+    episodes: { zh: "×2 转 · 13—24", ja: "×2 転 · 13—24" },
+    title: { zh: "各阵营全面碰撞", ja: "交差する各陣営" },
+    description: {
+      zh: "DOLLARS、粟楠会、俄裔寿司店与外来势力彼此牵制。帝人开始用更激进的方式维护理想。",
+      ja: "ダラーズ、粟楠会、露西亜寿司、外来勢力が交錯。帝人は理想を守るため、より過激な道へ進む。",
+    },
+    characters: ["mikado", "aoba", "kadota"],
+    accent: timelineSeasonAccent.x2Ten,
+  },
+  {
+    index: "07",
+    episodes: { zh: "×2 结 · 25—30", ja: "×2 結 · 25—30" },
+    title: { zh: "DOLLARS 分裂", ja: "分裂するダラーズ" },
+    description: {
+      zh: "帝人试图“净化”DOLLARS，正臣则为阻止他重返池袋。曾经松散的组织开始走向失控。",
+      ja: "帝人はダラーズの「浄化」を進め、正臣は彼を止めるため池袋へ戻る。緩やかな組織は制御を失う。",
+    },
+    characters: ["mikado", "masaomi", "aoba"],
+    accent: timelineSeasonAccent.x2Ketsu,
+  },
+  {
+    index: "08",
+    episodes: { zh: "×2 结 · 31—36", ja: "×2 結 · 31—36" },
+    title: { zh: "池袋最终夜", ja: "池袋、最後の夜" },
+    description: {
+      zh: "塞尔提的头颅回归，静雄与临也迎来决战。帝人、正臣与杏里也为各自的选择作出最后回答。",
+      ja: "セルティの首が戻り、静雄と臨也は決着へ。帝人、正臣、杏里もそれぞれの選択に答えを出す。",
+    },
+    characters: ["celty", "shizuo", "izaya"],
+    accent: timelineSeasonAccent.x2Ketsu,
+  },
+];
 
 interface GraphCanvasProps {
   visibleCharacters: Character[];
@@ -36,6 +144,7 @@ interface GraphCanvasProps {
   selectedId: string | null;
   compareIds: [string | null, string | null];
   onSelect: (id: string | null) => void;
+  onOpenFilters: () => void;
 }
 
 type EdgeEmphasis = "default" | "dim" | "selected";
@@ -67,7 +176,7 @@ function setEdgeLabelEmphasis(edge: any, emphasis: EdgeEmphasis) {
   });
 }
 
-function registerNetworkNode() {
+function registerNetworkNode(G6: any) {
   if (networkNodeRegistered) return;
   networkNodeRegistered = true;
 
@@ -185,11 +294,24 @@ function GraphCanvas({
   selectedId,
   compareIds,
   onSelect,
+  onOpenFilters,
 }: GraphCanvasProps) {
   const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const graphRef = useRef<any>(null);
+  const onSelectRef = useRef(onSelect);
+  const translateRef = useRef(t);
+  const pointerStartRef = useRef<{ x: number; y: number } | null>(null);
   const [loading, setLoading] = useState(true);
+  const [graphReady, setGraphReady] = useState(0);
+
+  useEffect(() => {
+    onSelectRef.current = onSelect;
+  }, [onSelect]);
+
+  useEffect(() => {
+    translateRef.current = t;
+  }, [t]);
 
   const visibleIds = useMemo(
     () => new Set(visibleCharacters.map(({ id }) => id)),
@@ -199,33 +321,42 @@ function GraphCanvas({
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
-    registerNetworkNode();
     setLoading(true);
+    let disposed = false;
+    let graph: any = null;
+    let resizeObserver: ResizeObserver | null = null;
+    let readyTimer = 0;
+    let handlePointerDown: ((event: PointerEvent) => void) | null = null;
+    let handlePointerUp: ((event: PointerEvent) => void) | null = null;
 
-    const centerX = Math.max(container.clientWidth / 2, 1);
-    const centerY = Math.max(container.clientHeight / 2, 1);
-    const nodes = characters.map((character) => ({
-      id: character.id,
-      label: displayName(character, language),
-      avatar: avatarFor(character),
-      size: character.id === CENTER_CHARACTER_ID ? 66 : 48,
-      color:
-        character.id === CENTER_CHARACTER_ID
-          ? "#ffffff"
-          : factions[character.faction].color,
-      identityColors: character.factions.map(
-        (factionId) => factions[factionId].color,
-      ),
-      ...(character.id === CENTER_CHARACTER_ID
-        ? { x: centerX, y: centerY, fx: centerX, fy: centerY }
-        : {}),
-    }));
-    const edges = relations.map((relation, index) => ({
+    void import("@antv/g6").then(({ default: G6 }) => {
+      if (disposed) return;
+      registerNetworkNode(G6);
+
+      const centerX = Math.max(container.clientWidth / 2, 1);
+      const centerY = Math.max(container.clientHeight / 2, 1);
+      const nodes = characters.map((character) => ({
+        id: character.id,
+        label: displayName(character, language),
+        avatar: avatarFor(character),
+        size: character.id === CENTER_CHARACTER_ID ? 66 : 48,
+        color:
+          character.id === CENTER_CHARACTER_ID
+            ? "#ffffff"
+            : factions[character.faction].color,
+        identityColors: character.factions.map(
+          (factionId) => factions[factionId].color,
+        ),
+        ...(character.id === CENTER_CHARACTER_ID
+          ? { x: centerX, y: centerY, fx: centerX, fy: centerY }
+          : {}),
+      }));
+      const edges = relations.map((relation, index) => ({
         ...relation,
         id: `edge-${index}`,
         label:
           language === "ja"
-            ? t(`relationTypes.${relation.type}`).split(" / ")[0]
+            ? translateRef.current(`relationTypes.${relation.type}`).split(" / ")[0]
             : relation.label,
         style: {
           stroke: relationTypes[relation.type].color,
@@ -233,79 +364,131 @@ function GraphCanvas({
           opacity: 0.55,
           lineWidth: relation.type === "intimate" ? 2.2 : 1.4,
         },
-    }));
+      }));
 
-    const graph = new G6.Graph({
-      container,
-      width: container.clientWidth,
-      height: container.clientHeight,
-      renderer: "canvas",
-      fitView: false,
-      animate: true,
-      modes: {
-        default: ["drag-canvas", "zoom-canvas", "drag-node"],
-      },
-      layout: {
-        type: "force",
-        center: [centerX, centerY],
-        preventOverlap: true,
-        nodeSpacing: 58,
-        linkDistance: 170,
-        nodeStrength: -220,
-        edgeStrength: 0.1,
-        collideStrength: 1,
-        alphaDecay: 0.03,
-      },
-      defaultNode: {
-        type: "joho-character",
-      },
-      defaultEdge: {
-        type: "line",
-        labelCfg: {
-          autoRotate: true,
-          style: {
-            fill: "#08090b",
-            stroke: "#ffffff",
-            lineWidth: 4,
-            fontSize: 10,
-            fontWeight: 700,
+      graph = new G6.Graph({
+        container,
+        width: container.clientWidth,
+        height: container.clientHeight,
+        renderer: "canvas",
+        fitView: false,
+        animate: true,
+        modes: {
+          default:
+            window.matchMedia("(pointer: coarse)").matches ||
+            window.innerWidth <= 860
+              ? ["drag-canvas", "zoom-canvas"]
+              : ["drag-canvas", "zoom-canvas", "drag-node"],
+        },
+        layout: {
+          type: "force",
+          center: [centerX, centerY],
+          preventOverlap: true,
+          nodeSpacing: 58,
+          linkDistance: 170,
+          nodeStrength: -220,
+          edgeStrength: 0.1,
+          collideStrength: 1,
+          alphaDecay: 0.03,
+        },
+        defaultNode: {
+          type: "joho-character",
+        },
+        defaultEdge: {
+          type: "line",
+          labelCfg: {
+            autoRotate: true,
+            style: {
+              fill: "#08090b",
+              stroke: "#ffffff",
+              lineWidth: 4,
+              fontSize: 10,
+              fontWeight: 700,
+            },
           },
         },
-      },
-      edgeStateStyles: {
-        dim: { opacity: 0.04 },
-        selected: { opacity: 0.96, lineWidth: 2.6, shadowBlur: 8 },
-      },
+        edgeStateStyles: {
+          dim: { opacity: 0.04 },
+          selected: { opacity: 0.96, lineWidth: 2.6, shadowBlur: 8 },
+        },
+      });
+
+      graph.data({ nodes, edges });
+      graph.render();
+      graphRef.current = graph;
+      setGraphReady((current) => current + 1);
+
+      graph.on("node:click", (event: any) => {
+        onSelectRef.current(event.item.getModel().id);
+      });
+      graph.on("canvas:click", () => onSelectRef.current(null));
+
+      handlePointerDown = (event: PointerEvent) => {
+        if (event.pointerType !== "touch") return;
+        pointerStartRef.current = { x: event.clientX, y: event.clientY };
+      };
+
+      handlePointerUp = (event: PointerEvent) => {
+        const start = pointerStartRef.current;
+        pointerStartRef.current = null;
+        if (event.pointerType !== "touch" || !start) return;
+        if (Math.hypot(event.clientX - start.x, event.clientY - start.y) > 12) {
+          return;
+        }
+
+        const point = graph.getPointByClient(event.clientX, event.clientY);
+        const matchedNode = graph.getNodes().find((node: any) => {
+          if (typeof node.isVisible === "function" && !node.isVisible()) {
+            return false;
+          }
+          const model = node.getModel();
+          const radius = Number(model.size ?? 48) / 2 + 12;
+          return Math.hypot(point.x - model.x, point.y - model.y) <= radius;
+        });
+
+        event.preventDefault();
+        event.stopPropagation();
+        onSelectRef.current(matchedNode ? matchedNode.getModel().id : null);
+      };
+
+      container.addEventListener("pointerdown", handlePointerDown, true);
+      container.addEventListener("pointerup", handlePointerUp, true);
+
+      resizeObserver = new ResizeObserver(() => {
+        if (graph.get("destroyed")) return;
+        graph.changeSize(container.clientWidth, container.clientHeight);
+      });
+      resizeObserver.observe(container);
+
+      readyTimer = window.setTimeout(() => {
+        setLoading(false);
+        const center = graph.findById(CENTER_CHARACTER_ID);
+        if (center) {
+          graph.focusItem(center, false);
+          if (
+            window.matchMedia("(pointer: coarse)").matches ||
+            window.innerWidth <= 860
+          ) {
+            graph.zoomTo(0.68, { x: centerX, y: centerY });
+          }
+        }
+      }, 700);
     });
-
-    graph.data({ nodes, edges });
-    graph.render();
-    graphRef.current = graph;
-
-    graph.on("node:click", (event: any) => {
-      onSelect(event.item.getModel().id);
-    });
-    graph.on("canvas:click", () => onSelect(null));
-
-    const resizeObserver = new ResizeObserver(() => {
-      if (graph.get("destroyed")) return;
-      graph.changeSize(container.clientWidth, container.clientHeight);
-    });
-    resizeObserver.observe(container);
-
-    const readyTimer = window.setTimeout(() => {
-      setLoading(false);
-      const center = graph.findById(CENTER_CHARACTER_ID);
-      if (center) graph.focusItem(center, true);
-    }, 700);
 
     return () => {
+      disposed = true;
       window.clearTimeout(readyTimer);
-      resizeObserver.disconnect();
-      graph.destroy();
+      resizeObserver?.disconnect();
+      if (handlePointerDown) {
+        container.removeEventListener("pointerdown", handlePointerDown, true);
+      }
+      if (handlePointerUp) {
+        container.removeEventListener("pointerup", handlePointerUp, true);
+      }
+      graph?.destroy();
       graphRef.current = null;
     };
-  }, [language, onSelect, t]);
+  }, [language]);
 
   useEffect(() => {
     const graph = graphRef.current;
@@ -329,7 +512,7 @@ function GraphCanvas({
         graph.hideItem(edge, false);
       }
     });
-  }, [visibleIds]);
+  }, [graphReady, visibleIds]);
 
   useEffect(() => {
     const graph = graphRef.current;
@@ -399,7 +582,7 @@ function GraphCanvas({
       });
     });
     graph.focusItem(selected, true);
-  }, [compareIds, selectedId]);
+  }, [compareIds, graphReady, selectedId]);
 
   const zoom = (factor: number) => {
     const graph = graphRef.current;
@@ -416,6 +599,13 @@ function GraphCanvas({
   return (
     <div className="network-canvas-shell">
       <div className="canvas-label">{t("network.graphTitle")}</div>
+      <Button
+        className="filter-open-button"
+        icon={<FilterOutlined />}
+        onClick={onOpenFilters}
+      >
+        {t("network.filterConsole")}
+      </Button>
       <div className="network-canvas" ref={containerRef} />
       <span className="canvas-hint">{t("network.graphHint")}</span>
       <div className="canvas-controls">
@@ -449,15 +639,19 @@ function GraphCanvas({
 
 interface NetworkDetailProps {
   characterId: string | null;
+  expanded: boolean;
   language: Language;
   onClose: () => void;
+  onExpand: () => void;
   onSelect: (id: string) => void;
 }
 
 function NetworkDetail({
   characterId,
+  expanded,
   language,
   onClose,
+  onExpand,
   onSelect,
 }: NetworkDetailProps) {
   const { t } = useTranslation();
@@ -482,19 +676,29 @@ function NetworkDetail({
   });
   return (
     <aside
-      className="network-detail selected"
+      className={`network-detail selected ${
+        expanded ? "is-expanded" : "is-peek"
+      }`}
       style={
         {
           "--hero-color": factions[character.faction].color,
         } as React.CSSProperties
       }
     >
-      <Button
-        className="network-detail-close"
-        type="text"
-        icon={<CloseOutlined />}
-        onClick={onClose}
-      />
+      <div className="network-detail-actions">
+        <ShareButton
+          compact
+          className="drawer-action-button"
+          title={displayName(character, language)}
+          text={`${profile.alias} · ${profile.role}`}
+        />
+        <Button
+          className="network-detail-close drawer-action-button"
+          type="text"
+          icon={<CloseOutlined />}
+          onClick={onClose}
+        />
+      </div>
       <header>
         <CharacterAvatar character={character} size="large" />
         <h2>{displayName(character, language)}</h2>
@@ -511,12 +715,28 @@ function NetworkDetail({
         </p>
         <div className="file-tags">
           {character.factions.map((factionId) => (
-            <Tag key={factionId} color={factions[factionId].color}>
+            <Tag
+              key={factionId}
+              className="identity-tag"
+              style={
+                {
+                  "--identity-color": factions[factionId].color,
+                } as React.CSSProperties
+              }
+            >
               {t(`factions.${factionId}`)}
             </Tag>
           ))}
         </div>
       </header>
+      <Button
+        block
+        className="network-detail-expand"
+        onClick={onExpand}
+        type="primary"
+      >
+        {t("network.expandDetail")}
+      </Button>
       <CharacterProfileSections
         character={character}
         language={language}
@@ -530,7 +750,7 @@ const heroUpdates = [
   {
     key: "characters",
     image: avatarFor(characterById.get("manami") ?? characters[0]),
-    to: "/terms/characters",
+    to: "/terms?view=characters",
   },
   {
     key: "resources",
@@ -711,17 +931,140 @@ function NetworkHeroAside({ language }: { language: Language }) {
   );
 }
 
+function StoryTimeline({ language }: { language: Language }) {
+  const { t } = useTranslation();
+
+  return (
+    <section className="story-timeline">
+      <header className="timeline-intro">
+        <span className="timeline-kicker">TV STORY ROUTE / 01—36</span>
+        <h2>{t("network.timelineHeading")}</h2>
+        <p>{t("network.timelineSummary")}</p>
+        <div className="timeline-stats">
+          <span>
+            <strong>02</strong>
+            {t("network.timelineSeasons")}
+          </span>
+          <span>
+            <strong>08</strong>
+            {t("network.timelineStages")}
+          </span>
+        </div>
+        <small>{t("network.timelineSpoiler")}</small>
+      </header>
+
+      <div className="timeline-list">
+        <Timeline
+          className="story-timeline-track"
+          items={timelineEvents.map((event) => {
+            const eventCharacters = event.characters
+              .map((id) => characterById.get(id))
+              .filter((character): character is Character =>
+                Boolean(character),
+              );
+
+            return {
+              color: event.accent,
+              dot: (
+                <span
+                  className="timeline-event-dot"
+                  style={
+                    {
+                      "--timeline-accent": event.accent,
+                    } as React.CSSProperties
+                  }
+                >
+                  {event.index}
+                </span>
+              ),
+              children: (
+                <article
+                  className="timeline-card"
+                  style={
+                    {
+                      "--timeline-accent": event.accent,
+                    } as React.CSSProperties
+                  }
+                >
+                  <div className="timeline-card-copy">
+                    <small>{event.episodes[language]}</small>
+                    <h3>{event.title[language]}</h3>
+                    <p>{event.description[language]}</p>
+                    <div className="timeline-characters">
+                      {eventCharacters.map((character) => (
+                        <Link
+                          key={character.id}
+                          to={`/?character=${character.id}`}
+                          title={displayName(character, language)}
+                        >
+                          <img
+                            src={avatarFor(character)}
+                            alt={displayName(character, language)}
+                          />
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </article>
+              ),
+            };
+          })}
+        />
+      </div>
+    </section>
+  );
+}
+
 export default function NetworkPage() {
   const { t, i18n } = useTranslation();
   const language = (i18n.resolvedLanguage === "ja" ? "ja" : "zh") as Language;
-  const [activeFactions, setActiveFactions] = useState(
-    () => new Set(Object.keys(factions)),
-  );
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [filtersOpen, setFiltersOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [compareIds, setCompareIds] = useState<[string | null, string | null]>([
-    null,
-    null,
-  ]);
+  const [detailExpanded, setDetailExpanded] = useState(false);
+  const [hiddenDetailId, setHiddenDetailId] = useState<string | null>(null);
+  const activeView =
+    searchParams.get("view") === "timeline" ? "timeline" : "network";
+  const factionIds = useMemo(() => Object.keys(factions), []);
+  const activeFactions = useMemo(() => {
+    const requested = searchParams
+      .get("groups")
+      ?.split(",")
+      .filter((id) => id in factions);
+    return new Set(requested?.length ? requested : factionIds);
+  }, [factionIds, searchParams]);
+  const compareIds = useMemo<[string | null, string | null]>(
+    () => [
+      characterById.has(searchParams.get("from") ?? "")
+        ? searchParams.get("from")
+        : null,
+      characterById.has(searchParams.get("to") ?? "")
+        ? searchParams.get("to")
+        : null,
+    ],
+    [searchParams],
+  );
+
+  const updateParams = useCallback(
+    (update: (next: URLSearchParams) => void) => {
+      const next = new URLSearchParams(searchParams);
+      update(next);
+      setSearchParams(next, { replace: true });
+    },
+    [searchParams, setSearchParams],
+  );
+
+  useEffect(() => {
+    if (!searchParams.has("character")) return;
+    const next = new URLSearchParams(searchParams);
+    next.delete("character");
+    setSearchParams(next, { replace: true });
+  }, [searchParams, setSearchParams]);
+
+  const writeFactions = (next: Set<string>, params: URLSearchParams) => {
+    if (next.size === factionIds.length) params.delete("groups");
+    else params.set("groups", [...next].sort().join(","));
+  };
 
   const visibleCharacters = useMemo(
     () =>
@@ -745,27 +1088,46 @@ export default function NetworkPage() {
     );
   }, [compareIds]);
 
-  const selectCharacter = useCallback((id: string | null) => {
-    setSelectedId(id);
-  }, []);
+  const selectCharacter = useCallback(
+    (id: string | null) => {
+      setHiddenDetailId(null);
+      setDetailExpanded(false);
+      setSelectedId(id);
+    },
+    [],
+  );
 
   const toggleFaction = (value: string) => {
-    setActiveFactions((current) => {
-      const next = new Set(current);
+    setSelectedId(null);
+    setHiddenDetailId(null);
+    setDetailExpanded(false);
+    updateParams((params) => {
+      const next = new Set(activeFactions);
       if (next.has(value)) {
         if (next.size > 1) next.delete(value);
       } else {
         next.add(value);
       }
-      return next;
+      writeFactions(next, params);
     });
-    setSelectedId(null);
   };
 
   const resetFilters = () => {
-    setActiveFactions(new Set(Object.keys(factions)));
     setSelectedId(null);
-    setCompareIds([null, null]);
+    setHiddenDetailId(null);
+    setDetailExpanded(false);
+    updateParams((next) => {
+      next.delete("groups");
+      next.delete("from");
+      next.delete("to");
+    });
+  };
+
+  const setActiveView = (view: "network" | "timeline") => {
+    updateParams((next) => {
+      if (view === "timeline") next.set("view", "timeline");
+      else next.delete("view");
+    });
   };
 
   const searchOptions = characters.map((character) => ({
@@ -776,194 +1138,278 @@ export default function NetworkPage() {
   }));
 
   const revealComparedCharacter = (id: string | null, index: 0 | 1) => {
-    if (id) {
-      const character = characterById.get(id);
+    updateParams((params) => {
+      const key = index === 0 ? "from" : "to";
+      if (id) params.set(key, id);
+      else params.delete(key);
+
+      const character = id ? characterById.get(id) : undefined;
       if (character) {
-        setActiveFactions((current) => {
-          const next = new Set(current);
-          character.factions.forEach((factionId) => next.add(factionId));
-          return next;
-        });
+        const next = new Set(activeFactions);
+        character.factions.forEach((factionId) => next.add(factionId));
+        writeFactions(next, params);
       }
-    }
-    setCompareIds((current) =>
-      index === 0 ? [id, current[1]] : [current[0], id],
-    );
+    });
   };
 
   return (
     <div className="page network-page">
       <PageHero
-        title={t("network.title")}
-        lead={t("network.lead")}
+        title={
+          activeView === "timeline"
+            ? t("network.timelineTitle")
+            : t("network.title")
+        }
+        lead={
+          activeView === "timeline"
+            ? t("network.timelineLead")
+            : t("network.lead")
+        }
         index="01"
         aside={<NetworkHeroAside language={language} />}
       />
+      <div className="network-hero-mobile-strip">
+        <NetworkHeroAside language={language} />
+      </div>
 
-      <section className="network-workspace">
-        <aside className="network-filters">
-          <div className="filter-header">
-            <span>{t("network.filterConsole")}</span>
-            <Button
-              size="small"
-              icon={<ReloadOutlined />}
-              onClick={resetFilters}
-            >
-              {t("common.reset")}
-            </Button>
-          </div>
-          <div className="filter-block">
-            <div className="filter-block-title">
-              <h2>{t("common.search")}</h2>
-              <Button
-                type="text"
-                size="small"
-                icon={<ReloadOutlined />}
-                onClick={() => setSelectedId(null)}
-              >
-                {t("common.reset")}
-              </Button>
-            </div>
-            <Select
-              showSearch
-              allowClear
-              value={selectedId ?? undefined}
-              placeholder={t("network.searchPlaceholder")}
-              optionFilterProp="label"
-              options={searchOptions}
-              onChange={(id) => {
-                if (id) {
-                  const character = characterById.get(id);
-                  if (character) {
-                    setActiveFactions((current) => {
-                      const next = new Set(current);
-                      character.factions.forEach((factionId) =>
-                        next.add(factionId),
-                      );
-                      return next;
+      <nav className="home-view-tabs" aria-label={t("network.viewLabel")}>
+        <button
+          className={activeView === "network" ? "is-active" : ""}
+          onClick={() => setActiveView("network")}
+          type="button"
+        >
+          <small>01</small>
+          <span>{t("network.viewNetwork")}</span>
+        </button>
+        <button
+          className={activeView === "timeline" ? "is-active" : ""}
+          onClick={() => setActiveView("timeline")}
+          type="button"
+        >
+          <small>02</small>
+          <span>{t("network.viewTimeline")}</span>
+        </button>
+      </nav>
+
+      {activeView === "network" ? (
+        <section className="network-workspace">
+          <button
+            aria-label={t("common.close")}
+            className={`filter-panel-backdrop${filtersOpen ? " is-open" : ""}`}
+            onClick={() => setFiltersOpen(false)}
+            type="button"
+          />
+          <aside
+            className={`network-filters${filtersOpen ? " is-open" : ""}`}
+          >
+            <div className="network-filter-content">
+              <div className="filter-header">
+                <span>{t("network.filterConsole")}</span>
+                <div>
+                  <ShareButton
+                    compact
+                    className="filter-action-button"
+                    title={t("network.graphTitle")}
+                    text={t("network.lead")}
+                  />
+                  <Button
+                    className="filter-action-button"
+                    size="small"
+                    icon={<ReloadOutlined />}
+                    onClick={resetFilters}
+                  >
+                    {t("common.reset")}
+                  </Button>
+                  <Button
+                    aria-label={t("common.close")}
+                    className="filter-panel-close"
+                    icon={<CloseOutlined />}
+                    onClick={() => setFiltersOpen(false)}
+                    size="small"
+                    type="text"
+                  />
+                </div>
+              </div>
+              <div className="filter-block">
+                <div className="filter-block-title">
+                  <h2>{t("common.search")}</h2>
+                  <Button
+                    type="text"
+                    size="small"
+                    icon={<ReloadOutlined />}
+                    onClick={() => selectCharacter(null)}
+                  >
+                    {t("common.reset")}
+                  </Button>
+                </div>
+                <Select
+                  showSearch
+                  allowClear
+                  value={selectedId ?? undefined}
+                  placeholder={t("network.searchPlaceholder")}
+                  optionFilterProp="label"
+                  options={searchOptions}
+                  onChange={(id) => {
+                    setHiddenDetailId(null);
+                    setDetailExpanded(false);
+                    setSelectedId(id ?? null);
+                    updateParams((params) => {
+                      const character = id ? characterById.get(id) : undefined;
+                      if (character) {
+                        const next = new Set(activeFactions);
+                        character.factions.forEach((factionId) =>
+                          next.add(factionId),
+                        );
+                        writeFactions(next, params);
+                      }
                     });
-                  }
-                }
-                setSelectedId(id ?? null);
-              }}
-            />
-          </div>
-          <div className="filter-block compare-block">
-            <div className="filter-block-title">
-              <h2>{t("network.compareTitle")}</h2>
-              <Button
-                type="text"
-                size="small"
-                icon={<ReloadOutlined />}
-                onClick={() => setCompareIds([null, null])}
-              >
-                {t("common.reset")}
-              </Button>
-            </div>
-            <Select
-              showSearch
-              allowClear
-              value={compareIds[0] ?? undefined}
-              placeholder={t("network.compareFirst")}
-              optionFilterProp="label"
-              options={searchOptions}
-              onChange={(id) => revealComparedCharacter(id ?? null, 0)}
-            />
-            <Select
-              showSearch
-              allowClear
-              value={compareIds[1] ?? undefined}
-              placeholder={t("network.compareSecond")}
-              optionFilterProp="label"
-              options={searchOptions}
-              onChange={(id) => revealComparedCharacter(id ?? null, 1)}
-            />
-            <div className="compare-result">
-              {!compareIds[0] ||
-              !compareIds[1] ||
-              compareIds[0] === compareIds[1] ? (
-                <p>{t("network.compareEmpty")}</p>
-              ) : comparedRelations.length ? (
-                comparedRelations.map((relation, index) => (
-                  <article
-                    key={`${relation.source}-${relation.target}-${index}`}
-                    style={
-                      {
-                        "--relation-color": relationTypes[relation.type].color,
-                      } as React.CSSProperties
+                  }}
+                />
+              </div>
+              <div className="filter-block compare-block">
+                <div className="filter-block-title">
+                  <h2>{t("network.compareTitle")}</h2>
+                  <Button
+                    type="text"
+                    size="small"
+                    icon={<ReloadOutlined />}
+                    onClick={() =>
+                      updateParams((next) => {
+                        next.delete("from");
+                        next.delete("to");
+                      })
                     }
                   >
-                    <strong>
-                      {language === "ja"
-                        ? t(`relationTypes.${relation.type}`)
-                        : relation.label}
-                    </strong>
-                    <span>{relation.note}</span>
-                  </article>
-                ))
-              ) : (
-                <p>{t("network.compareNone")}</p>
-              )}
-            </div>
-          </div>
-          <div className="filter-block">
-            <div className="filter-block-title">
-              <h2>{t("network.factionFilter")}</h2>
-              <Button
-                type="text"
-                size="small"
-                icon={<ReloadOutlined />}
-                onClick={() =>
-                  setActiveFactions(new Set(Object.keys(factions)))
-                }
-              >
-                {t("common.reset")}
-              </Button>
-            </div>
-            <div className="faction-filter-grid">
-              {Object.entries(factions).map(([factionId, faction]) => (
-                <button
-                  type="button"
-                  key={factionId}
-                  data-faction={factionId}
-                  className={activeFactions.has(factionId) ? "active" : ""}
-                  style={
-                    {
-                      "--filter-color": faction.color,
-                    } as React.CSSProperties
-                  }
-                  onClick={() => toggleFaction(factionId)}
-                >
-                  <i style={{ background: faction.color }} />
-                  <span>{t(`factions.${factionId}`)}</span>
-                  <small>
-                    {
-                      characters.filter((character) =>
-                        character.factions.includes(factionId),
-                      ).length
+                    {t("common.reset")}
+                  </Button>
+                </div>
+                <Select
+                  showSearch
+                  allowClear
+                  value={compareIds[0] ?? undefined}
+                  placeholder={t("network.compareFirst")}
+                  optionFilterProp="label"
+                  options={searchOptions}
+                  onChange={(id) => revealComparedCharacter(id ?? null, 0)}
+                />
+                <Select
+                  showSearch
+                  allowClear
+                  value={compareIds[1] ?? undefined}
+                  placeholder={t("network.compareSecond")}
+                  optionFilterProp="label"
+                  options={searchOptions}
+                  onChange={(id) => revealComparedCharacter(id ?? null, 1)}
+                />
+                <div className="compare-result">
+                  {!compareIds[0] ||
+                  !compareIds[1] ||
+                  compareIds[0] === compareIds[1] ? (
+                    <p>{t("network.compareEmpty")}</p>
+                  ) : comparedRelations.length ? (
+                    comparedRelations.map((relation, index) => (
+                      <article
+                        key={`${relation.source}-${relation.target}-${index}`}
+                        style={
+                          {
+                            "--relation-color":
+                              relationTypes[relation.type].color,
+                          } as React.CSSProperties
+                        }
+                      >
+                        <strong>
+                          {language === "ja"
+                            ? t(`relationTypes.${relation.type}`)
+                            : relation.label}
+                        </strong>
+                        <span>{relation.note}</span>
+                      </article>
+                    ))
+                  ) : (
+                    <p>{t("network.compareNone")}</p>
+                  )}
+                </div>
+              </div>
+              <div className="filter-block">
+                <div className="filter-block-title">
+                  <h2>{t("network.factionFilter")}</h2>
+                  <Button
+                    type="text"
+                    size="small"
+                    icon={<ReloadOutlined />}
+                    onClick={() =>
+                      updateParams((next) => next.delete("groups"))
                     }
-                  </small>
-                </button>
-              ))}
+                  >
+                    {t("common.reset")}
+                  </Button>
+                </div>
+                <div className="faction-filter-grid">
+                  {Object.entries(factions).map(([factionId, faction]) => (
+                    <button
+                      type="button"
+                      key={factionId}
+                      data-faction={factionId}
+                      className={
+                        activeFactions.has(factionId) ? "active" : ""
+                      }
+                      style={
+                        {
+                          "--filter-color": faction.color,
+                        } as React.CSSProperties
+                      }
+                      onClick={() => toggleFaction(factionId)}
+                    >
+                      <i style={{ background: faction.color }} />
+                      <span>{t(`factions.${factionId}`)}</span>
+                      <small>
+                        {
+                          characters.filter((character) =>
+                            character.factions.includes(factionId),
+                          ).length
+                        }
+                      </small>
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
-        </aside>
+            <Button
+              block
+              className="mobile-filter-close-button"
+              icon={<CloseOutlined />}
+              onClick={() => setFiltersOpen(false)}
+            >
+              {t("network.closeFilter")}
+            </Button>
+          </aside>
 
-        <GraphCanvas
-          visibleCharacters={visibleCharacters}
-          language={language}
-          selectedId={selectedId}
-          compareIds={compareIds}
-          onSelect={selectCharacter}
-        />
+          <GraphCanvas
+            visibleCharacters={visibleCharacters}
+            language={language}
+            selectedId={selectedId}
+            compareIds={compareIds}
+            onSelect={selectCharacter}
+            onOpenFilters={() => setFiltersOpen(true)}
+          />
 
-        <NetworkDetail
-          characterId={selectedId}
-          language={language}
-          onClose={() => setSelectedId(null)}
-          onSelect={setSelectedId}
-        />
-      </section>
+          <NetworkDetail
+            characterId={
+              selectedId && hiddenDetailId !== selectedId ? selectedId : null
+            }
+            expanded={detailExpanded}
+            language={language}
+            onClose={() => {
+              if (selectedId) setHiddenDetailId(selectedId);
+              setDetailExpanded(false);
+            }}
+            onExpand={() => setDetailExpanded(true)}
+            onSelect={selectCharacter}
+          />
+        </section>
+      ) : (
+        <StoryTimeline language={language} />
+      )}
     </div>
   );
 }
