@@ -119,21 +119,21 @@ const resources = {
               title: "新增官方人设图（TV一期）",
               description: "补充 TV 一期官方人设图相册。",
               image:
-                "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/concept/i0.jpg",
+                "https://assets.anuluca.com/assets/otherWebsites/drrr/concept/i0.jpg",
               to: "/resources/images/conceptTv1",
             },
             {
               title: "新增漫画封面相册",
               description: "整理漫画卷册封面与相关图像。",
               image:
-                "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/manga/01.webp",
+                "https://assets.anuluca.com/assets/otherWebsites/drrr/manga/01.webp",
               to: "/resources/images/mangaCovers",
             },
             {
               title: "新增小说封面相册",
               description: "整理小说卷册封面图像资料。",
               image:
-                "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/book/01.jpg",
+                "https://assets.anuluca.com/assets/otherWebsites/drrr/book/01.jpg",
               to: "/resources/images/novelCovers",
             },
           ],
@@ -369,21 +369,21 @@ const resources = {
               title: "公式設定画を追加（TV第1期）",
               description: "TV第1期の公式キャラクター設定画アルバムを追加。",
               image:
-                "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/concept/i0.jpg",
+                "https://assets.anuluca.com/assets/otherWebsites/drrr/concept/i0.jpg",
               to: "/resources/images/conceptTv1",
             },
             {
               title: "漫画カバーアルバムを追加",
               description: "漫画各巻のカバーと関連画像を整理。",
               image:
-                "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/manga/01.webp",
+                "https://assets.anuluca.com/assets/otherWebsites/drrr/manga/01.webp",
               to: "/resources/images/mangaCovers",
             },
             {
               title: "小説カバーアルバムを追加",
               description: "小説各巻のカバー画像資料を整理。",
               image:
-                "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/book/01.jpg",
+                "https://assets.anuluca.com/assets/otherWebsites/drrr/book/01.jpg",
               to: "/resources/images/novelCovers",
             },
           ],

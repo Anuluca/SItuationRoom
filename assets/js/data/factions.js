@@ -22,14 +22,14 @@ export const relationTypes = {
 };
 
 export const factionBackgrounds = {
-  core: "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/other/iShot_2026-06-13_01.23.46.jpg",
-  dollars: "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/other/iShot_2026-06-13_01.25.18.jpg",
-  yellow: "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/other/01%20(3).jpg",
-  blue: "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/other/01%20(2)%20(1).jpg",
-  awakening: "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/other/05%20(1).jpg",
-  awakusu: "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/other/05%20(2)%20(1).jpg",
-  russia: "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/other/iShot_2026-06-13_01.21.42.jpg",
-  yagiri: "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/other/02%20(1).jpg",
-  media: "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/other/01%20(1)%20(1).jpg",
-  independent: "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/other/03%20(1).jpg",
+  core: "https://assets.anuluca.com/assets/otherWebsites/drrr/other/iShot_2026-06-13_01.23.46.jpg",
+  dollars: "https://assets.anuluca.com/assets/otherWebsites/drrr/other/iShot_2026-06-13_01.25.18.jpg",
+  yellow: "https://assets.anuluca.com/assets/otherWebsites/drrr/other/01%20(3).jpg",
+  blue: "https://assets.anuluca.com/assets/otherWebsites/drrr/other/01%20(2)%20(1).jpg",
+  awakening: "https://assets.anuluca.com/assets/otherWebsites/drrr/other/05%20(1).jpg",
+  awakusu: "https://assets.anuluca.com/assets/otherWebsites/drrr/other/05%20(2)%20(1).jpg",
+  russia: "https://assets.anuluca.com/assets/otherWebsites/drrr/other/iShot_2026-06-13_01.21.42.jpg",
+  yagiri: "https://assets.anuluca.com/assets/otherWebsites/drrr/other/02%20(1).jpg",
+  media: "https://assets.anuluca.com/assets/otherWebsites/drrr/other/01%20(1)%20(1).jpg",
+  independent: "https://assets.anuluca.com/assets/otherWebsites/drrr/other/03%20(1).jpg",
 };

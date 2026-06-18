@@ -8,7 +8,7 @@ export const characters = [
     faction: "core",
     role: "都市传说 · 运送员",
     desc: "来自爱尔兰的无头妖精，为寻找失去的头颅来到池袋。她骑着由黑马变成的摩托，在城市中担任地下运送员；外表神秘，实际温和而富有人情味。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/01.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/01.jpg'
   },
   {
     id: "shinra",
@@ -18,7 +18,7 @@ export const characters = [
     faction: "core",
     role: "密医 · 塞尔提的恋人",
     desc: "从少年时代便迷恋塞尔提的地下医生。擅长处理无法进入正规医院的伤者，处事轻快却有很强的观察力，也会为了塞尔提隐瞒重要事实。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/02.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/02.jpg'
   },
   {
     id: "izaya",
@@ -28,7 +28,7 @@ export const characters = [
     faction: "independent",
     role: "情报商 · 棋局操纵者",
     desc: "自称热爱全人类的情报贩子，把池袋众人的选择视为观察人性的实验。擅长挑拨、布局与操纵情报，与平和岛静雄长期势同水火。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/03.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/03.jpg'
   },
   {
     id: "shizuo",
@@ -38,7 +38,7 @@ export const characters = [
     faction: "core",
     role: "讨债人 · 怪力者",
     desc: "穿酒保服、戴墨镜的池袋最强者。天生拥有远超常人的力量，讨厌暴力却极易被激怒；重视家人、朋友和承诺。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/04.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/04.jpg'
   },
   {
     id: "mikado",
@@ -49,7 +49,7 @@ export const characters = [
     avatar: "./assets/images/avatars/mikado.webp",
     role: "DOLLARS 创立者 · 蓝色平方首领",
     desc: "向往非日常而来到池袋的高中生，也是无色帮派 DOLLARS 的创立者之一。平静外表下藏着对异常世界的执着，后期逐渐走向极端。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/05.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/05.jpg'
   },
   {
     id: "masaomi",
@@ -59,7 +59,7 @@ export const characters = [
     faction: "yellow",
     role: "黄巾贼将军",
     desc: "帝人的好友，性格轻浮健谈，曾是黄巾贼首领。因为沙树受伤而逃离过去，最终仍选择面对帮派与朋友之间的冲突。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/06.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/06.jpg'
   },
   {
     id: "anri",
@@ -69,7 +69,7 @@ export const characters = [
     faction: "awakening",
     role: "来良学园学生 · 罪歌持有者",
     desc: "安静内向的女高中生，体内寄宿妖刀罪歌。她以“寄生”来理解人与世界，却非常珍惜帝人与正臣，并努力控制罪歌之子的网络。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/07.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/07.jpg'
   },
   {
     id: "kida-saki",
@@ -79,7 +79,7 @@ export const characters = [
     faction: "yellow",
     role: "正臣的恋人",
     desc: "纪田正臣的恋人。曾受临也影响接近正臣，在蓝色平方事件中重伤；她看穿临也的操纵，也比正臣想象中更加坚韧。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/08.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/08.jpg'
   },
   {
     id: "aoba",
@@ -89,7 +89,7 @@ export const characters = [
     faction: "blue",
     role: "学生 · 帮派策划者",
     desc: "来良学园后辈，表面爽朗，实际是蓝色平方真正的核心。试图借帝人和 DOLLARS 的名义扩张势力，并推动帝人更深地进入非日常。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/09.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/09.jpg'
   },
   {
     id: "izumii",
@@ -99,7 +99,7 @@ export const characters = [
     faction: "blue",
     role: "暴力派首领",
     desc: "青叶的兄长，曾作为蓝色平方的公开首领与黄巾贼抗争。性格凶暴，对弟弟既怨恨又受其摆布。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/10.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/10.jpg'
   },
   {
     id: "kadota",
@@ -109,7 +109,7 @@ export const characters = [
     faction: "dollars",
     role: "DOLLARS 成员 · 小队领袖",
     desc: "可靠而讲义气的池袋青年，带领游马崎、狩泽和渡草行动。过去属于蓝色平方，因无法接受其做法而脱离。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/11.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/11.jpg'
   },
   {
     id: "yumasaki",
@@ -119,7 +119,7 @@ export const characters = [
     faction: "dollars",
     role: "DOLLARS 成员",
     desc: "门田小队成员，重度御宅族。言行看似脱线，处理敌人时却会展现危险而果断的一面。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/12.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/12.jpg'
   },
   {
     id: "karisawa",
@@ -129,7 +129,7 @@ export const characters = [
     faction: "dollars",
     role: "DOLLARS 成员",
     desc: "门田小队成员，与游马崎兴趣相投。熟悉御宅文化，观察敏锐，常用作品梗解释池袋发生的事件。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/13.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/13.jpg'
   },
   {
     id: "togusa",
@@ -139,7 +139,7 @@ export const characters = [
     faction: "dollars",
     role: "DOLLARS 成员 · 司机",
     desc: "门田小队的司机，对偶像圣边琉璃极度狂热。最不能容忍别人损坏自己的爱车。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/14.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/14.jpg'
   },
   {
     id: "seiji",
@@ -149,7 +149,7 @@ export const characters = [
     faction: "yagiri",
     role: "来良学园学生",
     desc: "对塞尔提的头颅产生病态爱恋的学生。无视周围常识追逐自己认定的“爱”，与张间美香形成扭曲却稳定的关系。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/15.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/15.jpg'
   },
   {
     id: "mika",
@@ -159,7 +159,7 @@ export const characters = [
     faction: "independent",
     role: "来良学园学生",
     desc: "曾跟踪诚二并发现塞尔提的头颅。她接受整形伪装后继续留在诚二身边，执着程度与行动力都远超常人。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/16.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/16.jpg'
   },
   {
     id: "namie",
@@ -169,7 +169,7 @@ export const characters = [
     faction: "yagiri",
     role: "研究员 · 临也的秘书",
     desc: "诚二的姐姐，对弟弟抱有偏执的占有欲。矢雾制药事件后成为临也的秘书，与他维持互相利用、彼此警惕的关系。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/17.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/17.jpg'
   },
   {
     id: "shingen",
@@ -179,7 +179,7 @@ export const characters = [
     faction: "yagiri",
     role: "研究者 · 新罗之父",
     desc: "新罗的父亲，研究非人存在的科学家。曾偷走塞尔提的头颅并参与矢雾制药研究，行为古怪而难以捉摸。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/18.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/18.jpg'
   },
   {
     id: "emilia",
@@ -189,7 +189,7 @@ export const characters = [
     faction: "yagiri",
     role: "研究者",
     desc: "森严的再婚对象，同样从事特殊研究。性格直率开放，与新罗相处得像年龄相近的朋友。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/19.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/19.jpg'
   },
   {
     id: "kasane",
@@ -199,7 +199,7 @@ export const characters = [
     faction: "awakening",
     role: "经纪人 · 妖刀持有者",
     desc: "掌握另一把罪歌的神秘女子，长期以经纪人与幕后工作者身份活动。她冷静地利用罪歌网络，也对非人存在抱有独特兴趣。",
-      avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/20.jpg'
+      avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/20.jpg'
   },
   {
     id: "haruna",
@@ -209,7 +209,7 @@ export const characters = [
     faction: "awakening",
     role: "学生 · 罪歌支配者",
     desc: "被罪歌控制并爱上那须岛的少女，曾在池袋制造大规模袭击。后来成为罪歌网络中仍保有强烈个人欲望的一员。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/21.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/21.jpg'
   },
   {
     id: "shuji",
@@ -219,7 +219,7 @@ export const characters = [
     faction: "independent",
     role: "杂志记者 · 春奈之父",
     desc: "专门调查池袋最强者的记者，也是春奈的父亲。在追查静雄的过程中被卷入罪歌事件。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/22.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/22.jpg'
   },
   {
     id: "nasujima",
@@ -229,7 +229,7 @@ export const characters = [
     faction: "independent",
     role: "欺诈者",
     desc: "利用学生与他人的前教师，曾与春奈发生不正当关系。其自私行为引发罪歌事件，之后仍不断卷入池袋的阴暗交易。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/23.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/23.jpg'
   },
   {
     id: "simon",
@@ -239,7 +239,7 @@ export const characters = [
     faction: "russia",
     role: "寿司店员 · 前战斗人员",
     desc: "在露西寿司门口招揽客人的俄罗斯壮汉，拥有足以阻止静雄的力量。性格温和，希望池袋众人以和平方式解决冲突。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/24.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/24.jpg'
   },
   {
     id: "denis",
@@ -249,7 +249,7 @@ export const characters = [
     faction: "russia",
     role: "寿司店主",
     desc: "露西寿司的老板兼厨师，与赛门有共同的过去。表面经营餐馆，也熟悉俄罗斯地下圈子的规则。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/25.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/25.jpg'
   },
   {
     id: "vorona",
@@ -259,7 +259,7 @@ export const characters = [
     faction: "russia",
     role: "雇佣兵 · 静雄的后辈",
     desc: "来自俄罗斯的年轻雇佣兵，渴望与强者战斗。来到日本后与斯隆行动，后来在田中汤姆手下工作并逐渐敬佩静雄。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/26.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/26.jpg'
   },
   {
     id: "sloan",
@@ -269,7 +269,7 @@ export const characters = [
     faction: "russia",
     role: "瓦罗娜的搭档",
     desc: "与瓦罗娜一同来到日本的雇佣兵，负责支援和驾驶。看似粗犷，实际十分信任搭档。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/27.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/27.jpg'
   },
   {
     id: "egor",
@@ -279,7 +279,7 @@ export const characters = [
     faction: "russia",
     role: "俄罗斯杀手",
     desc: "俄罗斯地下世界闻名的杀手，实力强大且有自己的行事哲学。受伤后得到杏里帮助，由此进入池袋关系网。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/28.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/28.jpg'
   },
   {
     id: "tom",
@@ -289,7 +289,7 @@ export const characters = [
     faction: "core",
     role: "讨债人 · 静雄的上司",
     desc: "静雄的中学前辈与现任上司，头脑冷静，擅长安抚静雄。两人作为讨债搭档行动，后来也雇佣瓦罗娜。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/29.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/29.jpg'
   },
   {
     id: "kasuka",
@@ -299,7 +299,7 @@ export const characters = [
     faction: "media",
     role: "演员 · 静雄之弟",
     desc: "静雄的弟弟，以羽岛幽平之名成为知名演员。感情表现很淡，却一直理解并关心哥哥，与圣边琉璃交往。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/30.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/30.jpg'
   },
   {
     id: "ruri",
@@ -309,7 +309,7 @@ export const characters = [
     faction: "media",
     role: "偶像 · 连环袭击者",
     desc: "拥有异常身体能力的偶像，同时以“好莱坞”身份袭击他人。被幽接纳后逐渐找到容身之处，与塞尔提也成为朋友。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/31.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/31.jpg'
   },
   {
     id: "max",
@@ -319,7 +319,7 @@ export const characters = [
     faction: "media",
     role: "电影制片人",
     desc: "幽所属事务相关的制片人，热衷把池袋的异常事件转化为影视题材，行动力与商业嗅觉都很强。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/32.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/32.jpg'
   },
   {
     id: "akane",
@@ -329,7 +329,7 @@ export const characters = [
     faction: "awakusu",
     role: "粟楠会会长之孙女",
     desc: "粟楠会会长的孙女，因误解而试图刺杀静雄。真相揭开后，她把静雄视为值得信赖的“大哥哥”。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/33.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/33.jpg'
   },
   {
     id: "shiki",
@@ -339,7 +339,7 @@ export const characters = [
     faction: "awakusu",
     role: "粟楠会干部",
     desc: "负责粟楠会对外交涉的干部，冷静克制，重视组织秩序。与塞尔提、新罗等地下职业者保持业务往来。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/34.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/34.jpg'
   },
   {
     id: "akabayashi",
@@ -349,7 +349,7 @@ export const characters = [
     faction: "awakusu",
     role: "粟楠会干部",
     desc: "粟楠会实力派干部，年轻时曾被罪歌所伤，并对杏里的母亲怀有感情。暗中关照杏里，行事有自己的一套仁义。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/35.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/35.jpg'
   },
   {
     id: "aozaki",
@@ -359,7 +359,7 @@ export const characters = [
     faction: "awakusu",
     role: "粟楠会干部",
     desc: "粟楠会武斗派干部，与赤林常有竞争。重视组织威信，处理问题比四木和赤林更直接强硬。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/36.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/36.jpg'
   },
   {
     id: "chikage",
@@ -369,7 +369,7 @@ export const characters = [
     faction: "independent",
     role: "埼玉暴走族首领",
     desc: "埼玉暴走族首领，重视伙伴，也有自己对待女性的原则。因成员被 DOLLARS 袭击而来到池袋，与正臣交手后互相认可。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/37.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/37.jpg'
   },
   {
     id: "kuzuhara",
@@ -379,7 +379,7 @@ export const characters = [
     faction: "independent",
     role: "交通警察",
     desc: "令塞尔提真正感到恐惧的交通警察。执着追捕违反交通规则的黑色摩托，是池袋混乱中少数坚持正规秩序的人。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/38.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/38.jpg'
   },
   {
     id: "mairu",
@@ -389,7 +389,7 @@ export const characters = [
     faction: "independent",
     role: "来神学园学生",
     desc: "临也的双胞胎妹妹之一，活泼好动，擅长格斗。与九琉璃刻意把性格分成两个极端，两人都与哥哥保持复杂距离。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/39.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/39.jpg'
   },
   {
     id: "kururi",
@@ -399,7 +399,7 @@ export const characters = [
     faction: "independent",
     role: "来神学园学生",
     desc: "临也的双胞胎妹妹之一，寡言内向，却并不软弱。与舞流几乎总是共同行动。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/40.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/40.jpg'
   },
   {
     id: "rocchi",
@@ -409,7 +409,7 @@ export const characters = [
     faction: "yellow",
     role: "黄巾贼成员",
     desc: "趁正臣离开后掌握黄巾贼的一派，实际受到蓝色平方与临也的影响。以暴力推动三方冲突。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/41.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/41.jpg'
   },
   {
     id: "mikage",
@@ -419,7 +419,7 @@ export const characters = [
     faction: "independent",
     role: "武术家",
     desc: "实力出众的女性格斗家，与临也有工作往来。追求与强者交手，对静雄和瓦罗娜都抱有兴趣。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/42.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/42.jpg'
   },
   {
     id: "adabashi",
@@ -429,7 +429,7 @@ export const characters = [
     faction: "independent",
     role: "危险跟踪者",
     desc: "对圣边琉璃抱有扭曲执念的跟踪者，行为逐渐升级为暴力犯罪，是琉璃与幽关系中的直接威胁。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/43.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/43.jpg'
   },
   {
     id: "yodogiri",
@@ -439,7 +439,7 @@ export const characters = [
     faction: "independent",
     role: "幕后情报势力",
     desc: "并非单独一人，而是多人共同使用的身份。长期收集并交易有关非人存在的情报，与鲸木重、矢雾制药及临也均有交集。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/44.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/44.jpg'
   },
   {
     id: "manami",
@@ -449,7 +449,7 @@ export const characters = [
     faction: "independent",
     role: "复仇者 · 临也受害者",
     desc: "曾因折原临也的诱导走向自杀边缘，获救后长期追查并憎恨临也。她后来与其他受害者接触，以自己的方式参与针对临也的复仇。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/45.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/45.jpg'
   },
   {
     id: "yuiga",
@@ -459,7 +459,7 @@ export const characters = [
     faction: "media",
     role: "平和岛幽的爱猫",
     desc: "平和岛幽饲养的苏格兰折耳猫，后来也与圣边琉璃共同生活。名字气势十足，实际是平和岛兄弟与琉璃日常关系中的温柔一角。",
-    avatar:'https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/avatar/46.jpg'
+    avatar:'https://assets.anuluca.com/assets/otherWebsites/drrr/avatar/46.jpg'
   },
 ];
 
