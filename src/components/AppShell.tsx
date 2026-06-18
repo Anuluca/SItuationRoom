@@ -59,6 +59,7 @@ export default function AppShell() {
     awayFromTop: false,
   });
   const mainRef = useRef<HTMLElement>(null);
+  const scrollFrameRef = useRef(0);
   const language = (i18n.resolvedLanguage === "ja" ? "ja" : "zh") as Language;
 
   const titleKey = useMemo(() => {
@@ -258,22 +259,31 @@ export default function AppShell() {
     );
   }, []);
 
+  const scheduleMainScrollUpdate = useCallback(() => {
+    if (scrollFrameRef.current) return;
+    scrollFrameRef.current = window.requestAnimationFrame(() => {
+      scrollFrameRef.current = 0;
+      updateMainScroll();
+    });
+  }, [updateMainScroll]);
+
   useEffect(() => {
     const main = mainRef.current;
     if (!main) return;
 
-    const frame = requestAnimationFrame(updateMainScroll);
-    const observer = new ResizeObserver(updateMainScroll);
+    scheduleMainScrollUpdate();
+    const observer = new ResizeObserver(scheduleMainScrollUpdate);
     observer.observe(main);
     if (main.firstElementChild) observer.observe(main.firstElementChild);
-    window.addEventListener("resize", updateMainScroll);
+    window.addEventListener("resize", scheduleMainScrollUpdate);
 
     return () => {
-      cancelAnimationFrame(frame);
+      cancelAnimationFrame(scrollFrameRef.current);
+      scrollFrameRef.current = 0;
       observer.disconnect();
-      window.removeEventListener("resize", updateMainScroll);
+      window.removeEventListener("resize", scheduleMainScrollUpdate);
     };
-  }, [location.pathname, updateMainScroll]);
+  }, [location.pathname, scheduleMainScrollUpdate]);
 
   const languageMenu = {
     items: [
@@ -361,7 +371,7 @@ export default function AppShell() {
           className="site-main"
           key={location.pathname}
           ref={mainRef}
-          onScroll={updateMainScroll}
+          onScroll={scheduleMainScrollUpdate}
         >
           <Outlet />
         </main>

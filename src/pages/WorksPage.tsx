@@ -4,7 +4,7 @@ import {
   CloseOutlined,
 } from "@ant-design/icons";
 import { Button, Drawer, Image, Tabs, Tag } from "antd";
-import { useLayoutEffect, useMemo } from "react";
+import { useCallback, useLayoutEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import PageHero from "../components/PageHero";
@@ -109,6 +109,16 @@ export default function WorksPage() {
     [workId],
   );
   const activeCategory = selectedWork?.category ?? categoryFromUrl;
+  const worksByCategory = useMemo(
+    () =>
+      Object.fromEntries(
+        categories.map((category) => [
+          category,
+          works.filter((work) => work.category === category),
+        ]),
+      ) as Record<WorkCategory, typeof works>,
+    [],
+  );
 
   useLayoutEffect(() => {
     restoreWorksScroll(!workId);
@@ -123,14 +133,11 @@ export default function WorksPage() {
     setSearchParams({ tab: category });
   };
 
-  if (workId && !selectedWork) return <NotFoundPage />;
-
-  const renderWorks = (category: WorkCategory) => (
-    <>
-      <div className="works-list">
-        {works
-          .filter((work) => work.category === category)
-          .map((work, index) => (
+  const renderWorks = useCallback(
+    (category: WorkCategory) => (
+      <>
+        <div className="works-list">
+          {worksByCategory[category].map((work, index) => (
             <button
               type="button"
               className="work-card"
@@ -169,25 +176,44 @@ export default function WorksPage() {
               </div>
             </button>
           ))}
-      </div>
-      <section className="watch-order">
-        <header>
-          <span>EDITOR'S ROUTE / {category.toUpperCase()}</span>
-          <h2>{t("works.orderTitle")}</h2>
-          <p>{t("works.orderLead")}</p>
-        </header>
-        <ol>
-          {orderGuides[category].map((step, index) => (
-            <li key={step.zh}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <strong>{step[language]}</strong>
-            </li>
-          ))}
-        </ol>
-        <small>{t("works.orderNote")}</small>
-      </section>
-    </>
+        </div>
+        <section className="watch-order">
+          <header>
+            <span>EDITOR'S ROUTE / {category.toUpperCase()}</span>
+            <h2>{t("works.orderTitle")}</h2>
+            <p>{t("works.orderLead")}</p>
+          </header>
+          <ol>
+            {orderGuides[category].map((step, index) => (
+              <li key={step.zh}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <strong>{step[language]}</strong>
+              </li>
+            ))}
+          </ol>
+          <small>{t("works.orderNote")}</small>
+        </section>
+      </>
+    ),
+    [language, navigate, t, worksByCategory],
   );
+
+  const tabItems = useMemo(
+    () =>
+      categories.map((category, index) => ({
+        key: category,
+        label: (
+          <span className="work-tab">
+            <small>0{index + 1}</small>
+            {t(`works.${category}`)}
+          </span>
+        ),
+        children: renderWorks(category),
+      })),
+    [renderWorks, t],
+  );
+
+  if (workId && !selectedWork) return <NotFoundPage />;
 
   return (
     <div className="page">
@@ -200,16 +226,7 @@ export default function WorksPage() {
         <Tabs
           activeKey={activeCategory}
           onChange={(key) => changeCategory(key as WorkCategory)}
-          items={categories.map((category, index) => ({
-            key: category,
-            label: (
-              <span className="work-tab">
-                <small>0{index + 1}</small>
-                {t(`works.${category}`)}
-              </span>
-            ),
-            children: renderWorks(category),
-          }))}
+          items={tabItems}
         />
       </section>
       <Drawer

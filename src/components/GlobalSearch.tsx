@@ -49,6 +49,8 @@ export default function GlobalSearch({ open, onClose }: GlobalSearchProps) {
   const language = (i18n.resolvedLanguage === "ja" ? "ja" : "zh") as Language;
 
   const searchItems = useMemo<SearchResult[]>(() => {
+    if (!open) return [];
+
     const characterItems = characters.map((character) => ({
       id: `character-${character.id}`,
       kind: "character" as const,
@@ -67,20 +69,23 @@ export default function GlobalSearch({ open, onClose }: GlobalSearchProps) {
       to: `/terms?view=characters&character=${character.id}`,
     }));
 
-    const factionItems = Object.keys(factions).map((factionId) => ({
-      id: `faction-${factionId}`,
-      kind: "faction" as const,
-      title: t(`factions.${factionId}`),
-      subtitle: t("terms.factionMembers", {
-        count: membersOf(factionId).length,
-      }),
-      keywords: [
-        factionId,
-        t(`factions.${factionId}`),
-        ...membersOf(factionId).flatMap(({ name, jp }) => [name, jp]),
-      ].join(" "),
-      to: `/terms?view=factions&faction=${factionId}`,
-    }));
+    const factionItems = Object.keys(factions).map((factionId) => {
+      const members = membersOf(factionId);
+      return {
+        id: `faction-${factionId}`,
+        kind: "faction" as const,
+        title: t(`factions.${factionId}`),
+        subtitle: t("terms.factionMembers", {
+          count: members.length,
+        }),
+        keywords: [
+          factionId,
+          t(`factions.${factionId}`),
+          ...members.flatMap(({ name, jp }) => [name, jp]),
+        ].join(" "),
+        to: `/terms?view=factions&faction=${factionId}`,
+      };
+    });
 
     const relationItems = relations.map((relation, index) => {
       const source = characterById.get(relation.source);
@@ -153,9 +158,11 @@ export default function GlobalSearch({ open, onClose }: GlobalSearchProps) {
       ...workItems,
       ...resourceItems,
     ];
-  }, [language, t]);
+  }, [language, open, t]);
 
   const results = useMemo(() => {
+    if (!open) return [];
+
     const normalized = query.trim().toLocaleLowerCase();
     if (!normalized) {
       const featuredIds = [
@@ -166,8 +173,11 @@ export default function GlobalSearch({ open, onClose }: GlobalSearchProps) {
         "work-novels-main-1",
         "resource-avatars",
       ];
+      const searchItemById = new Map(
+        searchItems.map((item) => [item.id, item]),
+      );
       const featured = featuredIds.flatMap((id) => {
-        const item = searchItems.find((entry) => entry.id === id);
+        const item = searchItemById.get(id);
         return item ? [item] : [];
       });
       const relation = searchItems.find(({ kind }) => kind === "relation");
@@ -180,7 +190,7 @@ export default function GlobalSearch({ open, onClose }: GlobalSearchProps) {
           .includes(normalized),
       )
       .slice(0, 24);
-  }, [query, searchItems]);
+  }, [open, query, searchItems]);
 
   const openResult = (to: string) => {
     navigate(to);

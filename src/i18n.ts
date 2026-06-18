@@ -114,18 +114,29 @@ const resources = {
         latestTitle: "最新更新",
         latestOpen: "查看更新 →",
         latest: {
-          characters: {
-            title: "人物档案扩充",
-            description: "新增间宫爱海、唯我独尊丸及人物 CV 数据。",
-          },
-          resources: {
-            title: "资料索引上线",
-            description: "补充官方头像、DVD 与音乐封面等资料入口。",
-          },
-          network: {
-            title: "关系图视觉更新",
-            description: "人物头像节点与无缝阵营筛选现已启用。",
-          },
+          items: [
+            {
+              title: "新增官方人设图（TV一期）",
+              description: "补充 TV 一期官方人设图相册。",
+              image:
+                "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/concept/i0.jpg",
+              to: "/resources/images/conceptTv1",
+            },
+            {
+              title: "新增漫画封面相册",
+              description: "整理漫画卷册封面与相关图像。",
+              image:
+                "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/manga/01.webp",
+              to: "/resources/images/mangaCovers",
+            },
+            {
+              title: "新增小说封面相册",
+              description: "整理小说卷册封面图像资料。",
+              image:
+                "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/book/01.jpg",
+              to: "/resources/images/novelCovers",
+            },
+          ],
         },
         quizTitle: "我是谁",
         quizPrompt: "根据线索锁定这个人物",
@@ -353,18 +364,29 @@ const resources = {
         latestTitle: "最新更新",
         latestOpen: "更新を見る →",
         latest: {
-          characters: {
-            title: "人物ファイルを拡充",
-            description: "間宮愛海、唯我独尊丸、各人物の CV 情報を追加。",
-          },
-          resources: {
-            title: "資料インデックス公開",
-            description: "公式画像、DVD、音楽ジャケットへの入口を追加。",
-          },
-          network: {
-            title: "相関図の表示を更新",
-            description: "顔写真ノードとシームレスな勢力絞り込みを実装。",
-          },
+          items: [
+            {
+              title: "公式設定画を追加（TV第1期）",
+              description: "TV第1期の公式キャラクター設定画アルバムを追加。",
+              image:
+                "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/concept/i0.jpg",
+              to: "/resources/images/conceptTv1",
+            },
+            {
+              title: "漫画カバーアルバムを追加",
+              description: "漫画各巻のカバーと関連画像を整理。",
+              image:
+                "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/manga/01.webp",
+              to: "/resources/images/mangaCovers",
+            },
+            {
+              title: "小説カバーアルバムを追加",
+              description: "小説各巻のカバー画像資料を整理。",
+              image:
+                "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/book/01.jpg",
+              to: "/resources/images/novelCovers",
+            },
+          ],
         },
         quizTitle: "私は誰？",
         quizPrompt: "手掛かりから人物を特定",

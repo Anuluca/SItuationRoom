@@ -1,4 +1,4 @@
-import { ArrowLeftOutlined, ArrowUpOutlined } from "@ant-design/icons";
+import { ArrowLeftOutlined } from "@ant-design/icons";
 import { Image } from "antd";
 import { useTranslation } from "react-i18next";
 import { Link, useParams } from "react-router-dom";

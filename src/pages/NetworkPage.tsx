@@ -29,6 +29,7 @@ import {
 import type { Character, Language, LocalizedText } from "../types";
 
 const CENTER_CHARACTER_ID = "mikado";
+const MOBILE_HERO_QUERY = "(max-width: 860px)";
 let networkNodeRegistered = false;
 
 interface TimelineEvent {
@@ -38,6 +39,30 @@ interface TimelineEvent {
   description: LocalizedText;
   characters: string[];
   accent: string;
+}
+
+interface HeroUpdate {
+  title: string;
+  description: string;
+  image: string;
+  to: string;
+}
+
+function useMediaQuery(query: string) {
+  const [matches, setMatches] = useState(() =>
+    typeof window === "undefined" ? false : window.matchMedia(query).matches,
+  );
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(query);
+    const updateMatches = () => setMatches(mediaQuery.matches);
+
+    updateMatches();
+    mediaQuery.addEventListener("change", updateMatches);
+    return () => mediaQuery.removeEventListener("change", updateMatches);
+  }, [query]);
+
+  return matches;
 }
 
 const timelineSeasonAccent = {
@@ -326,6 +351,7 @@ function GraphCanvas({
     let graph: any = null;
     let resizeObserver: ResizeObserver | null = null;
     let readyTimer = 0;
+    let resizeFrame = 0;
     let handlePointerDown: ((event: PointerEvent) => void) | null = null;
     let handlePointerUp: ((event: PointerEvent) => void) | null = null;
 
@@ -456,7 +482,12 @@ function GraphCanvas({
 
       resizeObserver = new ResizeObserver(() => {
         if (graph.get("destroyed")) return;
-        graph.changeSize(container.clientWidth, container.clientHeight);
+        if (resizeFrame) return;
+        resizeFrame = window.requestAnimationFrame(() => {
+          resizeFrame = 0;
+          if (graph.get("destroyed")) return;
+          graph.changeSize(container.clientWidth, container.clientHeight);
+        });
       });
       resizeObserver.observe(container);
 
@@ -478,6 +509,7 @@ function GraphCanvas({
     return () => {
       disposed = true;
       window.clearTimeout(readyTimer);
+      window.cancelAnimationFrame(resizeFrame);
       resizeObserver?.disconnect();
       if (handlePointerDown) {
         container.removeEventListener("pointerdown", handlePointerDown, true);
@@ -746,28 +778,13 @@ function NetworkDetail({
   );
 }
 
-const heroUpdates = [
-  {
-    key: "characters",
-    image: avatarFor(characterById.get("manami") ?? characters[0]),
-    to: "/terms?view=characters",
-  },
-  {
-    key: "resources",
-    image: "https://www.durarara.com/img/music/ost/jk.jpg",
-    to: "/resources",
-  },
-  {
-    key: "network",
-    image: "https://www.durarara.com/img/top/KV.jpg",
-    to: "/",
-  },
-] as const;
-
 function NetworkHeroAside({ language }: { language: Language }) {
   const { t } = useTranslation();
   const [quizRevealed, setQuizRevealed] = useState(false);
   const [detailId, setDetailId] = useState<string | null>(null);
+  const heroUpdates = t("network.latest.items", {
+    returnObjects: true,
+  }) as HeroUpdate[];
 
   const quizCandidates = useMemo(
     () =>
@@ -831,7 +848,7 @@ function NetworkHeroAside({ language }: { language: Language }) {
             {heroUpdates.map((update, index) => (
               <Link
                 className="hero-update-item"
-                key={update.key}
+                key={update.to}
                 to={update.to}
               >
                 <span className="hero-update-image">
@@ -839,8 +856,8 @@ function NetworkHeroAside({ language }: { language: Language }) {
                   <small>0{index + 1}</small>
                 </span>
                 <div>
-                  <strong>{t(`network.latest.${update.key}.title`)}</strong>
-                  <p>{t(`network.latest.${update.key}.description`)}</p>
+                  <strong>{update.title}</strong>
+                  <p>{update.description}</p>
                   <em>{t("network.latestOpen")}</em>
                 </div>
               </Link>
@@ -1023,26 +1040,35 @@ export default function NetworkPage() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [detailExpanded, setDetailExpanded] = useState(false);
   const [hiddenDetailId, setHiddenDetailId] = useState<string | null>(null);
+  const isMobileHero = useMediaQuery(MOBILE_HERO_QUERY);
+  const groupsParam = searchParams.get("groups");
+  const fromParam = searchParams.get("from");
+  const toParam = searchParams.get("to");
   const activeView =
     searchParams.get("view") === "timeline" ? "timeline" : "network";
   const factionIds = useMemo(() => Object.keys(factions), []);
+  const factionMemberCounts = useMemo(
+    () =>
+      Object.fromEntries(
+        factionIds.map((factionId) => [
+          factionId,
+          characters.filter((character) =>
+            character.factions.includes(factionId),
+          ).length,
+        ]),
+      ),
+    [factionIds],
+  );
   const activeFactions = useMemo(() => {
-    const requested = searchParams
-      .get("groups")
-      ?.split(",")
-      .filter((id) => id in factions);
+    const requested = groupsParam?.split(",").filter((id) => id in factions);
     return new Set(requested?.length ? requested : factionIds);
-  }, [factionIds, searchParams]);
+  }, [factionIds, groupsParam]);
   const compareIds = useMemo<[string | null, string | null]>(
     () => [
-      characterById.has(searchParams.get("from") ?? "")
-        ? searchParams.get("from")
-        : null,
-      characterById.has(searchParams.get("to") ?? "")
-        ? searchParams.get("to")
-        : null,
+      characterById.has(fromParam ?? "") ? fromParam : null,
+      characterById.has(toParam ?? "") ? toParam : null,
     ],
-    [searchParams],
+    [fromParam, toParam],
   );
 
   const updateParams = useCallback(
@@ -1130,12 +1156,16 @@ export default function NetworkPage() {
     });
   };
 
-  const searchOptions = characters.map((character) => ({
-    value: character.id,
-    label: `${displayName(character, language)} · ${
-      language === "ja" ? character.name : character.jp
-    }`,
-  }));
+  const searchOptions = useMemo(
+    () =>
+      characters.map((character) => ({
+        value: character.id,
+        label: `${displayName(character, language)} · ${
+          language === "ja" ? character.name : character.jp
+        }`,
+      })),
+    [language],
+  );
 
   const revealComparedCharacter = (id: string | null, index: 0 | 1) => {
     updateParams((params) => {
@@ -1166,11 +1196,13 @@ export default function NetworkPage() {
             : t("network.lead")
         }
         index="01"
-        aside={<NetworkHeroAside language={language} />}
+        aside={!isMobileHero && <NetworkHeroAside language={language} />}
       />
-      <div className="network-hero-mobile-strip">
-        <NetworkHeroAside language={language} />
-      </div>
+      {isMobileHero && (
+        <div className="network-hero-mobile-strip">
+          <NetworkHeroAside language={language} />
+        </div>
+      )}
 
       <nav className="home-view-tabs" aria-label={t("network.viewLabel")}>
         <button
@@ -1363,11 +1395,7 @@ export default function NetworkPage() {
                       <i style={{ background: faction.color }} />
                       <span>{t(`factions.${factionId}`)}</span>
                       <small>
-                        {
-                          characters.filter((character) =>
-                            character.factions.includes(factionId),
-                          ).length
-                        }
+                        {factionMemberCounts[factionId]}
                       </small>
                     </button>
                   ))}
