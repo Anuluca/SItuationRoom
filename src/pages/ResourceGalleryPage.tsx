@@ -11,6 +11,8 @@ import NotFoundPage from "./NotFoundPage";
 const isImageKind = (value?: string): value is ResourceImageKind =>
   value === "avatars" ||
   value === "avatars2" ||
+  value === "avatarsTv1" ||
+  value === "conceptTv1" ||
   value === "dvd" ||
   value === "music" ||
   value === "mangaCovers" ||
@@ -49,9 +51,6 @@ export default function ResourceGalleryPage() {
                   <Image src={image.src} alt={image.title[language]} />
                   <figcaption>
                     <strong>{image.title[language]}</strong>
-                    <a href={image.src} target="_blank" rel="noreferrer">
-                      {image.source} <ArrowUpOutlined />
-                    </a>
                   </figcaption>
                 </figure>
               ))}

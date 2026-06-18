@@ -4,9 +4,9 @@ import {
   CloseOutlined,
 } from "@ant-design/icons";
 import { Button, Drawer, Image, Tabs, Tag } from "antd";
-import { useMemo, useState } from "react";
+import { useLayoutEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import PageHero from "../components/PageHero";
 import ShareButton from "../components/ShareButton";
 import { works } from "../data";
@@ -16,11 +16,34 @@ import NotFoundPage from "./NotFoundPage";
 const categories: WorkCategory[] = [
   "tv",
   "ova",
-  "music",
   "novels",
   "manga",
   "games",
 ];
+
+const worksScrollKey = "joho-ya-works-scroll";
+
+const getWorksScrollElement = () =>
+  document.querySelector<HTMLElement>(".site-main") ?? document.scrollingElement;
+
+const getWorksDrawerContainer = () =>
+  document.querySelector<HTMLElement>(".site-main-wrap") ?? document.body;
+
+const rememberWorksScroll = () => {
+  sessionStorage.setItem(
+    worksScrollKey,
+    String(getWorksScrollElement()?.scrollTop ?? 0),
+  );
+};
+
+const restoreWorksScroll = (clear = true) => {
+  const savedScroll = sessionStorage.getItem(worksScrollKey);
+  if (!savedScroll) return;
+
+  const scrollTop = Number(savedScroll);
+  getWorksScrollElement()?.scrollTo({ top: scrollTop, behavior: "auto" });
+  if (clear) sessionStorage.removeItem(worksScrollKey);
+};
 
 const orderGuides: Record<
   WorkCategory,
@@ -40,12 +63,8 @@ const orderGuides: Record<
     { zh: "第19.5话《Dufufufu!!》", ja: "第19.5話「デュフフフ!!」" },
   ],
   music: [
-    { zh: "第一期动画原声", ja: "TV第1期 サウンドトラック" },
-    { zh: "《×2》系列原声", ja: "『×2』シリーズ サウンドトラック" },
-    {
-      zh: "The Greatest Hits 精选集",
-      ja: "The Greatest Hits ベスト盤",
-    },
+    { zh: "动画原声音乐集", ja: "オリジナル・サウンドトラック" },
+    { zh: "The Greatest Hits", ja: "The Greatest Hits" },
   ],
   novels: [
     { zh: "本传第1—3卷：三大事件篇", ja: "本編1～3巻：三大事件編" },
@@ -67,6 +86,10 @@ const orderGuides: Record<
       zh: "3way standoff -alley-（追加版）",
       ja: "3way standoff -alley-（追加版）",
     },
+    {
+      zh: "3way standoff -alley- V（PS Vita版）",
+      ja: "3way standoff -alley- V（PS Vita版）",
+    },
     { zh: "Relay", ja: "Relay" },
   ],
 };
@@ -75,18 +98,29 @@ export default function WorksPage() {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const { workId } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const language = (i18n.resolvedLanguage === "ja" ? "ja" : "zh") as Language;
+  const tabParam = searchParams.get("tab") as WorkCategory | null;
+  const categoryFromUrl = tabParam && categories.includes(tabParam)
+    ? tabParam
+    : "tv";
   const selectedWork = useMemo(
     () => (workId ? works.find(({ id }) => id === workId) ?? null : null),
     [workId],
   );
-  const [selectedCategory, setSelectedCategory] =
-    useState<WorkCategory>("tv");
-  const activeCategory = selectedWork?.category ?? selectedCategory;
+  const activeCategory = selectedWork?.category ?? categoryFromUrl;
+
+  useLayoutEffect(() => {
+    restoreWorksScroll(!workId);
+  }, [workId]);
 
   const closeWork = () => {
-    if (selectedWork) setSelectedCategory(selectedWork.category);
-    navigate("/works");
+    const category = selectedWork?.category ?? activeCategory;
+    navigate(`/works?tab=${category}`);
+  };
+
+  const changeCategory = (category: WorkCategory) => {
+    setSearchParams({ tab: category });
   };
 
   if (workId && !selectedWork) return <NotFoundPage />;
@@ -106,7 +140,10 @@ export default function WorksPage() {
                   "--work-color": "#f4f500",
                 } as React.CSSProperties
               }
-              onClick={() => navigate(`/works/${work.id}`)}
+              onClick={() => {
+                rememberWorksScroll();
+                navigate(`/works/${work.id}?tab=${category}`);
+              }}
             >
               <span className="work-image">
                 {work.image ? (
@@ -162,7 +199,7 @@ export default function WorksPage() {
       <section className="works-panel">
         <Tabs
           activeKey={activeCategory}
-          onChange={(key) => setSelectedCategory(key as WorkCategory)}
+          onChange={(key) => changeCategory(key as WorkCategory)}
           items={categories.map((category, index) => ({
             key: category,
             label: (
@@ -179,7 +216,13 @@ export default function WorksPage() {
         className="work-drawer"
         open={Boolean(selectedWork)}
         width="min(92vw, 720px)"
+        autoFocus={false}
         closeIcon={false}
+        getContainer={getWorksDrawerContainer}
+        rootStyle={{ position: "absolute" }}
+        afterOpenChange={(open) => {
+          if (open) restoreWorksScroll(false);
+        }}
         onClose={closeWork}
         title={null}
       >
@@ -234,15 +277,21 @@ export default function WorksPage() {
                 </ul>
               </section>
             )}
-            {selectedWork.link && (
-              <a
-                className="work-external-link"
-                href={selectedWork.link}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {t("works.official")} <ArrowUpOutlined />
-              </a>
+            {Boolean(selectedWork.links?.length) && (
+              <div className="work-external-links">
+                {selectedWork.links?.map((link) => (
+                  <a
+                    className="work-external-link"
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    key={link.href}
+                  >
+                    {link.title[language] || t("works.official")}{" "}
+                    <ArrowUpOutlined />
+                  </a>
+                ))}
+              </div>
             )}
           </article>
         )}

@@ -296,8 +296,13 @@ export interface WorkEntry {
   image?: string;
   images?: string[];
   imageRatio?: "16:9" | "4:3";
-  link?: string;
+  links?: WorkLink[];
   accent: string;
+}
+
+export interface WorkLink {
+  title: { zh: string; ja: string };
+  href: string;
 }
 
 export const works: WorkEntry[] = [
@@ -317,7 +322,12 @@ export const works: WorkEntry[] = [
     },
     image: "https://www.durarara.com/img/top/KV.jpg",
     imageRatio: "16:9",
-    link: "https://www.durarara.com/",
+    links: [
+      {
+        title: { zh: "官方页面", ja: "公式ページ" },
+        href: "https://www.durarara.com/",
+      },
+    ],
     accent: "#f4f500",
   },
   {
@@ -336,7 +346,12 @@ export const works: WorkEntry[] = [
     },
     image: "https://www.durarara.com/img/top/KV.jpg",
     imageRatio: "16:9",
-    link: "https://www.durarara.com/",
+    links: [
+      {
+        title: { zh: "官方页面", ja: "公式ページ" },
+        href: "https://www.durarara.com/",
+      },
+    ],
     accent: "#55d9ff",
   },
   {
@@ -355,7 +370,12 @@ export const works: WorkEntry[] = [
     },
     image: "https://www.durarara.com/img/top/KV.jpg",
     imageRatio: "16:9",
-    link: "https://www.durarara.com/",
+    links: [
+      {
+        title: { zh: "官方页面", ja: "公式ページ" },
+        href: "https://www.durarara.com/",
+      },
+    ],
     accent: "#ff8c42",
   },
   {
@@ -374,7 +394,12 @@ export const works: WorkEntry[] = [
     },
     image: "https://www.durarara.com/img/top/KV.jpg",
     imageRatio: "16:9",
-    link: "https://www.durarara.com/",
+    links: [
+      {
+        title: { zh: "官方页面", ja: "公式ページ" },
+        href: "https://www.durarara.com/",
+      },
+    ],
     accent: "#ff4d88",
   },
   {
@@ -393,7 +418,12 @@ export const works: WorkEntry[] = [
     },
     image: "https://www.durarara.com/img/top/bnr_ova.jpg",
     imageRatio: "4:3",
-    link: "https://www.durarara.com/ova/",
+    links: [
+      {
+        title: { zh: "官方页面", ja: "公式ページ" },
+        href: "https://www.durarara.com/ova/",
+      },
+    ],
     accent: "#9b72ff",
   },
   {
@@ -412,7 +442,12 @@ export const works: WorkEntry[] = [
     },
     image: "https://www.durarara.com/img/top/bnr_ova.jpg",
     imageRatio: "4:3",
-    link: "https://www.durarara.com/ova/",
+    links: [
+      {
+        title: { zh: "官方页面", ja: "公式ページ" },
+        href: "https://www.durarara.com/ova/",
+      },
+    ],
     accent: "#9b72ff",
   },
   {
@@ -434,7 +469,12 @@ export const works: WorkEntry[] = [
     },
     image: "https://www.durarara.com/img/ova03/about/img.jpg",
     imageRatio: "4:3",
-    link: "https://www.durarara.com/ova/",
+    links: [
+      {
+        title: { zh: "官方页面", ja: "公式ページ" },
+        href: "https://www.durarara.com/ova/",
+      },
+    ],
     accent: "#d96cff",
   },
   {
@@ -456,7 +496,12 @@ export const works: WorkEntry[] = [
     },
     image: "https://www.durarara.com/img/ova03/about/img.jpg",
     imageRatio: "4:3",
-    link: "https://www.durarara.com/ova/",
+    links: [
+      {
+        title: { zh: "官方页面", ja: "公式ページ" },
+        href: "https://www.durarara.com/ova/",
+      },
+    ],
     accent: "#d96cff",
   },
   {
@@ -475,7 +520,12 @@ export const works: WorkEntry[] = [
     },
     image: "https://www.durarara.com/img/ova03/about/img.jpg",
     imageRatio: "4:3",
-    link: "https://www.durarara.com/ova/",
+    links: [
+      {
+        title: { zh: "官方页面", ja: "公式ページ" },
+        href: "https://www.durarara.com/ova/",
+      },
+    ],
     accent: "#d96cff",
   },
   {
@@ -494,7 +544,12 @@ export const works: WorkEntry[] = [
     },
     image: "https://www.durarara.com/social.jpg",
     imageRatio: "4:3",
-    link: "https://www.durarara.com/",
+    links: [
+      {
+        title: { zh: "官方页面", ja: "公式ページ" },
+        href: "https://www.durarara.com/",
+      },
+    ],
     accent: "#5ee2a0",
   },
   {
@@ -516,7 +571,12 @@ export const works: WorkEntry[] = [
     },
     image: "https://www.durarara.com/social.jpg",
     imageRatio: "4:3",
-    link: "https://www.durarara.com/",
+    links: [
+      {
+        title: { zh: "官方页面", ja: "公式ページ" },
+        href: "https://www.durarara.com/",
+      },
+    ],
     accent: "#55d9ff",
   },
   {
@@ -535,7 +595,12 @@ export const works: WorkEntry[] = [
     },
     image: "https://cdn.kdkw.jp/cover_1000/312133/312133900000.webp",
     imageRatio: "4:3",
-    link: "https://dengekibunko.jp/product/drrr/312133900000.html",
+    links: [
+      {
+        title: { zh: "官方页面", ja: "公式ページ" },
+        href: "https://dengekibunko.jp/product/drrr/312133900000.html",
+      },
+    ],
     accent: "#f4f500",
   },
   {
@@ -554,7 +619,12 @@ export const works: WorkEntry[] = [
     },
     image: "https://cdn.kdkw.jp/cover_1000/312097/312097600000.webp",
     imageRatio: "4:3",
-    link: "https://dengekibunko.jp/product/drrr/",
+    links: [
+      {
+        title: { zh: "官方页面", ja: "公式ページ" },
+        href: "https://dengekibunko.jp/product/drrr/",
+      },
+    ],
     accent: "#ff8c42",
   },
   {
@@ -573,7 +643,12 @@ export const works: WorkEntry[] = [
     },
     image: "https://cdn.kdkw.jp/cover_1000/312032/312032400000.webp",
     imageRatio: "4:3",
-    link: "https://dengekibunko.jp/product/drrr/",
+    links: [
+      {
+        title: { zh: "官方页面", ja: "公式ページ" },
+        href: "https://dengekibunko.jp/product/drrr/",
+      },
+    ],
     accent: "#9b72ff",
   },
   {
@@ -592,7 +667,12 @@ export const works: WorkEntry[] = [
     },
     image: "https://cdn.kdkw.jp/cover_1000/312032/312032500000.webp",
     imageRatio: "4:3",
-    link: "https://dengekibunko.jp/product/drrr/",
+    links: [
+      {
+        title: { zh: "官方页面", ja: "公式ページ" },
+        href: "https://dengekibunko.jp/product/drrr/",
+      },
+    ],
     accent: "#d96cff",
   },
   {
@@ -611,7 +691,12 @@ export const works: WorkEntry[] = [
     },
     image: "https://www.durarara.com/social.jpg",
     imageRatio: "4:3",
-    link: "https://magazine.jp.square-enix.com/gfantasy/story/durarara/",
+    links: [
+      {
+        title: { zh: "官方页面", ja: "公式ページ" },
+        href: "https://magazine.jp.square-enix.com/gfantasy/story/durarara/",
+      },
+    ],
     accent: "#5ee2a0",
   },
 ];

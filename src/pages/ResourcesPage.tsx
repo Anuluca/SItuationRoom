@@ -14,6 +14,8 @@ import type { Language, ResourceImageKind } from "../types";
 const imageKinds: ResourceImageKind[] = [
   "avatars",
   "avatars2",
+  "avatarsTv1",
+  "conceptTv1",
   "dvd",
   "music",
   "mangaCovers",

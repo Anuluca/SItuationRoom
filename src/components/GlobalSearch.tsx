@@ -34,6 +34,8 @@ interface SearchResult {
 const resourceKinds: ResourceImageKind[] = [
   "avatars",
   "avatars2",
+  "avatarsTv1",
+  "conceptTv1",
   "dvd",
   "music",
   "mangaCovers",

@@ -67,6 +67,13 @@ export default function AboutPage() {
         <div className="source-strip">
           <span>{t("common.source")}</span>
           <a
+            href="https://www.durarara.com/1st/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            TV Anime 1st official ↗
+          </a>
+          <a
             href="https://www.durarara.com/"
             target="_blank"
             rel="noreferrer"

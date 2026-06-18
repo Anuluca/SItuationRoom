@@ -211,9 +211,19 @@ export default function AppShell() {
 
   }, [language, location.pathname, location.search, pageMeta]);
 
+  const previousPathRef = useRef(location.pathname);
+
   useEffect(() => {
-    mainRef.current?.scrollTo({ top: 0, behavior: "auto" });
-    window.scrollTo({ top: 0, behavior: "auto" });
+    const previousPath = previousPathRef.current;
+    const isWorksRouteSwap =
+      previousPath.startsWith("/works") && location.pathname.startsWith("/works");
+
+    if (!isWorksRouteSwap) {
+      mainRef.current?.scrollTo({ top: 0, behavior: "auto" });
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }
+
+    previousPathRef.current = location.pathname;
   }, [location.pathname]);
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-// Each entry is intentionally explicit so its media, link, accent, and copy can be maintained independently.
+// Each entry is intentionally explicit so its media, links, accent, and copy can be maintained independently.
 export const works = [
   {
     "id": "tv-1",
@@ -29,7 +29,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/tv/ki.jpeg",
-    "link": "https://www.durarara.com/1st/",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://www.durarara.com/1st/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -61,7 +69,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/tv/sho.png",
-    "link": "https://www.durarara.com",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://www.durarara.com"
+      }
+    ],
     "accent": "#55d9ff"
   },
   {
@@ -93,7 +109,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/tv/ten.webp",
-    "link": "https://www.durarara.com",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://www.durarara.com"
+      }
+    ],
     "accent": "#ff8c42"
   },
   {
@@ -125,7 +149,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/tv/ketsu.jpg",
-    "link": "https://www.durarara.com",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://www.durarara.com"
+      }
+    ],
     "accent": "#ff4d88"
   },
   {
@@ -153,7 +185,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/tv/ova1.jpg",
-    "link": "https://www.durarara.com/1st/story/story125b.html",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://www.durarara.com/1st/story/story125b.html"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -181,7 +221,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/tv/ova2.jpg",
-    "link": "https://www.durarara.com/1st/story/story25b.html",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://www.durarara.com/1st/story/story25b.html"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -209,6 +257,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/tv/ova3.jpg",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://www.durarara.com/ova/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -236,6 +293,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/tv/ova4.jpg",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://www.durarara.com/ova/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -263,63 +329,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/tv/ova5.jpeg",
-    "link": "https://www.durarara.com/ova/",
-    "accent": "#f4f500"
-  },
-  {
-    "id": "music-ost",
-    "category": "music",
-    "year": "2010–2016",
-    "title": {
-      "zh": "动画原声音乐",
-      "ja": "アニメーション・サウンドトラック"
-    },
-    "meta": {
-      "zh": "作曲：吉森信",
-      "ja": "音楽：吉森信"
-    },
-    "description": {
-      "zh": "以爵士、放克与都市感配乐构成池袋独特的声音景观。",
-      "ja": "ジャズ、ファンク、都会的な劇伴が池袋の音風景を作る。"
-    },
-    "details": {
-      "zh": [
-        "作曲：吉森信"
-      ],
-      "ja": [
-        "音楽：吉森信"
-      ]
-    },
-    "image": "https://www.durarara.com/img/music/ost/jk.jpg",
-    "link": "https://www.durarara.com/music/ost.html",
-    "accent": "#f4f500"
-  },
-  {
-    "id": "music-best",
-    "category": "music",
-    "year": "2016",
-    "title": {
-      "zh": "The Greatest Hits ～Sweet Strange Memories",
-      "ja": "The Greatest Hits ～Sweet Strange Memories"
-    },
-    "meta": {
-      "zh": "BGM 精选集",
-      "ja": "BGMベストセレクション"
-    },
-    "description": {
-      "zh": "从动画两期中选出的吉森信配乐合集。",
-      "ja": "アニメシリーズを彩った吉森信のBGMベスト盤。"
-    },
-    "details": {
-      "zh": [
-        "发行：2016年6月8日"
-      ],
-      "ja": [
-        "発売：2016年6月8日"
-      ]
-    },
-    "image": "https://www.durarara.com/img/music/comp/jk.jpg",
-    "link": "https://www.durarara.com/",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://www.durarara.com/ova/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -351,7 +369,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/book/01.jpg",
-    "link": "https://dengekibunko.jp/product/drrr/",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://dengekibunko.jp/product/drrr/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -383,7 +409,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/book/02.jpg",
-    "link": "https://dengekibunko.jp/product/drrr/",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://dengekibunko.jp/product/drrr/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -415,7 +449,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/book/03.webp",
-    "link": "https://dengekibunko.jp/product/drrr/",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://dengekibunko.jp/product/drrr/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -447,7 +489,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/book/04.webp",
-    "link": "https://dengekibunko.jp/product/drrr/",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://dengekibunko.jp/product/drrr/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -479,7 +529,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/book/05.webp",
-    "link": "https://dengekibunko.jp/product/drrr/",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://dengekibunko.jp/product/drrr/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -511,7 +569,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/book/06.webp",
-    "link": "https://dengekibunko.jp/product/drrr/",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://dengekibunko.jp/product/drrr/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -543,7 +609,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/book/07.webp",
-    "link": "https://dengekibunko.jp/product/drrr/",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://dengekibunko.jp/product/drrr/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -575,7 +649,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/book/08.webp",
-    "link": "https://dengekibunko.jp/product/drrr/",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://dengekibunko.jp/product/drrr/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -607,7 +689,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/book/09.webp",
-    "link": "https://dengekibunko.jp/product/drrr/",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://dengekibunko.jp/product/drrr/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -639,7 +729,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/book/10.webp",
-    "link": "https://dengekibunko.jp/product/drrr/",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://dengekibunko.jp/product/drrr/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -671,7 +769,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/book/11.webp",
-    "link": "https://dengekibunko.jp/product/drrr/",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://dengekibunko.jp/product/drrr/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -703,7 +809,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/book/12.webp",
-    "link": "https://dengekibunko.jp/product/drrr/",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://dengekibunko.jp/product/drrr/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -735,7 +849,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/book/13.webp",
-    "link": "https://dengekibunko.jp/product/drrr/",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://dengekibunko.jp/product/drrr/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -767,7 +889,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/book/ova.webp",
-    "link": "https://dengekibunko.jp/product/drrr/",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://dengekibunko.jp/product/drrr/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -799,7 +929,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/book/sh01.webp",
-    "link": "https://dengekibunko.jp/product/drrr/",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://dengekibunko.jp/product/drrr/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -831,7 +969,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/book/sh02.webp",
-    "link": "https://dengekibunko.jp/product/drrr/",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://dengekibunko.jp/product/drrr/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -863,7 +1009,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/book/sh03.webp",
-    "link": "https://dengekibunko.jp/product/drrr/",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://dengekibunko.jp/product/drrr/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -895,7 +1049,15 @@ export const works = [
       ]
     },
     "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/book/sh04.webp",
-    "link": "https://dengekibunko.jp/product/drrr/",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://dengekibunko.jp/product/drrr/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -918,16 +1080,28 @@ export const works = [
     },
     "details": {
       "zh": [
-        "原作：成田良悟",
-        "作画：茶鸟木明代"
+        "原作/剧本：成田良悟",
+        "角色原案：安田典生",
+        "画师：茶鸟木明代",
+        "出版：SQUARE ENIX"
       ],
       "ja": [
-        "原作：成田良悟",
-        "作画：茶鳥木明代"
+        "原作・脚本：成田良悟",
+        "キャラクター原案：ヤスダスズヒト",
+        "作画：茶鳥木明代",
+        "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "",
-    "link": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/",
+    "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/manga/01.webp",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -950,16 +1124,28 @@ export const works = [
     },
     "details": {
       "zh": [
-        "原作：成田良悟",
-        "作画：茶鸟木明代"
+        "原作/剧本：成田良悟",
+        "角色原案：安田典生",
+        "画师：茶鸟木明代",
+        "出版：SQUARE ENIX"
       ],
       "ja": [
-        "原作：成田良悟",
-        "作画：茶鳥木明代"
+        "原作・脚本：成田良悟",
+        "キャラクター原案：ヤスダスズヒト",
+        "作画：茶鳥木明代",
+        "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "",
-    "link": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/",
+    "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/manga/02.webp",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -982,16 +1168,28 @@ export const works = [
     },
     "details": {
       "zh": [
-        "原作：成田良悟",
-        "作画：茶鸟木明代"
+        "原作/剧本：成田良悟",
+        "角色原案：安田典生",
+        "画师：茶鸟木明代",
+        "出版：SQUARE ENIX"
       ],
       "ja": [
-        "原作：成田良悟",
-        "作画：茶鳥木明代"
+        "原作・脚本：成田良悟",
+        "キャラクター原案：ヤスダスズヒト",
+        "作画：茶鳥木明代",
+        "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "",
-    "link": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/",
+    "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/manga/03.webp",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -1014,16 +1212,28 @@ export const works = [
     },
     "details": {
       "zh": [
-        "原作：成田良悟",
-        "作画：茶鸟木明代"
+        "原作/剧本：成田良悟",
+        "角色原案：安田典生",
+        "画师：茶鸟木明代",
+        "出版：SQUARE ENIX"
       ],
       "ja": [
-        "原作：成田良悟",
-        "作画：茶鳥木明代"
+        "原作・脚本：成田良悟",
+        "キャラクター原案：ヤスダスズヒト",
+        "作画：茶鳥木明代",
+        "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "",
-    "link": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/",
+    "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/manga/04.webp",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -1046,14 +1256,28 @@ export const works = [
     },
     "details": {
       "zh": [
-        "原作：成田良悟"
+        "原作/剧本：成田良悟",
+        "角色原案：安田典生",
+        "画师：茶鸟木明代",
+        "出版：SQUARE ENIX"
       ],
       "ja": [
-        "原作：成田良悟"
+        "原作・脚本：成田良悟",
+        "キャラクター原案：ヤスダスズヒト",
+        "作画：茶鳥木明代",
+        "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "",
-    "link": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/",
+    "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/manga/05.webp",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -1076,14 +1300,28 @@ export const works = [
     },
     "details": {
       "zh": [
-        "原作：成田良悟"
+        "原作/剧本：成田良悟",
+        "角色原案：安田典生",
+        "画师：茶鸟木明代",
+        "出版：SQUARE ENIX"
       ],
       "ja": [
-        "原作：成田良悟"
+        "原作・脚本：成田良悟",
+        "キャラクター原案：ヤスダスズヒト",
+        "作画：茶鳥木明代",
+        "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "",
-    "link": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/",
+    "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/manga/06.webp",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -1106,14 +1344,28 @@ export const works = [
     },
     "details": {
       "zh": [
-        "原作：成田良悟"
+        "原作/剧本：成田良悟",
+        "角色原案：安田典生",
+        "画师：茶鸟木明代",
+        "出版：SQUARE ENIX"
       ],
       "ja": [
-        "原作：成田良悟"
+        "原作・脚本：成田良悟",
+        "キャラクター原案：ヤスダスズヒト",
+        "作画：茶鳥木明代",
+        "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "",
-    "link": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/",
+    "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/manga/07.webp",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -1136,14 +1388,28 @@ export const works = [
     },
     "details": {
       "zh": [
-        "原作：成田良悟"
+        "原作/剧本：成田良悟",
+        "角色原案：安田典生",
+        "画师：茶鸟木明代",
+        "出版：SQUARE ENIX"
       ],
       "ja": [
-        "原作：成田良悟"
+        "原作・脚本：成田良悟",
+        "キャラクター原案：ヤスダスズヒト",
+        "作画：茶鳥木明代",
+        "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "",
-    "link": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/",
+    "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/manga/08.webp",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -1166,14 +1432,28 @@ export const works = [
     },
     "details": {
       "zh": [
-        "原作：成田良悟"
+        "原作/剧本：成田良悟",
+        "角色原案：安田典生",
+        "画师：茶鸟木明代",
+        "出版：SQUARE ENIX"
       ],
       "ja": [
-        "原作：成田良悟"
+        "原作・脚本：成田良悟",
+        "キャラクター原案：ヤスダスズヒト",
+        "作画：茶鳥木明代",
+        "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "",
-    "link": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/",
+    "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/manga/09.webp",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -1196,14 +1476,28 @@ export const works = [
     },
     "details": {
       "zh": [
-        "原作：成田良悟"
+        "原作/剧本：成田良悟",
+        "角色原案：安田典生",
+        "画师：茶鸟木明代",
+        "出版：SQUARE ENIX"
       ],
       "ja": [
-        "原作：成田良悟"
+        "原作・脚本：成田良悟",
+        "キャラクター原案：ヤスダスズヒト",
+        "作画：茶鳥木明代",
+        "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "",
-    "link": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/",
+    "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/manga/10.webp",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -1226,14 +1520,28 @@ export const works = [
     },
     "details": {
       "zh": [
-        "原作：成田良悟"
+        "原作/剧本：成田良悟",
+        "角色原案：安田典生",
+        "画师：あおぎり（RE;DOLLARS篇起更换画师）",
+        "出版：SQUARE ENIX"
       ],
       "ja": [
-        "原作：成田良悟"
+        "原作・脚本：成田良悟",
+        "キャラクター原案：ヤスダスズヒト",
+        "作画：あおぎり（RE;ダラーズ編から担当）",
+        "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "",
-    "link": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/",
+    "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/manga/11.webp",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -1256,14 +1564,28 @@ export const works = [
     },
     "details": {
       "zh": [
-        "原作：成田良悟"
+        "原作/剧本：成田良悟",
+        "角色原案：安田典生",
+        "画师：あおぎり（RE;DOLLARS篇起更换画师）",
+        "出版：SQUARE ENIX"
       ],
       "ja": [
-        "原作：成田良悟"
+        "原作・脚本：成田良悟",
+        "キャラクター原案：ヤスダスズヒト",
+        "作画：あおぎり（RE;ダラーズ編から担当）",
+        "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "",
-    "link": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/",
+    "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/manga/12.webp",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -1286,14 +1608,28 @@ export const works = [
     },
     "details": {
       "zh": [
-        "原作：成田良悟"
+        "原作/剧本：成田良悟",
+        "角色原案：安田典生",
+        "画师：あおぎり（RE;DOLLARS篇起更换画师）",
+        "出版：SQUARE ENIX"
       ],
       "ja": [
-        "原作：成田良悟"
+        "原作・脚本：成田良悟",
+        "キャラクター原案：ヤスダスズヒト",
+        "作画：あおぎり（RE;ダラーズ編から担当）",
+        "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "",
-    "link": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/",
+    "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/manga/13.webp",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -1316,14 +1652,28 @@ export const works = [
     },
     "details": {
       "zh": [
-        "原作：成田良悟"
+        "原作/剧本：成田良悟",
+        "角色原案：安田典生",
+        "画师：あおぎり（RE;DOLLARS篇起更换画师）",
+        "出版：SQUARE ENIX"
       ],
       "ja": [
-        "原作：成田良悟"
+        "原作・脚本：成田良悟",
+        "キャラクター原案：ヤスダスズヒト",
+        "作画：あおぎり（RE;ダラーズ編から担当）",
+        "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "",
-    "link": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/",
+    "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/manga/14.webp",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -1346,14 +1696,28 @@ export const works = [
     },
     "details": {
       "zh": [
-        "原作：成田良悟"
+        "原作/剧本：成田良悟",
+        "角色原案：安田典生",
+        "画师：あおぎり（RE;DOLLARS篇起更换画师）",
+        "出版：SQUARE ENIX"
       ],
       "ja": [
-        "原作：成田良悟"
+        "原作・脚本：成田良悟",
+        "キャラクター原案：ヤスダスズヒト",
+        "作画：あおぎり（RE;ダラーズ編から担当）",
+        "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "",
-    "link": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/",
+    "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/manga/15.webp",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -1376,14 +1740,28 @@ export const works = [
     },
     "details": {
       "zh": [
-        "原作：成田良悟"
+        "原作/剧本：成田良悟",
+        "角色原案：安田典生",
+        "画师：あおぎり（RE;DOLLARS篇起更换画师）",
+        "出版：SQUARE ENIX"
       ],
       "ja": [
-        "原作：成田良悟"
+        "原作・脚本：成田良悟",
+        "キャラクター原案：ヤスダスズヒト",
+        "作画：あおぎり（RE;ダラーズ編から担当）",
+        "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "",
-    "link": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/",
+    "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/manga/16.webp",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -1406,14 +1784,28 @@ export const works = [
     },
     "details": {
       "zh": [
-        "原作：成田良悟"
+        "原作/剧本：成田良悟",
+        "角色原案：安田典生",
+        "画师：あおぎり（RE;DOLLARS篇起更换画师）",
+        "出版：SQUARE ENIX"
       ],
       "ja": [
-        "原作：成田良悟"
+        "原作・脚本：成田良悟",
+        "キャラクター原案：ヤスダスズヒト",
+        "作画：あおぎり（RE;ダラーズ編から担当）",
+        "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "",
-    "link": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/",
+    "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/manga/17.webp",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -1436,14 +1828,200 @@ export const works = [
     },
     "details": {
       "zh": [
-        "原作：成田良悟"
+        "原作/剧本：成田良悟",
+        "角色原案：安田典生",
+        "画师：あおぎり（RE;DOLLARS篇起更换画师）",
+        "出版：SQUARE ENIX"
       ],
       "ja": [
-        "原作：成田良悟"
+        "原作・脚本：成田良悟",
+        "キャラクター原案：ヤスダスズヒト",
+        "作画：あおぎり（RE;ダラーズ編から担当）",
+        "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "",
-    "link": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/",
+    "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/manga/18.jpg",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/"
+      }
+    ],
+    "accent": "#f4f500"
+  },
+  {
+    "id": "manga-izaya-sunset",
+    "series": "manga-izaya",
+    "volume": 1,
+    "category": "manga",
+    "year": "2015",
+    "title": {
+      "zh": "折原临也与夕阳",
+      "ja": "折原臨也と、夕焼けを"
+    },
+    "meta": {
+      "zh": "折原临也角色外传",
+      "ja": "折原臨也キャラクター外伝"
+    },
+    "description": {
+      "zh": "离开池袋后的折原临也卷入新的委托与事件，补完他的池袋之外篇章。",
+      "ja": "池袋を離れた折原臨也が、新たな依頼と事件に巻き込まれていく外伝。"
+    },
+    "details": {
+      "zh": [
+        "原作/剧本：成田良悟",
+        "插画：安田典生",
+        "出版：KADOKAWA / 电击文库"
+      ],
+      "ja": [
+        "著者・脚本：成田良悟",
+        "イラスト：ヤスダスズヒト",
+        "刊行：KADOKAWA / 電撃文庫"
+      ]
+    },
+    "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/manga/izaya1.webp",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://dengekibunko.jp/product/drrr/"
+      }
+    ],
+    "accent": "#f4f500"
+  },
+  {
+    "id": "manga-izaya-applause",
+    "series": "manga-izaya",
+    "volume": 2,
+    "category": "manga",
+    "year": "2016",
+    "title": {
+      "zh": "折原临也与喝彩",
+      "ja": "折原臨也と、喝采を"
+    },
+    "meta": {
+      "zh": "折原临也角色外传",
+      "ja": "折原臨也キャラクター外伝"
+    },
+    "description": {
+      "zh": "延续临也离开池袋后的故事，以新的舞台描写他与人类的距离感。",
+      "ja": "池袋を離れた臨也のその後を描き、人間への距離感を別の舞台で掘り下げる。"
+    },
+    "details": {
+      "zh": [
+        "原作/剧本：成田良悟",
+        "插画：安田典生",
+        "出版：KADOKAWA / 电击文库"
+      ],
+      "ja": [
+        "著者・脚本：成田良悟",
+        "イラスト：ヤスダスズヒト",
+        "刊行：KADOKAWA / 電撃文庫"
+      ]
+    },
+    "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/manga/izaya2.webp",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://dengekibunko.jp/product/drrr/"
+      }
+    ],
+    "accent": "#f4f500"
+  },
+  {
+    "id": "manga-duralove-1",
+    "series": "manga-duralove",
+    "volume": 1,
+    "category": "manga",
+    "year": "2010",
+    "title": {
+      "zh": "DuraLove!!",
+      "ja": "デュララブ!!"
+    },
+    "meta": {
+      "zh": "官方选集漫画",
+      "ja": "公式アンソロジーコミック"
+    },
+    "description": {
+      "zh": "围绕池袋众人的短篇选集，以更轻松的漫画形式扩展角色日常。",
+      "ja": "池袋の人物たちを題材にした短編アンソロジー。日常寄りの小話を収録。"
+    },
+    "details": {
+      "zh": [
+        "原作：成田良悟",
+        "角色原案：安田典生",
+        "画师：多位漫画家",
+        "出版：SQUARE ENIX"
+      ],
+      "ja": [
+        "原作：成田良悟",
+        "キャラクター原案：ヤスダスズヒト",
+        "作画：複数作家",
+        "刊行：スクウェア・エニックス"
+      ]
+    },
+    "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/manga/duralove1.webp",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/"
+      }
+    ],
+    "accent": "#f4f500"
+  },
+  {
+    "id": "manga-duralove-2",
+    "series": "manga-duralove",
+    "volume": 2,
+    "category": "manga",
+    "year": "2015",
+    "title": {
+      "zh": "DuraLove!!×2",
+      "ja": "デュララブ!!×2"
+    },
+    "meta": {
+      "zh": "官方选集漫画",
+      "ja": "公式アンソロジーコミック"
+    },
+    "description": {
+      "zh": "配合《×2》时期推出的官方选集，继续收录角色短篇与轻松日常。",
+      "ja": "『×2』期に合わせた公式アンソロジー。キャラクター短編と日常小話を収録。"
+    },
+    "details": {
+      "zh": [
+        "原作：成田良悟",
+        "角色原案：安田典生",
+        "画师：多位漫画家",
+        "出版：SQUARE ENIX"
+      ],
+      "ja": [
+        "原作：成田良悟",
+        "キャラクター原案：ヤスダスズヒト",
+        "作画：複数作家",
+        "刊行：スクウェア・エニックス"
+      ]
+    },
+    "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/manga/duralove2.webp",
+    "links": [
+      {
+        "title": {
+          "zh": "官方页面",
+          "ja": "公式ページ"
+        },
+        "href": "https://magazine.jp.square-enix.com/gfantasy/story/durarara/"
+      }
+    ],
     "accent": "#f4f500"
   },
   {
@@ -1464,14 +2042,18 @@ export const works = [
     },
     "details": {
       "zh": [
-        "平台：PSP"
+        "平台：PSP",
+        "开发商：Netchubiyori",
+        "发行：ASCII Media Works"
       ],
       "ja": [
-        "対応機種：PSP"
+        "対応機種：PSP",
+        "開発：熱中日和",
+        "発売：アスキー・メディアワークス"
       ]
     },
-    "image": "",
-    "link": "",
+    "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/game/game1-1.webp",
+    "links": [],
     "accent": "#f4f500"
   },
   {
@@ -1492,14 +2074,50 @@ export const works = [
     },
     "details": {
       "zh": [
-        "平台：PSP"
+        "平台：PSP",
+        "开发商：Netchubiyori",
+        "发行：ASCII Media Works / Kadokawa Games"
       ],
       "ja": [
-        "対応機種：PSP"
+        "対応機種：PSP",
+        "開発：熱中日和",
+        "発売：アスキー・メディアワークス / 角川ゲームス"
       ]
     },
-    "image": "",
-    "link": "",
+    "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/game/game2-1.webp",
+    "links": [],
+    "accent": "#f4f500"
+  },
+  {
+    "id": "game-alley-v",
+    "category": "games",
+    "year": "2014",
+    "title": {
+      "zh": "无头骑士异闻录 3way standoff -alley- V",
+      "ja": "デュラララ!! 3way standoff -alley- V"
+    },
+    "meta": {
+      "zh": "平台：PlayStation Vita",
+      "ja": "対応機種：PlayStation Vita"
+    },
+    "description": {
+      "zh": "将《3way standoff -alley-》移植到 PS Vita，并加入与触屏适配相关的版本内容。",
+      "ja": "『3way standoff -alley-』をPS Vita向けに移植したバージョン。"
+    },
+    "details": {
+      "zh": [
+        "平台：PlayStation Vita",
+        "开发商：Netchubiyori",
+        "发行：Kadokawa Games"
+      ],
+      "ja": [
+        "対応機種：PlayStation Vita",
+        "開発：熱中日和",
+        "発売：角川ゲームス"
+      ]
+    },
+    "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/game/game3.jpg",
+    "links": [],
     "accent": "#f4f500"
   },
   {
@@ -1520,14 +2138,18 @@ export const works = [
     },
     "details": {
       "zh": [
-        "平台：PlayStation Vita"
+        "平台：PlayStation Vita",
+        "开发商：Kadokawa Games",
+        "发行：Kadokawa Games"
       ],
       "ja": [
-        "対応機種：PlayStation Vita"
+        "対応機種：PlayStation Vita",
+        "開発：角川ゲームス",
+        "発売：角川ゲームス"
       ]
     },
-    "image": "",
-    "link": "",
+    "image": "https://agzhrzaeerclitlfnhhz.supabase.co/storage/v1/object/public/assets/otherWebsites/drrr/game/game4.webp",
+    "links": [],
     "accent": "#f4f500"
   }
 ];

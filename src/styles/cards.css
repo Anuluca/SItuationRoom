@@ -508,11 +508,16 @@
   font-size: 13px;
 }
 
+.work-external-links {
+  display: grid;
+  gap: 12px;
+  margin: 28px 34px;
+}
+
 .work-external-link {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 28px 34px;
   padding: 14px 16px;
   border: 1px solid rgba(244, 245, 0, 0.48);
   font-family: var(--serif);
@@ -676,7 +681,7 @@
     width: 150px;
   }
 
-  .work-external-link {
+  .work-external-links {
     margin: 24px 20px;
   }
 

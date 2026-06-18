@@ -60,13 +60,20 @@ export interface WorkEntry {
   description: LocalizedText;
   details?: Record<Language, string[]>;
   image?: string;
-  link?: string;
+  links?: WorkLink[];
   accent: string;
+}
+
+export interface WorkLink {
+  title: LocalizedText;
+  href: string;
 }
 
 export type ResourceImageKind =
   | "avatars"
   | "avatars2"
+  | "avatarsTv1"
+  | "conceptTv1"
   | "dvd"
   | "music"
   | "mangaCovers"
