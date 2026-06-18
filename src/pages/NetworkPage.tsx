@@ -201,6 +201,28 @@ function setEdgeLabelEmphasis(edge: any, emphasis: EdgeEmphasis) {
   });
 }
 
+const imageCache = new Map<string, HTMLImageElement>();
+
+function getCorsImage(url?: string) {
+  if (!url) return "";
+
+  if (imageCache.has(url)) {
+    return imageCache.get(url)!;
+  }
+
+  const image = new Image();
+
+  // 必须在 src 前面设置
+  image.crossOrigin = "anonymous";
+
+  // 如果你刚改完 R2 CORS，建议临时加版本号破缓存
+  image.src = `${url}${url.includes("?") ? "&" : "?"}v=1`;
+
+  imageCache.set(url, image);
+
+  return image;
+}
+
 function registerNetworkNode(G6: any) {
   if (networkNodeRegistered) return;
   networkNodeRegistered = true;
@@ -219,7 +241,7 @@ function registerNetworkNode(G6: any) {
             y: -radius,
             width: size,
             height: size,
-            img: cfg?.avatar,
+            img: getCorsImage(cfg?.avatar),
           },
           name: "avatar",
         });

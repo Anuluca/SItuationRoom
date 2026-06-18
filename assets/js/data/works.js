@@ -28,7 +28,7 @@ export const works = [
         "監督：大森貴弘"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/tv/ki.jpeg",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/tv/ki.jpeg",
     "links": [
       {
         "title": {
@@ -68,7 +68,7 @@ export const works = [
         "シリーズ構成：高木登"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/tv/sho.png",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/tv/sho.png",
     "links": [
       {
         "title": {
@@ -108,7 +108,7 @@ export const works = [
         "シリーズ構成：高木登"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/tv/ten.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/tv/ten.webp",
     "links": [
       {
         "title": {
@@ -148,7 +148,7 @@ export const works = [
         "シリーズ構成：高木登"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/tv/ketsu.jpg",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/tv/ketsu.jpg",
     "links": [
       {
         "title": {
@@ -184,7 +184,7 @@ export const works = [
         "話数：第12.5話"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/tv/ova1.jpg",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/tv/ova1.jpg",
     "links": [
       {
         "title": {
@@ -220,7 +220,7 @@ export const works = [
         "話数：第25話"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/tv/ova2.jpg",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/tv/ova2.jpg",
     "links": [
       {
         "title": {
@@ -256,7 +256,7 @@ export const works = [
         "話数：第4.5話"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/tv/ova3.jpg",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/tv/ova3.jpg",
     "links": [
       {
         "title": {
@@ -292,7 +292,7 @@ export const works = [
         "話数：第13.5話"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/tv/ova4.jpg",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/tv/ova4.jpg",
     "links": [
       {
         "title": {
@@ -328,7 +328,7 @@ export const works = [
         "話数：第19.5話"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/tv/ova5.jpeg",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/tv/ova5.jpeg",
     "links": [
       {
         "title": {
@@ -368,7 +368,7 @@ export const works = [
         "イラスト：ヤスダスズヒト"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/book/01.jpg",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/book/01.jpg",
     "links": [
       {
         "title": {
@@ -408,7 +408,7 @@ export const works = [
         "イラスト：ヤスダスズヒト"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/book/02.jpg",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/book/02.jpg",
     "links": [
       {
         "title": {
@@ -448,7 +448,7 @@ export const works = [
         "イラスト：ヤスダスズヒト"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/book/03.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/book/03.webp",
     "links": [
       {
         "title": {
@@ -488,7 +488,7 @@ export const works = [
         "イラスト：ヤスダスズヒト"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/book/04.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/book/04.webp",
     "links": [
       {
         "title": {
@@ -528,7 +528,7 @@ export const works = [
         "イラスト：ヤスダスズヒト"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/book/05.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/book/05.webp",
     "links": [
       {
         "title": {
@@ -568,7 +568,7 @@ export const works = [
         "イラスト：ヤスダスズヒト"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/book/06.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/book/06.webp",
     "links": [
       {
         "title": {
@@ -608,7 +608,7 @@ export const works = [
         "イラスト：ヤスダスズヒト"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/book/07.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/book/07.webp",
     "links": [
       {
         "title": {
@@ -648,7 +648,7 @@ export const works = [
         "イラスト：ヤスダスズヒト"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/book/08.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/book/08.webp",
     "links": [
       {
         "title": {
@@ -688,7 +688,7 @@ export const works = [
         "イラスト：ヤスダスズヒト"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/book/09.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/book/09.webp",
     "links": [
       {
         "title": {
@@ -728,7 +728,7 @@ export const works = [
         "イラスト：ヤスダスズヒト"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/book/10.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/book/10.webp",
     "links": [
       {
         "title": {
@@ -768,7 +768,7 @@ export const works = [
         "イラスト：ヤスダスズヒト"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/book/11.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/book/11.webp",
     "links": [
       {
         "title": {
@@ -808,7 +808,7 @@ export const works = [
         "イラスト：ヤスダスズヒト"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/book/12.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/book/12.webp",
     "links": [
       {
         "title": {
@@ -848,7 +848,7 @@ export const works = [
         "イラスト：ヤスダスズヒト"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/book/13.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/book/13.webp",
     "links": [
       {
         "title": {
@@ -888,7 +888,7 @@ export const works = [
         "イラスト：ヤスダスズヒト"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/book/ova.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/book/ova.webp",
     "links": [
       {
         "title": {
@@ -928,7 +928,7 @@ export const works = [
         "イラスト：ヤスダスズヒト"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/book/sh01.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/book/sh01.webp",
     "links": [
       {
         "title": {
@@ -968,7 +968,7 @@ export const works = [
         "イラスト：ヤスダスズヒト"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/book/sh02.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/book/sh02.webp",
     "links": [
       {
         "title": {
@@ -1008,7 +1008,7 @@ export const works = [
         "イラスト：ヤスダスズヒト"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/book/sh03.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/book/sh03.webp",
     "links": [
       {
         "title": {
@@ -1048,7 +1048,7 @@ export const works = [
         "イラスト：ヤスダスズヒト"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/book/sh04.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/book/sh04.webp",
     "links": [
       {
         "title": {
@@ -1092,7 +1092,7 @@ export const works = [
         "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/manga/01.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/manga/01.webp",
     "links": [
       {
         "title": {
@@ -1136,7 +1136,7 @@ export const works = [
         "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/manga/02.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/manga/02.webp",
     "links": [
       {
         "title": {
@@ -1180,7 +1180,7 @@ export const works = [
         "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/manga/03.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/manga/03.webp",
     "links": [
       {
         "title": {
@@ -1224,7 +1224,7 @@ export const works = [
         "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/manga/04.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/manga/04.webp",
     "links": [
       {
         "title": {
@@ -1268,7 +1268,7 @@ export const works = [
         "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/manga/05.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/manga/05.webp",
     "links": [
       {
         "title": {
@@ -1312,7 +1312,7 @@ export const works = [
         "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/manga/06.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/manga/06.webp",
     "links": [
       {
         "title": {
@@ -1356,7 +1356,7 @@ export const works = [
         "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/manga/07.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/manga/07.webp",
     "links": [
       {
         "title": {
@@ -1400,7 +1400,7 @@ export const works = [
         "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/manga/08.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/manga/08.webp",
     "links": [
       {
         "title": {
@@ -1444,7 +1444,7 @@ export const works = [
         "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/manga/09.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/manga/09.webp",
     "links": [
       {
         "title": {
@@ -1488,7 +1488,7 @@ export const works = [
         "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/manga/10.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/manga/10.webp",
     "links": [
       {
         "title": {
@@ -1532,7 +1532,7 @@ export const works = [
         "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/manga/11.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/manga/11.webp",
     "links": [
       {
         "title": {
@@ -1576,7 +1576,7 @@ export const works = [
         "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/manga/12.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/manga/12.webp",
     "links": [
       {
         "title": {
@@ -1620,7 +1620,7 @@ export const works = [
         "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/manga/13.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/manga/13.webp",
     "links": [
       {
         "title": {
@@ -1664,7 +1664,7 @@ export const works = [
         "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/manga/14.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/manga/14.webp",
     "links": [
       {
         "title": {
@@ -1708,7 +1708,7 @@ export const works = [
         "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/manga/15.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/manga/15.webp",
     "links": [
       {
         "title": {
@@ -1752,7 +1752,7 @@ export const works = [
         "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/manga/16.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/manga/16.webp",
     "links": [
       {
         "title": {
@@ -1796,7 +1796,7 @@ export const works = [
         "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/manga/17.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/manga/17.webp",
     "links": [
       {
         "title": {
@@ -1840,7 +1840,7 @@ export const works = [
         "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/manga/18.jpg",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/manga/18.jpg",
     "links": [
       {
         "title": {
@@ -1882,7 +1882,7 @@ export const works = [
         "刊行：KADOKAWA / 電撃文庫"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/manga/izaya1.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/manga/izaya1.webp",
     "links": [
       {
         "title": {
@@ -1924,7 +1924,7 @@ export const works = [
         "刊行：KADOKAWA / 電撃文庫"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/manga/izaya2.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/manga/izaya2.webp",
     "links": [
       {
         "title": {
@@ -1968,7 +1968,7 @@ export const works = [
         "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/manga/duralove1.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/manga/duralove1.webp",
     "links": [
       {
         "title": {
@@ -2012,7 +2012,7 @@ export const works = [
         "刊行：スクウェア・エニックス"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/manga/duralove2.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/manga/duralove2.webp",
     "links": [
       {
         "title": {
@@ -2052,7 +2052,7 @@ export const works = [
         "発売：アスキー・メディアワークス"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/game/game1-1.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/game/game1-1.webp",
     "links": [],
     "accent": "#f4f500"
   },
@@ -2084,7 +2084,7 @@ export const works = [
         "発売：アスキー・メディアワークス / 角川ゲームス"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/game/game2-1.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/game/game2-1.webp",
     "links": [],
     "accent": "#f4f500"
   },
@@ -2116,7 +2116,7 @@ export const works = [
         "発売：角川ゲームス"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/game/game3.jpg",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/game/game3.jpg",
     "links": [],
     "accent": "#f4f500"
   },
@@ -2148,7 +2148,7 @@ export const works = [
         "発売：角川ゲームス"
       ]
     },
-    "image": "https://assets.anuluca.com/assets/otherWebsites/drrr/game/game4.webp",
+    "image": "https://assets.anuluca.com/otherWebsites/drrr/game/game4.webp",
     "links": [],
     "accent": "#f4f500"
   }
