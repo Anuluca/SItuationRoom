@@ -7,7 +7,7 @@
     <path fill="#0b0c0f" stroke="#777b80" stroke-width="3" d="M17 70c13-7 29-10 47-10s34 3 47 10l-5 24c-11 7-25 10-42 10s-31-3-42-10l-5-24Z"/>
     <path fill="#4f657b" d="M80 40h16l-5 8h-8l-3 5 11 4-8 13H66l5-8h8l3-5-12-4 10-13Z"/>
   </g>
-  <text x="570" y="255" fill="#f4f500" font-family="Arial Black, sans-serif" font-size="86" font-weight="900">DRRR 情报屋</text>
-  <text x="575" y="334" fill="#f4f3ed" font-family="Arial, sans-serif" font-size="32">《无头骑士异闻录》非官方档案站</text>
-  <text x="575" y="399" fill="#aaa9a4" font-family="Arial, sans-serif" font-size="24">关系网 · 角色 · 阵营 · 作品 · 资料</text>
+  <text x="570" y="255" fill="#f4f500" font-family="Georgia, Times New Roman, Songti SC, STSong, SimSun, NSimSun, Noto Serif CJK SC, Noto Serif SC, serif" font-size="86" font-weight="900">DRRR 情报屋</text>
+  <text x="575" y="334" fill="#f4f3ed" font-family="Georgia, Times New Roman, Songti SC, STSong, SimSun, NSimSun, Noto Serif CJK SC, Noto Serif SC, serif" font-size="32">《无头骑士异闻录》非官方档案站</text>
+  <text x="575" y="399" fill="#aaa9a4" font-family="Georgia, Times New Roman, Songti SC, STSong, SimSun, NSimSun, Noto Serif CJK SC, Noto Serif SC, serif" font-size="24">关系网 · 角色 · 阵营 · 作品 · 资料</text>
 </svg>

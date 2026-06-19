@@ -76,7 +76,7 @@
   place-items: center;
   border-right: 1px solid rgba(244, 245, 0, 0.22);
   color: rgba(244, 245, 0, 0.55);
-  font-family: Impact, "Arial Black", sans-serif;
+  font-family: var(--serif);
 }
 
 .watch-order li strong {
@@ -159,7 +159,7 @@
 
 .work-image i {
   color: var(--yellow);
-  font-family: Impact, "Arial Black", sans-serif;
+  font-family: var(--serif);
   font-size: 54px;
   font-style: italic;
 }
@@ -204,7 +204,7 @@
 .work-meta-line > span {
   margin-left: auto;
   color: rgba(244, 245, 0, 0.34);
-  font-family: Impact, "Arial Black", sans-serif;
+  font-family: var(--serif);
   font-size: 20px;
 }
 

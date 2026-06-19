@@ -11,9 +11,12 @@
   --black: #09090b;
   --line: rgba(5, 5, 6, 0.58);
   --line-light: rgba(255, 255, 255, 0.12);
-  --serif: Georgia, "Songti SC", "Noto Serif SC", "Times New Roman", serif;
-  --sans: "Helvetica Neue", Inter, "PingFang SC", "Hiragino Sans",
-    "Microsoft YaHei", sans-serif;
+  --system-serif: Georgia, "Times New Roman", "Songti SC", "STSong",
+    "Hiragino Mincho ProN", "Yu Mincho", YuMincho, "MS Mincho", SimSun,
+    NSimSun, "Noto Serif CJK SC", "Noto Serif SC", "Source Han Serif SC",
+    "Noto Serif CJK JP", "Source Han Serif", serif;
+  --serif: var(--system-serif);
+  --sans: var(--system-serif);
 }
 
 * {
@@ -49,7 +52,7 @@ body::before {
   z-index: 0;
   color: rgba(8, 8, 9, 0.15);
   content: "IKEBUKURO";
-  font-family: Impact, "Arial Black", sans-serif;
+  font-family: var(--serif);
   font-size: clamp(100px, 16vw, 280px);
   font-weight: 900;
   letter-spacing: -0.07em;
@@ -774,7 +777,7 @@ a:focus-visible {
   top: 17px;
   right: 18px;
   color: rgba(244, 245, 0, 0.32);
-  font-family: Impact, "Arial Black", sans-serif;
+  font-family: var(--serif);
   font-size: 45px;
   line-height: 1;
 }
@@ -903,7 +906,7 @@ a:focus-visible {
 
 .city-report-index {
   color: var(--yellow);
-  font-family: Impact, "Arial Black", sans-serif;
+  font-family: var(--serif);
   font-size: clamp(84px, 11vw, 170px);
   letter-spacing: -0.08em;
   line-height: 0.8;
@@ -1043,7 +1046,7 @@ a:focus-visible {
   top: 22px;
   right: 28px;
   color: rgba(244, 245, 0, 0.22);
-  font-family: Impact, "Arial Black", sans-serif;
+  font-family: var(--serif);
   font-size: clamp(100px, 14vw, 210px);
   letter-spacing: -0.08em;
   line-height: 1;
@@ -1214,7 +1217,7 @@ a:focus-visible {
   top: 10px;
   right: 15px;
   color: color-mix(in srgb, var(--faction-color) 27%, transparent);
-  font-family: Impact, "Arial Black", sans-serif;
+  font-family: var(--serif);
   font-size: 78px;
   font-style: normal;
   line-height: 1;
@@ -1532,7 +1535,7 @@ a:focus-visible {
   place-items: center;
   border: 3px solid var(--faction-color);
   color: var(--faction-color);
-  font-family: Impact, "Arial Black", sans-serif;
+  font-family: var(--serif);
   font-size: 48px;
 }
 
@@ -1670,7 +1673,7 @@ a:focus-visible {
   top: 10px;
   right: 15px;
   color: rgba(244, 245, 0, 0.2);
-  font-family: Impact, "Arial Black", sans-serif;
+  font-family: var(--serif);
   font-size: 65px;
 }
 
@@ -3338,7 +3341,7 @@ html {
 
 .global-search-status strong {
   color: rgba(244, 245, 0, 0.38);
-  font-family: Impact, "Arial Black", sans-serif;
+  font-family: var(--serif);
   font-size: 24px;
 }
 
@@ -3530,7 +3533,7 @@ html {
   align-items: center;
   justify-content: center;
   color: var(--yellow);
-  font-family: Impact, "Arial Black", sans-serif;
+  font-family: var(--serif);
   font-size: clamp(150px, 22vw, 310px);
   font-style: italic;
   letter-spacing: -0.09em;
@@ -4398,7 +4401,7 @@ html {
     right: 16px;
     color: rgba(255, 255, 255, 0.035);
     content: attr(data-index);
-    font-family: Impact, "Arial Black", sans-serif;
+    font-family: var(--serif);
     font-size: 70px;
     font-style: italic;
     line-height: 1;

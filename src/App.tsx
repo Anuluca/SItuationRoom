@@ -60,7 +60,7 @@ export default function App() {
           borderRadius: 2,
           borderRadiusLG: 2,
           fontFamily:
-            '"Helvetica Neue", Inter, "PingFang SC", "Hiragino Sans", "Microsoft YaHei", sans-serif',
+            'Georgia, "Times New Roman", "Songti SC", "STSong", "Hiragino Mincho ProN", "Yu Mincho", YuMincho, "MS Mincho", SimSun, NSimSun, "Noto Serif CJK SC", "Noto Serif SC", "Source Han Serif SC", "Noto Serif CJK JP", "Source Han Serif", serif',
         },
         components: {
           Button: {

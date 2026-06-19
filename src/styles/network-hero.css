@@ -119,7 +119,7 @@
   right: 15px;
   z-index: 1;
   color: var(--yellow);
-  font-family: Impact, "Arial Black", sans-serif;
+  font-family: var(--serif);
   font-size: 22px;
   line-height: 1;
   text-shadow: 0 2px 6px #000;
@@ -240,7 +240,7 @@
   height: auto;
   border: 0 !important;
   color: var(--yellow);
-  font-family: Arial, sans-serif;
+  font-family: var(--serif);
   font-size: 23px;
   font-weight: 300;
   line-height: 1;
@@ -370,7 +370,7 @@
 
 .hero-who-avatar b {
   color: var(--quiz-color, var(--yellow));
-  font-family: "Arial Black", sans-serif;
+  font-family: var(--serif);
   font-size: 90px;
   font-weight: 900;
   line-height: 1;
