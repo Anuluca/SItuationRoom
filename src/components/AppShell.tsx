@@ -27,6 +27,7 @@ import {
   works,
 } from "../data";
 import type { Language } from "../types";
+import { applyFontSettings } from "../utils/fontPlatform";
 import GlobalSearch from "./GlobalSearch";
 
 const navItems = [
@@ -182,6 +183,7 @@ export default function AppShell() {
       : `${window.location.origin}/og-image.png`;
 
     document.documentElement.lang = language === "ja" ? "ja" : "zh-CN";
+    applyFontSettings(language);
     document.title = pageMeta.title;
     setMetaContent('meta[name="description"]', pageMeta.description);
     setMetaContent('meta[property="og:title"]', pageMeta.title);
@@ -405,7 +407,7 @@ export default function AppShell() {
             Anuluca ↗
           </a>
           <a
-            href="https://github.com/Anuluca"
+            href="https://github.com/Anuluca/SItuationRoom"
             target="_blank"
             rel="noreferrer"
           >

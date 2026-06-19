@@ -77,7 +77,7 @@ const resources = {
       },
       network: {
         eyebrow: "IKEBUKURO SOCIAL MAP / FILE 01",
-        title: "欢迎来到 DRRR情报屋。",
+        title: "欢迎来到DRRR情报屋。",
         lead: "本网站建议在看完本篇＋二期（小说本传）后访问查询，本作实际的人物关系观感并没有图中看起来这么复杂，请放心阅读或观看。",
         viewLabel: "首页情报视图",
         viewNetwork: "池袋关系网",

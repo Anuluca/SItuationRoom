@@ -1,3 +1,14 @@
+
+@font-face {
+  font-family: 'cn-custom';
+  src: url('https://pub-91f2046132134eccb39fe5ad6de81ad1.r2.dev/fonts/TangXianBinSong-2.otf')
+    format('truetype');
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+}
+
+
 :root {
   color-scheme: dark;
   --bg: #050506;
@@ -11,10 +22,7 @@
   --black: #09090b;
   --line: rgba(5, 5, 6, 0.58);
   --line-light: rgba(255, 255, 255, 0.12);
-  --system-serif: Georgia, "Times New Roman", "Songti SC", "STSong",
-    "Hiragino Mincho ProN", "Yu Mincho", YuMincho, "MS Mincho", SimSun,
-    NSimSun, "Noto Serif CJK SC", "Noto Serif SC", "Source Han Serif SC",
-    "Noto Serif CJK JP", "Source Han Serif", serif;
+  --system-serif: "cn-custom", sans-serif;
   --serif: var(--system-serif);
   --sans: var(--system-serif);
 }
@@ -162,7 +170,7 @@ a:focus-visible {
   font-style: italic;
   letter-spacing: -0.07em;
   white-space: nowrap;
-  margin-top: -5px;
+  margin-top:-5px;
   transition: color 160ms ease;
 }
 
@@ -392,6 +400,17 @@ a:focus-visible {
   }
 }
 
+@keyframes mobile-page-in {
+  from {
+    opacity: 0.45;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 590px) {
   .site-back-top.ant-btn {
     right: 10px;
@@ -415,7 +434,7 @@ a:focus-visible {
   align-items: center;
   gap: 24px;
   min-height: 68px;
-  padding: 12px 20px;
+  padding: 16px 20px;
   border-top: 1px solid var(--black);
   background: rgba(8, 8, 9, 0.96);
   color: #777772;
@@ -3685,36 +3704,55 @@ html {
 }
 
 @media (max-width: 860px) {
+  html,
+  body {
+    background: var(--surface);
+  }
+
+  body::before {
+    display: none;
+  }
+
   .site-main {
-    animation: none;
+    animation: mobile-page-in 280ms cubic-bezier(0.22, 0.8, 0.24, 1) both;
   }
 
   .site-frame {
-    width: 100%;
-    height: 100dvh;
+    width: calc(100% - 16px);
+    height: calc(100dvh - 16px);
     min-height: 0;
-    margin: 0;
-    grid-template-rows: 72px minmax(0, 1fr) auto;
+    margin: 8px;
+    grid-template-rows: 56px minmax(0, 1fr) auto;
     overflow: hidden;
-    border: 0;
+    border: 1px solid var(--frame-edge);
+    background: rgba(47, 48, 53, 0.98);
+    box-shadow: 0 14px 42px rgba(0, 0, 0, 0.34);
+  }
+
+  @supports (height: 100svh) {
+    .site-frame {
+      height: calc(100svh - 16px);
+    }
   }
 
   .site-header {
     grid-template-columns: minmax(0, 1fr) auto;
-    gap: 5px;
-    padding: 0 8px;
+    gap: 4px;
+    padding: 0 10px;
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    background: rgba(47, 48, 53, 0.92);
   }
 
   .brand {
-    gap: 9px;
-    margin-left: 12px;
+    gap: 8px;
+    margin-left: 4px;
   }
 
   .brand-mark {
-    width: 38px;
-    height: 38px;
-    flex-basis: 38px;
-    font-size: 20px;
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+    font-size: 18px;
   }
 
   .brand-copy small {
@@ -3728,7 +3766,7 @@ html {
 
   .brand-copy strong {
     margin-top: -2px;
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .main-nav,
@@ -3739,49 +3777,69 @@ html {
   }
 
   .global-search-button.ant-btn {
-    width: 40px;
-    min-width: 40px;
-    height: 40px;
+    width: 34px;
+    min-width: 34px;
+    height: 38px;
     justify-content: center;
     padding: 0;
-    border-color: rgba(255, 255, 255, 0.16);
-    background:
-      linear-gradient(135deg, rgba(107, 220, 255, 0.08), transparent 62%),
-      rgba(8, 9, 11, 0.22);
+    border: 0;
+    background: transparent;
+    box-shadow: none;
     color: #e9e8e1;
   }
 
   .global-search-button.ant-btn .anticon {
     display: inline-flex;
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .mobile-menu-button.ant-btn {
     display: inline-flex;
-    height: 40px;
+    height: 38px;
     align-items: center;
-    gap: 7px;
-    padding-inline: 10px;
-    border-color: rgba(255, 255, 255, 0.16);
+    gap: 5px;
+    padding-inline: 8px 4px;
+    border: 0;
     border-radius: 0;
-    background:
-      linear-gradient(135deg, rgba(107, 220, 255, 0.08), transparent 62%),
-      rgba(8, 9, 11, 0.22);
+    background: transparent;
+    box-shadow: none;
     color: #e9e8e1;
     font-family: var(--serif);
-    font-size: 10px;
+    font-size: 9px;
     font-style: italic;
     letter-spacing: 0.08em;
   }
 
+  .global-search-button.ant-btn:hover,
+  .global-search-button.ant-btn:focus-visible {
+    background: rgba(244, 245, 0, 0.08) !important;
+    color: var(--yellow) !important;
+  }
+
+  .mobile-menu-button.ant-btn:hover,
+  .mobile-menu-button.ant-btn:focus,
+  .mobile-menu-button.ant-btn:focus-visible,
+  .mobile-menu-button.ant-btn:active {
+    border: 0 !important;
+    border-color: transparent !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #e9e8e1 !important;
+    outline: 0 !important;
+  }
+
+  .mobile-menu-button.ant-btn::before,
   .mobile-menu-button.ant-btn::after {
     display: none;
   }
 
   .site-footer {
     grid-template-columns: 1fr auto;
-    gap: 8px;
-    padding: 13px 12px;
+    gap: 6px;
+    min-height: 34px;
+    padding: 8px 10px 7px;
+    font-size: 10px;
+    line-height: 1.25;
   }
 
   .site-footer p {
@@ -3789,17 +3847,28 @@ html {
   }
 
   .site-footer > div:first-child {
-    display: flex;
+    display: grid;
     min-width: 0;
-    align-items: baseline;
-    gap: 8px;
+    gap: 3px;
+    overflow: hidden;
+  }
+
+  .site-footer > div:first-child strong {
+    line-height: 1;
     white-space: nowrap;
   }
 
   .site-footer > div:first-child span {
     overflow: hidden;
-    font-size: 10px;
+    min-width: 0;
+    font-size: 7px;
+    line-height: 1.2;
     text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .site-footer strong {
+    font-size: 12px;
   }
 
   .home-hero {
@@ -3877,7 +3946,7 @@ html {
   .page-hero,
   .network-page .page-hero {
     align-items: end;
-    padding: 18px 28px;
+    padding: 12px 20px;
   }
 
   .page-hero h1 {
@@ -3978,14 +4047,54 @@ html {
 
   .network-page {
     height: 100%;
-    grid-template-rows: auto auto 50px minmax(0, 1fr);
+    grid-template-rows: auto auto 40px minmax(0, 1fr);
+  }
+
+  .canvas-label {
+    top: 12px;
+    left: 12px;
+    gap: 6px;
+    font-size: 10px;
+  }
+
+  .canvas-label::before {
+    width: 17px;
+    height: 2px;
+    box-shadow: 6px 0 0 -1px var(--yellow);
+  }
+
+  .canvas-hint {
+    bottom: 12px;
+    left: 12px;
+    font-size: 9px;
+  }
+
+  .home-view-tabs {
+    min-height: 40px;
+    border: 0;
+    border-bottom: 1px solid rgba(5, 5, 6, 0.62);
   }
 
   .home-view-tabs :is(button, a) {
     min-width: 0;
     flex: 1;
+    gap: 7px;
     justify-content: center;
-    padding-inline: 12px;
+    padding-inline: 8px;
+    border: 0;
+  }
+
+  .home-view-tabs button.is-active::after,
+  .home-view-tabs a.active::after {
+    height: 2px;
+  }
+
+  .home-view-tabs small {
+    font-size: 9px;
+  }
+
+  .home-view-tabs span {
+    font-size: 11px;
   }
 
   .terms-view-tabs {
@@ -4500,14 +4609,28 @@ html {
 }
 
 @media (max-width: 590px) {
+  .site-frame {
+    width: calc(100% - 12px);
+    height: calc(100dvh - 12px);
+    margin: 6px;
+  }
+
+  @supports (height: 100svh) {
+    .site-frame {
+      height: calc(100svh - 12px);
+    }
+  }
+
   .site-footer {
-    grid-template-columns: 1fr;
-    gap: 6px;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 4px;
+    padding-block: 8px 7px;
   }
 
   .footer-links {
-    justify-content: flex-start;
-    gap: 13px;
+    justify-content: flex-end;
+    gap: 9px;
+    font-size: 10px;
   }
 
   .home-hero {

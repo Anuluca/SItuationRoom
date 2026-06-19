@@ -6,7 +6,10 @@ import {
   Routes,
   useLocation,
 } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import AppShell from "./components/AppShell";
+import { getFontFamily } from "./utils/fontPlatform";
+import type { Language } from "./types";
 
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const NetworkPage = lazy(() => import("./pages/NetworkPage"));
@@ -44,6 +47,9 @@ function LegacyTermsRedirect({
 }
 
 export default function App() {
+  const { i18n } = useTranslation();
+  const language = (i18n.resolvedLanguage === "ja" ? "ja" : "zh") as Language;
+
   return (
     <ConfigProvider
       theme={{
@@ -59,8 +65,7 @@ export default function App() {
           colorTextSecondary: "#aaa9a4",
           borderRadius: 2,
           borderRadiusLG: 2,
-          fontFamily:
-            'Georgia, "Times New Roman", "Songti SC", "STSong", "Hiragino Mincho ProN", "Yu Mincho", YuMincho, "MS Mincho", SimSun, NSimSun, "Noto Serif CJK SC", "Noto Serif SC", "Source Han Serif SC", "Noto Serif CJK JP", "Source Han Serif", serif',
+          fontFamily: getFontFamily(language),
         },
         components: {
           Button: {

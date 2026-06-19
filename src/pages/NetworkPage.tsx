@@ -943,7 +943,7 @@ function NetworkHeroAside({ language }: { language: Language }) {
                   {t(`factions.${quiz.character.faction}`)}
                 </span>
                 <span>
-                  {displayName(quiz.relatedCharacter, language)} ·{" "}
+                  {displayName(quiz.relatedCharacter, language)}·
                   {relationLabel}
                 </span>
               </strong>
