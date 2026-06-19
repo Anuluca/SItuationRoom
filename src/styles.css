@@ -1927,6 +1927,7 @@ a:focus-visible {
     linear-gradient(150deg, rgba(255, 255, 255, 0.03), transparent 38%),
     rgba(47, 48, 53, 0.48);
   background-size: 38px 38px, cover, cover;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 .network-canvas-shell::before {
@@ -1935,7 +1936,7 @@ a:focus-visible {
   bottom: -78px;
   color: rgba(8, 8, 9, 0.16);
   content: "池袋";
-  font-family: var(--serif);
+  font-family: inherit;
   font-size: clamp(150px, 22vw, 340px);
   font-weight: 900;
   letter-spacing: -0.18em;
@@ -1958,7 +1959,7 @@ a:focus-visible {
   position: absolute;
   z-index: 2;
   color: #aaa9a3;
-  font-family: var(--serif);
+  font-family: inherit;
   font-size: 12px;
   font-style: italic;
   pointer-events: none;
@@ -2063,7 +2064,7 @@ a:focus-visible {
   position: relative;
   z-index: 1;
   color: #d7d7d3;
-  font-family: var(--serif);
+  font-family: inherit;
   font-size: 13px;
   font-style: italic;
   font-weight: 600;

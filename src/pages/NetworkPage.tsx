@@ -30,6 +30,8 @@ import type { Character, Language, LocalizedText } from "../types";
 
 const CENTER_CHARACTER_ID = "mikado";
 const MOBILE_HERO_QUERY = "(max-width: 860px)";
+const GRAPH_FONT_FAMILY =
+  'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
 let networkNodeRegistered = false;
 
 interface TimelineEvent {
@@ -278,6 +280,7 @@ function registerNetworkNode(G6: any) {
             y: radius + 15,
             text: cfg?.label ?? "",
             fill: "#ffffff",
+            fontFamily: GRAPH_FONT_FAMILY,
             fontSize: 11,
             fontWeight: 600,
             textAlign: "center",
@@ -450,6 +453,7 @@ function GraphCanvas({
               fill: "#08090b",
               stroke: "#ffffff",
               lineWidth: 4,
+              fontFamily: GRAPH_FONT_FAMILY,
               fontSize: 10,
               fontWeight: 700,
             },
