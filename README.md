@@ -18,8 +18,6 @@
 
 DRRR 情报屋是一个面向《无头骑士异闻录》读者与观众的小型资料站。项目把分散在动画、小说、OVA、音乐、漫画与官方站点中的信息重新组织成可检索的档案，并用交互式关系图呈现池袋群像之间的连接。
 
-站点整体视觉延续 DRRR 的城市情报感：高对比黑黄配色、档案编号、情报终端式布局和密集但可扫描的信息结构。README 使用白底版本，方便在 GitHub 或文档页面阅读。
-
 ## 功能模块
 
 | 模块 | 入口 | 说明 |
@@ -33,12 +31,11 @@ DRRR 情报屋是一个面向《无头骑士异闻录》读者与观众的小型
 
 ## 视觉风格
 
-<div style="background:#ffffff;border:1px solid #deded6;padding:18px;margin:16px 0;">
-  <strong style="display:inline-block;background:#f4f500;color:#171719;padding:4px 8px;margin-bottom:12px;">FILE 00 / STYLE</strong>
-  <ul style="margin:0;padding-left:20px;line-height:1.8;color:#303136;">
-    <li>白底文档环境中保留站点的黑、黄、灰三色层次。</li>
-    <li>使用档案编号、细边框和高对比标签呼应页面中的情报卡片。</li>
-    <li>正文保持清晰克制，优先服务检索、对比和快速定位。</li>
+<div style="background:#313235;border:1px solid #deded6;padding:18px;margin:16px 0;color:#fff">
+  <strong style="display:inline-block;background:#f4f500;color:#171719;padding:4px 8px;margin-bottom:12px;font-style:italic">FILE 00 / STYLE</strong>
+  <ul style="margin:0;padding-left:20px;line-height:1.8;color:#fff;">
+    <li>站点主要为黄色为主题色，参考<a href="durarara.com">原作二期动画官网</a>设计的视觉效果。</li>
+    <li>正文使用非衬线字体，并使用大量斜体作为区分，优先服务检索、对比和快速定位。</li>
   </ul>
 </div>
 
