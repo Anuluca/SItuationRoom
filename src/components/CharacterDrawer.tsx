@@ -43,7 +43,7 @@ export default function CharacterDrawer({
     <Drawer
       className="character-drawer"
       open={open}
-      width="min(92vw, 520px)"
+      size="min(92vw, 520px)"
       closeIcon={false}
       onClose={onClose}
       title={null}

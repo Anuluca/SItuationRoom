@@ -420,7 +420,7 @@ export default function AppShell() {
         className="mobile-menu-drawer"
         open={menuOpen}
         placement="right"
-        width="min(88vw, 360px)"
+        size="min(88vw, 360px)"
         closeIcon={false}
         onClose={() => setMenuOpen(false)}
         title={

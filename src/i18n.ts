@@ -6,7 +6,7 @@ const resources = {
     translation: {
       site: {
         name: "DRRR情报屋",
-        subtitle: "《无头骑士异闻录》非官方档案站",
+        subtitle: "《无头骑士异闻录》关系网｜非官方档案站",
         description: "《无头骑士异闻录》小型百科",
       },
       nav: {
@@ -116,6 +116,7 @@ const resources = {
         latest: {
           items: [
             {
+              date: "2026.06.01",
               title: "新增官方人设图（TV一期）",
               description: "补充 TV 一期官方人设图相册。",
               image:
@@ -123,6 +124,7 @@ const resources = {
               to: "/resources/images/conceptTv1",
             },
             {
+              date: "2026.04.16",
               title: "新增漫画封面相册",
               description: "整理漫画卷册封面与相关图像。",
               image:
@@ -130,6 +132,7 @@ const resources = {
               to: "/resources/images/mangaCovers",
             },
             {
+              date: "2026.03.31",
               title: "新增小说封面相册",
               description: "整理小说卷册封面图像资料。",
               image:
@@ -366,6 +369,7 @@ const resources = {
         latest: {
           items: [
             {
+              date: "2026.06.01",
               title: "公式設定画を追加（TV第1期）",
               description: "TV第1期の公式キャラクター設定画アルバムを追加。",
               image:
@@ -373,6 +377,7 @@ const resources = {
               to: "/resources/images/conceptTv1",
             },
             {
+              date: "2026.04.16",
               title: "漫画カバーアルバムを追加",
               description: "漫画各巻のカバーと関連画像を整理。",
               image:
@@ -380,6 +385,7 @@ const resources = {
               to: "/resources/images/mangaCovers",
             },
             {
+              date: "2026.03.31",
               title: "小説カバーアルバムを追加",
               description: "小説各巻のカバー画像資料を整理。",
               image:

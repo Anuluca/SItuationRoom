@@ -110,7 +110,7 @@ export default function FactionsPage() {
       <Drawer
         className="faction-drawer"
         open={Boolean(selectedFaction)}
-        width="min(92vw, 600px)"
+        size="min(92vw, 600px)"
         closeIcon={false}
         onClose={() => setParam("faction", null)}
         title={null}

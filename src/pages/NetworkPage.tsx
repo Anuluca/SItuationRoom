@@ -44,6 +44,7 @@ interface TimelineEvent {
 }
 
 interface HeroUpdate {
+  date: string;
   title: string;
   description: string;
   image: string;
@@ -882,6 +883,9 @@ function NetworkHeroAside({ language }: { language: Language }) {
                   <small>0{index + 1}</small>
                 </span>
                 <div>
+                  <time dateTime={update.date.replaceAll(".", "-")}>
+                    {update.date}
+                  </time>
                   <strong>{update.title}</strong>
                   <p>{update.description}</p>
                   <em>{t("network.latestOpen")}</em>

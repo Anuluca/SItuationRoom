@@ -232,7 +232,7 @@ export default function WorksPage() {
       <Drawer
         className="work-drawer"
         open={Boolean(selectedWork)}
-        width="min(92vw, 720px)"
+        size="min(92vw, 720px)"
         autoFocus={false}
         closeIcon={false}
         getContainer={getWorksDrawerContainer}

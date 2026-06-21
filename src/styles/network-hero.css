@@ -136,6 +136,18 @@
   background: linear-gradient(to top, rgba(5, 5, 6, 0.88), transparent);
 }
 
+.hero-update-item time {
+  display: inline-block;
+  margin-bottom: 5px;
+  color: var(--yellow);
+  font-family: var(--serif);
+  font-size: 11px;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+
 .hero-update-item strong {
   display: block;
   overflow: hidden;
@@ -736,6 +748,12 @@
 
   .network-hero-mobile-strip .hero-update-item > div {
     padding: 25px 8px 7px;
+  }
+
+  .network-hero-mobile-strip .hero-update-item time {
+    margin-bottom: 3px;
+    font-size: 8px;
+    letter-spacing: 0.06em;
   }
 
   .network-hero-mobile-strip .hero-update-item strong {

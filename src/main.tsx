@@ -10,6 +10,16 @@ import "./styles/about.css";
 import "./styles/cards.css";
 import "./styles/network-hero.css";
 
+console.log(String.raw`
+···································
+: ____ ____ ____ ____ ____:
+: / __ \/ __ \/ __ \/ __ \/ / /:
+: / / / / /_/ / /_/ / /_/ / / / :
+: / /_/ / _, _/ _, _/ _, _/_/_/ :
+:/_____/_/ |_/_/ |_/_/ |_(_|_) :
+·······································
+`);
+
 applyFontSettings(i18n.resolvedLanguage === "ja" ? "ja" : "zh");
 i18n.on("languageChanged", (language) => {
   applyFontSettings(language === "ja" ? "ja" : "zh");
